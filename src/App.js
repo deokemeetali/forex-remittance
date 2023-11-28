@@ -3,7 +3,6 @@ import axios from "axios";
 
 function App() {
   const [message, setMessage] = useState("");
-
   useEffect(() => {
     axios.get("http://localhost:5001/message")
       .then((res) => {
@@ -13,12 +12,10 @@ function App() {
         console.error("Error fetching message:", error);
       })
   }, []);
-
   return (
     <div className="App">
       <h1>{message}</h1>
     </div>
   );
 }
-
 export default App;
