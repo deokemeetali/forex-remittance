@@ -1,12 +1,22 @@
-// Frontend - SignUpForm.js
+
+import React, { useState } from 'react';
+import { Form, Button, Card, InputGroup } from 'react-bootstrap';
+import { BsExclamationCircle } from 'react-icons/bs'; // Make sure to have react-icons installed
+
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+
 
 import React, { useState } from 'react';
 import { Form, Button, Card, InputGroup, Modal } from 'react-bootstrap';
 import { BsExclamationCircle } from 'react-icons/bs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import axios from 'axios';
-import '../styles/signup.css';
 
 const SignUpForm = () => {
   const [userData, setUserData] = useState({
@@ -135,7 +145,7 @@ const SignUpForm = () => {
                       required
                     />
                     {errors.username && (
-                      <InputGroup.Text id="inputGroupPrepend" className="text-danger">
+                      <InputGroup.Text className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
@@ -154,7 +164,7 @@ const SignUpForm = () => {
                       required
                     />
                     {errors.email && (
-                      <InputGroup.Text id="inputGroupPrepend" className="text-danger">
+                      <InputGroup.Text className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
@@ -172,14 +182,17 @@ const SignUpForm = () => {
                       onChange={handleChange}
                       required
                     />
+
+                    <Button variant="outline-secondary" onClick={togglePasswordVisibility}>
                     <Button
                       variant="outline-secondary"
                       onClick={() => togglePasswordVisibility('password')}
                     >
+
                       <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
                     </Button>
                     {errors.password && (
-                      <InputGroup.Text id="inputGroupPrepend" className="text-danger">
+                      <InputGroup.Text className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
@@ -204,7 +217,7 @@ const SignUpForm = () => {
                       <FontAwesomeIcon icon={showConfirmPassword ? faEye : faEyeSlash} />
                     </Button>
                     {errors.confirmPassword && (
-                      <InputGroup.Text id="inputGroupPrepend" className="text-danger">
+                      <InputGroup.Text className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
