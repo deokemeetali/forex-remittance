@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import LoginForm from "./loginPage/login"; // Correct casing for login.js
 
 function App() {
   const [message, setMessage] = useState("");
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <h1>{message}</h1>
+      <LoginForm />
     </div>
   );
 }
