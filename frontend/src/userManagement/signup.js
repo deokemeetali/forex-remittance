@@ -1,16 +1,10 @@
-// Import necessary components from React and Bootstrap
-import React, { useState } from 'react';
-import { Form, Button, Card, InputGroup } from 'react-bootstrap';
-import { BsExclamationCircle } from 'react-icons/bs'; // Make sure to have react-icons installed
+// Frontend - SignUpForm.js
 
-// Import necessary components from Font Awesome
+import React, { useState } from 'react';
+import { Form, Button, Card, InputGroup, Modal } from 'react-bootstrap';
+import { BsExclamationCircle } from 'react-icons/bs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-// Import Font Awesome CSS
-import '@fortawesome/fontawesome-svg-core/styles.css';
-
-// ... (your existing axios import)
 import axios from 'axios';
 import '../styles/signup.css';
 
@@ -19,11 +13,13 @@ const SignUpForm = () => {
     username: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,8 +27,22 @@ const SignUpForm = () => {
     setErrors({ ...errors, [name]: '' });
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const togglePasswordVisibility = (field) => {
+    if (field === 'password') {
+      setShowPassword(!showPassword);
+    } else if (field === 'confirmPassword') {
+      setShowConfirmPassword(!showConfirmPassword);
+    }
+  };
+
+  const handleSuccessModalClose = () => {
+    setShowSuccessModal(false);
+    setUserData({
+      username: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -42,22 +52,30 @@ const SignUpForm = () => {
 
     if (!userData.username.trim()) {
       validationErrors.username = 'Username is required';
+    } else if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(userData.username)) {
+      validationErrors.username =
+        'Username must start with an alphabet and can only contain alphanumeric characters';
     } else if (userData.username.length > 20) {
       validationErrors.username = 'Username should be maximum 20 characters';
     }
 
     if (!userData.email.trim()) {
       validationErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(userData.email)) {
+    } else if (!/^[a-zA-Z][^\s@]+@[^\s@]+\.[^\s@]+$/.test(userData.email)) {
       validationErrors.email = 'Enter a valid email address';
     }
 
     if (!userData.password.trim()) {
       validationErrors.password = 'Password is required';
-    } else if (userData.password.length < 8) {
-      validationErrors.password = 'Password should be at least 8 characters';
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+/.test(userData.password)) {
-      validationErrors.password = 'Password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character';
+    } else if (userData.password.length < 8 || userData.password.length > 20) {
+      validationErrors.password = 'Password should be between 8 and 20 characters';
+    } else if (
+      !/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+/.test(
+        userData.password
+      )
+    ) {
+      validationErrors.password =
+        'Password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character';
     }
 
     if (userData.password !== userData.confirmPassword) {
@@ -71,13 +89,30 @@ const SignUpForm = () => {
         const response = await axios.post('http://localhost:5001/signup', userData);
 
         if (response.status === 201) {
-          setMessage('User signed up successfully');
+         // setMessage('User signed up successfully');
+          setShowSuccessModal(true);
         } else {
           setMessage('Error signing up user');
         }
       } catch (error) {
-        setMessage('Error signing up user');
-      }
+        if (error.response && error.response.status === 400) {
+          setErrors({
+            username:
+              error.response.data.message === 'Username already exists'
+                ? error.response.data.message
+                : '',
+            email:
+              error.response.data.message === 'Email already exists'
+                ? error.response.data.message
+                : '',
+            password: '',
+            confirmPassword: '',
+          });
+        } else {
+          setMessage('Error signing up user');
+        }
+      
+    }
     }
   };
 
@@ -137,8 +172,10 @@ const SignUpForm = () => {
                       onChange={handleChange}
                       required
                     />
-                    <Button variant="outline-secondary" onClick={togglePasswordVisibility}>
-                      {/* Use the FontAwesomeIcon component for the eye icon */}
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => togglePasswordVisibility('password')}
+                    >
                       <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
                     </Button>
                     {errors.password && (
@@ -154,19 +191,27 @@ const SignUpForm = () => {
                   <Form.Label>Confirm Password</Form.Label>
                   <InputGroup>
                     <Form.Control
-                      type="password"
+                      type={showConfirmPassword ? 'text' : 'password'}
                       name="confirmPassword"
                       value={userData.confirmPassword}
                       onChange={handleChange}
                       required
                     />
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => togglePasswordVisibility('confirmPassword')}
+                    >
+                      <FontAwesomeIcon icon={showConfirmPassword ? faEye : faEyeSlash} />
+                    </Button>
                     {errors.confirmPassword && (
                       <InputGroup.Text id="inputGroupPrepend" className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
                   </InputGroup>
-                  {errors.confirmPassword && <Form.Text className="text-danger">{errors.confirmPassword}</Form.Text>}
+                  {errors.confirmPassword && (
+                    <Form.Text className="text-danger">{errors.confirmPassword}</Form.Text>
+                  )}
                 </Form.Group>
 
                 <Button variant="primary" type="submit" block>
@@ -178,8 +223,24 @@ const SignUpForm = () => {
           </Card>
         </div>
       </div>
+
+       {/* Success Modal */}
+       <Modal
+        show={showSuccessModal}
+        onHide={handleSuccessModalClose}
+      >
+        <Modal.Body>
+          <p>User signed up successfully!</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSuccessModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
+
 
 export default SignUpForm;
