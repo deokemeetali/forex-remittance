@@ -1,13 +1,13 @@
 const express = require('express')
 const cors = require('cors')
 const { connectToDatabase } = require('./database/db')
-const { pool } = require('./database/db')
+// const { pool } = require('./database/db')
 const app = express()
 const port = process.env.PORT || 5001
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 const UserController = require('./controllers/UserController')
-const LoginController=require('./controllers/LoginController');
-const bcrypt = require('bcrypt')
+const LoginController = require('./controllers/LoginController')
+// const bcrypt = require('bcrypt')
 connectToDatabase()
 
 app.use(cors())
@@ -18,7 +18,7 @@ app.get('/message', (req, res) => {
 })
 
 // app.post('/login', async (req, res) => {
-//   const { identifier, password } = req.body; 
+//   const { identifier, password } = req.body;
 
 //   // Extract identifier and password from the request body
 
@@ -48,13 +48,10 @@ app.get('/message', (req, res) => {
 //   }
 // });
 
-
-
-
 const userController = new UserController()
 
 app.post('/signup', (req, res) => userController.signUp(req, res))
-app.post('/login', LoginController.login);
+app.post('/login', LoginController.login)
 app.listen(port, () => {
   console.log(`Server is running on ${port}`)
 })
