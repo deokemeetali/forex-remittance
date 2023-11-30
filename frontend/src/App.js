@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LoginForm from "./loginPage/login"; // Correct casing for login.js
 
+import SignupForm from "./userManagement/signup";
 function App() {
   const [message, setMessage] = useState("");
   useEffect(() => {
@@ -17,7 +18,10 @@ function App() {
     <div className="App">
       <h1>{message}</h1>
       <LoginForm />
+      <h1>Signup Form</h1>
+      <SignupForm />
     </div>
+    
   );
 }
 export default App;
