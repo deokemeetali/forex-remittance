@@ -1,4 +1,5 @@
 const { pool } = require('../database/db')
+
 class User {
   async createUser (username, email, password) {
     const createUserTableQuery = `

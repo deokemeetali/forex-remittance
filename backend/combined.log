@@ -6,3 +6,7 @@
 {"level":"info","message":{"success":true}}
 {"level":"info","message":"Server is running on 5001"}
 {"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":{"success":true}}
+{"level":"info","message":{"success":true}}
