@@ -1,0 +1,14 @@
+/* Add this CSS to your stylesheet */
+
+/* Red border for input fields with errors */
+.has-error .form-control {
+    border-color: #ff0000; /* Red border color */
+  }
+  
+  /* Error message styling */
+  .text-danger {
+    color: #ff0000; /* Red color for error messages */
+    font-size: 0.875rem; /* Adjust font size as needed */
+    margin-top: 0.25rem; /* Provide some space between input and error message */
+  }
+  

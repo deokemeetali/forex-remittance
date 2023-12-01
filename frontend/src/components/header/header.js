@@ -15,6 +15,17 @@ function Header() {
         <Navbar.Toggle aria-controls="navbarNav" />
         <Navbar.Collapse id="navbarNav">
           <Nav className="ml-auto">
+          <ScrollLink
+              activeClass="active"
+              to="services"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              <Nav.Link href="#">Our Sevices</Nav.Link>
+            </ScrollLink>
+            
             <ScrollLink
               activeClass="active"
               to="about"
@@ -25,16 +36,7 @@ function Header() {
             >
               <Nav.Link href="#">About us</Nav.Link>
             </ScrollLink>
-            <ScrollLink
-              activeClass="active"
-              to="services"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-            >
-              <Nav.Link href="#">Our Sevices</Nav.Link>
-            </ScrollLink>
+           
             <Link to="/login" className="nav-link">
               <Button variant="outline-light" className="me-2">
                 Login
