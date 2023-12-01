@@ -50,11 +50,13 @@ function Main() {
             </Col>
           </Row>
         </Container>
-      <div className="service-cards-section flex padding-horizontal">
+     </div>
+     <div className="service-cards-section flex padding-horizontal">
         <Row>
           <Col md={4}>
             <Card className="service-card">
-              <Card.Img variant="top" src="images/s1.png" alt="" />
+              <Card.Img variant="top" src="http://surl.li/ntumh" alt=""className="service-card-image"
+              />
               <Card.Body>
                 <Card.Title>CURRENCY WALLET</Card.Title>
                 <Card.Text>
@@ -68,7 +70,8 @@ function Main() {
 
           <Col md={4}>
             <Card className="service-card">
-              <Card.Img variant="top" src="images/s2.png" alt="" />
+              <Card.Img variant="top" src="http://surl.li/ntumh" alt=""className="service-card-image"
+ />
               <Card.Body>
                 <Card.Title>CURRENCY WALLET</Card.Title>
                 <Card.Text>
@@ -82,7 +85,9 @@ function Main() {
 
           <Col md={4}>
             <Card className="service-card">
-              <Card.Img variant="top" src="images/s3.png" alt="" />
+              <Card.Img variant="top" src="http://surl.li/ntumh" alt="" 
+              className="service-card-image"
+              />
               <Card.Body>
                 <Card.Title>CURRENCY WALLET</Card.Title>
                 <Card.Text>
@@ -94,9 +99,6 @@ function Main() {
             </Card>
           </Col>
         </Row>
-
-        <Button className="primary-btn">View All</Button>
-      </div>
       </div>
     <div id="about" className="about-us">
         <Container>
