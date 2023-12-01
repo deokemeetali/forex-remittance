@@ -45,6 +45,7 @@ const LoginForm = () => {
 
         if (response.status === 200) {
           setMessage("Login successful");
+          navigate('/home');
           // Handle successful login (redirect, state change, etc.)
         } else {
           setMessage("Invalid credentials");

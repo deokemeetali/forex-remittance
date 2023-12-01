@@ -64,4 +64,4 @@ pool.query(createUserTableQuery)
   // You can add more methods for user-related operations here if needed
 }
 
-module.exports = User;
+module.exports = User;
