@@ -1,0 +1,17 @@
+.forex-remittance-section {
+    background-image: url('https://i.pinimg.com/564x/10/6b/9a/106b9a578bb1d18cfe818223fefa4ccf.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0; /* Adjust the padding as needed */
+  }
+  
+  .forex-remittance-section h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .forex-remittance-section p {
+    font-size: 1.5rem;
+  }
+  

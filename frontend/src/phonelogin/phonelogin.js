@@ -1,7 +1,4 @@
-import React,{useState,useEffect} from 'react';
-// import {
-//   Button, Form, Alert,
-// } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import { auth } from '../firebase/firebase';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,7 +6,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import './phonelogin.css';
+// import './phonelogin.css';
 
 function PhoneLogin() {
   const [phone, setPhone] = useState('');
@@ -18,8 +15,7 @@ function PhoneLogin() {
   const [confirmation, setConfirmation] = useState(null);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
-//  const apiurl = process.env.REACT_APP_BACKEND_URL;
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
 
   const sendOtp = async () => {
     try {
@@ -43,11 +39,11 @@ function PhoneLogin() {
       const code = otp;
       var result;
       await confirmation.confirm(code).then((response) => {
-       result = response._tokenResponse.idToken
+        result = response._tokenResponse.idToken
       });
       setData(result);
       setSuccessMessage('OTP verified successfully! Redirecting to home...');
-      
+
     } catch (error) {
       setError(error);
       console.log(error);
@@ -58,7 +54,7 @@ function PhoneLogin() {
     console.log('inside useeffect');
     if (data) {
       const phoneNumber = { phone };
-      console.log('phone',phoneNumber);
+      console.log('phone', phoneNumber);
       axios
         .post('http://localhost:5001/v1/auth/firebase', phoneNumber)
         .then((res) => {
@@ -70,14 +66,14 @@ function PhoneLogin() {
           return null;
         });
     }
-  }, [data,phone]);
+  }, [data, phone]);
 
   return (
-    <div className='parent-class'>
-    {successMessage && <div className="success-message">{successMessage}</div>}
-    {error && <div className="error-message">{error.message}</div>}
     <div>
-      <label className="otp-label">Enter your Number</label>
+    {successMessage && <div >{successMessage}</div>}
+    {error && <div>{error.message}</div>}
+    <div>
+      <label>Enter your Number</label>
       <PhoneInput
         country="us"
         value={phone}
@@ -85,25 +81,24 @@ function PhoneLogin() {
       />
     </div>
     <br />
-    <button className="sen-otp-btn" onClick={sendOtp}>
+    <button onClick={sendOtp}>
       Send OTP
     </button>
     <br />
-    <div id="recaptcha" className="recaptcha-style" />
+    <div/>
     <br />
     <div>
-      <label className="otp-label">Enter OTP</label>
+      <label>Enter OTP</label>
       <input
         type="text"
         onChange={(e) => setOtp(e.target.value)}
-        className="input-field"
       />
     </div>
-    <button className="verify-otp-btn" onClick={verifyOtp}>
+    <button onClick={verifyOtp}>
       Verify OTP
     </button>
-  </div>
-    
+  </div>  
+
   );
 }
 

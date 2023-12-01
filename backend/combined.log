@@ -1,0 +1,27 @@
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":{"success":true}}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":{"success":true}}
+{"level":"info","message":{"success":true}}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"error","message":"Error connecting to PostgreSQL database:"}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":{"success":true}}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Server is running on 5001"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":{"error":"Error creating user","success":false}}
+{"level":"info","message":{"success":true}}

@@ -1,0 +1,23 @@
+.carousel-image {
+    width: 1400px;
+    height: 800px;
+  }
+  /* landingpage.css */
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .caption-text {
+    font-size: 24px;
+    font-weight: bold;
+    color:black; /* Set your desired text color */
+  }
+  /* Add this to your CSS file or style block */
+.service-card-image {
+  max-height: 150px; /* Adjust the value as needed */
+  object-fit: cover; /* Preserve aspect ratio and cover the entire container */
+}
