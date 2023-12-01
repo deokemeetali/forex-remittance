@@ -1,21 +1,21 @@
-import React, { useState} from "react";
-import { Form, Button, Card, InputGroup } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Button, Card, InputGroup, Modal } from "react-bootstrap";
 import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
-// import logger from './logger';
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
     identifier: "",
     password: "",
   });
-  const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
@@ -26,17 +26,28 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
+  const validateForm = () => {
+    let formIsValid = true;
+    const newErrors = {};
+
+    if (!loginData.identifier) {
+      formIsValid = false;
+      newErrors.identifier = "Please enter your username or email";
+    }
+
+    if (!loginData.password) {
+      formIsValid = false;
+      newErrors.password = "Please enter your password";
+    }
+
+    setErrors(newErrors);
+    return formIsValid;
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const validationErrors = {};
-
-    // Validation rules for identifier (username/email) and password...
-    // (Similar to signup form validation)
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
+    if (validateForm()) {
       try {
         const response = await axios.post(
           "http://localhost:5001/login",
@@ -44,16 +55,22 @@ const LoginForm = () => {
         );
 
         if (response.status === 200) {
-          setMessage("Login successful");
+          setShowModal(true);
           // Handle successful login (redirect, state change, etc.)
         } else {
-          setMessage("Invalid credentials");
+          // Handle unsuccessful login
         }
       } catch (error) {
-        setMessage("Error logging in");
+        // Handle error logging in
       }
     }
   };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setLoginData({ identifier: "", password: "" }); // Clear entered credentials
+  };
+
 
   return (
     <div className="container mt-5">
@@ -139,27 +156,39 @@ const LoginForm = () => {
                     Login
                   </Button>
                   <div className="login-p">
-            Don&apos;t have an account?
-            {' '}
-            <span
-              className="login-span"
-              onClick={() => {
-                navigate('/signup');
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  navigate('/signup');
-                }
-              }}
-              tabIndex={0}
-              role="button"
-              style={{ cursor: 'pointer' }}
-            >
-              Sign Up
-            </span>
-          </div>
+                    Don&apos;t have an account?{" "}
+                    <span
+                      className="login-span"
+                      onClick={() => {
+                        navigate('/signup');
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          navigate('/signup');
+                        }
+                      }}
+                      tabIndex={0}
+                      role="button"
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Sign Up
+                    </span>
+                  </div>
                 </Form>
-                {message && <div className="mt-3 text-center">{message}</div>}
+                <Modal show={showModal} onHide={closeModal} centered>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Login Successful</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <p>You have successfully logged in!</p>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={closeModal}>
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+
               </Card.Body>
             </Card>
           </div>

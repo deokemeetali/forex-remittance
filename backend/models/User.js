@@ -1,10 +1,9 @@
 // models/User.js
 
-const { pool } = require('../database/db');
+const { pool } = require('../database/db')
 
 class User {
-  async createUser(username, email, password) {
-
+  async createUser (username, email, password) {
     const createUserTableQuery = `
   CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
@@ -13,55 +12,53 @@ class User {
     password VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
-`;
+`
 
-pool.query(createUserTableQuery)
-  .then(() => console.log('Users table created successfully'))
-  .catch(err => console.error('Error creating users table:', err));
-  
+    pool.query(createUserTableQuery)
+      .then(() => console.log('Users table created successfully'))
+      .catch(err => console.error('Error creating users table:', err))
+
     try {
-    
       const createUserQuery = `
         INSERT INTO users (username, email, password)
         VALUES ($1, $2, $3)
-      `;
+      `
 
-      const newUserValues = [username, email, password];
-      await pool.query(createUserQuery, newUserValues);
-      return { success: true };
+      const newUserValues = [username, email, password]
+      await pool.query(createUserQuery, newUserValues)
+      return { success: true }
     } catch (error) {
-      console.error('Error creating user:', error);
-      return { success: false, error: 'Error creating user' };
+      console.error('Error creating user:', error)
+      return { success: false, error: 'Error creating user' }
     }
   }
 
-  async checkUserExistence(username, email) {
+  async checkUserExistence (username, email) {
     try {
-      const usernameQuery = 'SELECT COUNT(*) FROM users WHERE username = $1';
-      const emailQuery = 'SELECT COUNT(*) FROM users WHERE email = $1';
+      const usernameQuery = 'SELECT COUNT(*) FROM users WHERE username = $1'
+      const emailQuery = 'SELECT COUNT(*) FROM users WHERE email = $1'
 
-      const usernameResult = await pool.query(usernameQuery, [username]);
-      const emailResult = await pool.query(emailQuery, [email]);
+      const usernameResult = await pool.query(usernameQuery, [username])
+      const emailResult = await pool.query(emailQuery, [email])
 
-      const usernameCount = parseInt(usernameResult.rows[0].count);
-      const emailCount = parseInt(emailResult.rows[0].count);
+      const usernameCount = parseInt(usernameResult.rows[0].count)
+      const emailCount = parseInt(emailResult.rows[0].count)
 
       if (usernameCount > 0) {
-        throw new Error('Username already exists');
+        throw new Error('Username already exists')
       }
 
       if (emailCount > 0) {
-        throw new Error('Email already exists');
+        throw new Error('Email already exists')
       }
 
-      return false; // Indicates that neither username nor email exists
+      return false // Indicates that neither username nor email exists
     } catch (error) {
-      console.error('Error checking user existence:', error);
-      throw error; // Rethrow the error for further handling in the controller
+      console.error('Error checking user existence:', error)
+      throw error // Rethrow the error for further handling in the controller
     }
   }
 
   // You can add more methods for user-related operations here if needed
 }
-
-module.exports = User;
+module.exports = User
