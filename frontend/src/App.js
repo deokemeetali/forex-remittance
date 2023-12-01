@@ -3,6 +3,7 @@ import axios from "axios";
 import LoginForm from "./loginPage/login"; // Correct casing for login.js
 
 import SignupForm from "./userManagement/signup";
+import logger from "./logger";
 function App() {
   const [message, setMessage] = useState("");
   useEffect(() => {
@@ -11,7 +12,7 @@ function App() {
         setMessage(res.data.message);
       })
       .catch((error) => {
-        console.error("Error fetching message:", error);
+        logger.error("Error fetching message:", error);
       })
   }, []);
   return (
