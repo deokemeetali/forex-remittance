@@ -3,10 +3,9 @@ import { Form, Button, Card, InputGroup, Modal } from 'react-bootstrap';
 import { BsExclamationCircle } from 'react-icons/bs';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import axios from 'axios';
-
-
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 const SignUpForm = () => {
   const [userData, setUserData] = useState({
     username: '',
@@ -19,7 +18,7 @@ const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-
+  const navigate = useNavigate(); // Initialize useNavigate
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -171,8 +170,6 @@ const SignUpForm = () => {
                       onChange={handleChange}
                       required
                     />
-
-                    <Button variant="outline-secondary" onClick={togglePasswordVisibility}>
                     <Button
                       variant="outline-secondary"
                       onClick={() => togglePasswordVisibility('password')}
@@ -217,9 +214,29 @@ const SignUpForm = () => {
                   )}
                 </Form.Group>
 
-                <Button variant="primary" type="submit" block>
+                <Button variant="primary" type="submit" block className="mx-auto d-block">
                   Sign Up
                 </Button>
+                <p className="login-p">
+                    Don&apos;t have an account?
+                    {' '}
+                    <span
+                      type="submit"
+                      className="login-span"
+                      onClick={() => {
+                        navigate('/login');
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          navigate('/login');
+                        }
+                      }}
+                      tabIndex={0}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Login
+                    </span>
+                  </p>
               </Form>
               {message && <div className="mt-3 text-center">{message}</div>}
             </Card.Body>

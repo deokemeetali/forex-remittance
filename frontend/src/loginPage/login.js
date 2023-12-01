@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Form, Button, Card, InputGroup } from "react-bootstrap";
 import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 // import logger from './logger';
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
@@ -13,7 +15,7 @@ const LoginForm = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate(); // Initialize useNavigate
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
@@ -133,9 +135,29 @@ const LoginForm = () => {
                     )}
                   </Form.Group>
 
-                  <Button variant="primary" type="submit" block bg="primary">
+                  <Button variant="primary" type="submit" block className="mx-auto d-block" bg="primary">
                     Login
                   </Button>
+                  <div className="login-p">
+            Don&apos;t have an account?
+            {' '}
+            <span
+              className="login-span"
+              onClick={() => {
+                navigate('/signup');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  navigate('/signup');
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              style={{ cursor: 'pointer' }}
+            >
+              Sign Up
+            </span>
+          </div>
                 </Form>
                 {message && <div className="mt-3 text-center">{message}</div>}
               </Card.Body>
