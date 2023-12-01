@@ -4,7 +4,7 @@ import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-
+// import logger from './logger';
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
     identifier: "",
