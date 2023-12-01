@@ -5,6 +5,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
+// import logger from './logger';
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
     identifier: "",

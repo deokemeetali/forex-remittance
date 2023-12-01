@@ -1,6 +1,6 @@
-<<<<<<< HEAD
-=======
+
 const { pool } = require('../database/db')
+
 class User {
   async createUser (username, email, password) {
     const createUserTableQuery = `
@@ -11,15 +11,13 @@ class User {
     password VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )
-`
->>>>>>> d465acc766581c988492829094b715f4f13f0b92
 
     pool.query(createUserTableQuery)
       .then(() => console.log('Users table created successfully'))
       .catch(err => console.error('Error creating users table:', err))
 
-
     try {
+
 
 class User {
   async createUser(username, email, password) {
@@ -41,10 +39,7 @@ pool.query(createUserTableQuery)
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
       
-<<<<<<< HEAD
-=======
 
->>>>>>> d465acc766581c988492829094b715f4f13f0b92
 
       const createUserQuery = `
         INSERT INTO users (username, email, password)
@@ -60,37 +55,6 @@ pool.query(createUserTableQuery)
     }
   }
 
-  async checkUserExistence(username, email) {
-    try {
-      const usernameQuery = 'SELECT COUNT(*) FROM users WHERE username = $1';
-      const emailQuery = 'SELECT COUNT(*) FROM users WHERE email = $1';
-
-      const usernameResult = await pool.query(usernameQuery, [username]);
-      const emailResult = await pool.query(emailQuery, [email]);
-
-      const usernameCount = parseInt(usernameResult.rows[0].count);
-      const emailCount = parseInt(emailResult.rows[0].count);
-
-      if (usernameCount > 0) {
-        throw new Error('Username already exists');
-      }
-
-      if (emailCount > 0) {
-        throw new Error('Email already exists');
-      }
-
-      return false; // Indicates that neither username nor email exists
-    } catch (error) {
-      console.error('Error checking user existence:', error);
-      throw error; // Rethrow the error for further handling in the controller
-    }
-  }
-
   // You can add more methods for user-related operations here if needed
 }
 
-<<<<<<< HEAD
-module.exports = User;
-=======
-module.exports = User
->>>>>>> d465acc766581c988492829094b715f4f13f0b92
