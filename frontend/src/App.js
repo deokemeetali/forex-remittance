@@ -4,7 +4,7 @@ import LandingPage from './components/Landingpage/landingpage';
 import Home from "./components/Home/home";
 import SignUpForm from "./userManagement/signup";
 import LoginForm from "./loginPage/login"; // Correct casing for login.js
-import logger from "./logger";
+
 function App() {
   return (
      <> 

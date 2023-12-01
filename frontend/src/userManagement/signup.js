@@ -85,6 +85,7 @@ const SignUpForm = () => {
     } else {
       try {
         const response = await axios.post('http://localhost:5001/signup', userData);
+
         if (response.status === 201) {
          // setMessage('User signed up successfully');
           setShowSuccessModal(true);
@@ -111,7 +112,6 @@ const SignUpForm = () => {
       
     }
     }
-  
   };
 
   return (
@@ -133,7 +133,7 @@ const SignUpForm = () => {
                       required
                     />
                     {errors.username && (
-                      <InputGroup.Text id="inputGroupPrepend" className="text-danger">
+                      <InputGroup.Text className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
@@ -152,7 +152,7 @@ const SignUpForm = () => {
                       required
                     />
                     {errors.email && (
-                      <InputGroup.Text id="inputGroupPrepend" className="text-danger">
+                      <InputGroup.Text className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
@@ -178,11 +178,10 @@ const SignUpForm = () => {
                       <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
                     </Button>
                     {errors.password && (
-                      <InputGroup.Text id="inputGroupPrepend" className="text-danger">
+                      <InputGroup.Text className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
-                    </Button>
                   </InputGroup>
                   {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
                 </Form.Group>
@@ -204,7 +203,7 @@ const SignUpForm = () => {
                       <FontAwesomeIcon icon={showConfirmPassword ? faEye : faEyeSlash} />
                     </Button>
                     {errors.confirmPassword && (
-                      <InputGroup.Text id="inputGroupPrepend" className="text-danger">
+                      <InputGroup.Text className="text-danger">
                         <BsExclamationCircle />
                       </InputGroup.Text>
                     )}
@@ -261,6 +260,5 @@ const SignUpForm = () => {
     </div>
   );
 };
-
 
 export default SignUpForm;
