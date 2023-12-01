@@ -47,6 +47,11 @@ function Header() {
                 Sign Up
               </Button>
             </Link>
+            <Link to="/phonelogin" className="nav-link">
+              <Button variant="outline-light" className="me-2">
+                PhoneLogin
+              </Button>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </div>

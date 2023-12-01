@@ -1,7 +1,6 @@
 import React from 'react';
 import { Carousel,Container,Row,Col, Card, Button} from 'react-bootstrap';
 import '../styles/main.css';
- // Make sure to import your stylesheet
 function Main() {
   return (
     <div>
