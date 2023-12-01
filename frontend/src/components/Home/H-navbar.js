@@ -2,9 +2,9 @@
 import React from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Navbar.css'; // Import your custom CSS for styling
+// Import your custom CSS for styling
 
-function Navbar() {
+function Homenav() {
   return (
     <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
       <Container>
@@ -36,4 +36,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Homenav;

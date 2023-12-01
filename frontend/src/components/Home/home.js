@@ -1,20 +1,24 @@
 import React from 'react';
-import Navbar from './navbar'; // Adjust the import path based on your file structure
-import { Container, Row, Col, Card, Jumbotron, Button, Navbar } from 'react-bootstrap';
-import './Home.css'; // Import your external CSS file for styling
+import { Container, Row, Col, Card,Button} from 'react-bootstrap';
+import '../styles/Home.css'; // Import your external CSS file for styling
+import Homenav from './H-navbar';
 
 function Home() {
   return (
     <div>
-      <Navbar /> {/* Include the Header component at the top of the Home component */}
+      <Homenav /> {/* Include the Header component at the top of the Home component */}
       
       {/* Forex Remittance Section with Background Image */}
-      <Jumbotron fluid className="forex-remittance-section">
-        <Container>
-          <h2>Forex Remittance</h2>
-          <p>Offers 24/7 services for outward remittance at the most attractive rates.</p>
-        </Container>
-      </Jumbotron>
+      <div className="forex-remittance-section">
+      <Container>
+        <Row>
+          <Col>
+            <h2>Forex Remittance</h2>
+            <p>Offers 24/7 services for outward remittance at the most attractive rates.</p>
+          </Col>
+        </Row>
+      </Container>
+    </div>
 
       {/* How It Works Section */}
       <Container className="mt-5">

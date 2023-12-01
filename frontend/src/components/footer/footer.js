@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
-import '../style/footer.css';
+import '../styles/footer.css';
 
 function Footer() {
   return (
