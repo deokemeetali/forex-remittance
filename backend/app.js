@@ -1,19 +1,19 @@
+// server.js
+
 const express = require('express');
+const admin = require('firebase-admin');
+const AuthController = require('./firebase/phonecontroller');
+const { connectToDatabase } = require('./database/db');
+const phoneController = require('./firebase/phonecontroller');
 const cors = require('cors');
-const { connectToDatabase } = require('./database/db')
 
 const app = express();
-const port = process.env.PORT || 5001;
-
-connectToDatabase();
-
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+connectToDatabase();
+app.post('/v1/auth/firebase',phoneController.managePhoneNumber);
 
-app.get("/message", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on ${port}`);
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

@@ -1,0 +1,69 @@
+/* Add these styles to your CSS file or style block */
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow added */
+  }
+  
+  .success-message {
+    color: #4caf50; /* Green color */
+    font-weight: bold;
+  }
+  
+  .error-message {
+    color: #f44336; /* Red color */
+    font-weight: bold;
+  }
+  
+  .otp-label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Input styles */
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  
+  /* Button styles */
+  .sen-otp-btn,
+  .verify-otp-btn {
+    background-color: #2196f3; /* Blue color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .sen-otp-btn:hover,
+  .verify-otp-btn:hover {
+    background-color: #0b7dda; /* Darker blue color on hover */
+  }
+  .parent-class {
+    margin: 30px; /* Adjust the margin value as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust the shadow values as needed */
+    padding: 45px; /* Optional: Add padding for better spacing */
+  }
+  
+  
+  
