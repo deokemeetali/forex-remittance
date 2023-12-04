@@ -74,3 +74,12 @@
 {"level":"info","message":{"error":"Error creating user","success":false}}
 >>>>>>> 716153750a42704e64bc32cc0f96e52fd9799ee3
 {"level":"info","message":{"success":true}}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
