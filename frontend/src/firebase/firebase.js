@@ -6,14 +6,14 @@ import { getAnalytics } from "firebase/analytics";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBzys2JthHwm_t79WApxvbLgZJkalGahBU",
-  authDomain: "donationapp-81249.firebaseapp.com",
-  projectId: "donationapp-81249",
-  storageBucket: "donationapp-81249.appspot.com",
-  messagingSenderId: "130224113251",
-  appId: "1:130224113251:web:cfebc84ea782fc439b5a56",
-  measurementId: "G-3741ZEQWZN"
-};
+  apiKey: "AIzaSyA9rPaw6g_a2uPAg-nX_sEmzgPToegeFkc",
+  authDomain: "project-b8c44.firebaseapp.com",
+  projectId: "project-b8c44",
+  storageBucket: "project-b8c44.appspot.com",
+  messagingSenderId: "316140381230",
+  appId: "1:316140381230:web:fab6e0d5ee9b69f444ebbf",
+  measurementId: "G-WS59DB5C4S"
+  };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
