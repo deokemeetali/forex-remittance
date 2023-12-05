@@ -21,5 +21,19 @@
     font-size: 16px;
     margin-bottom: 10px;
   }
+  .attractive-text {
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
   
+  .attractive-text:hover {
+    color: #f8f8f8; /* Bright white color on hover */
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5); /* Subtle white text shadow on hover */
+  }
+  .small-input {
+    width: 50%; /* Adjust the width as needed */
+    padding: 0.375rem 0.75rem; /* Adjust the padding as needed */
+    font-size: 0.875rem; /* Adjust the font size as needed */
+  } 
  

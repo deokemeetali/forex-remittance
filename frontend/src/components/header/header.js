@@ -18,12 +18,11 @@ const Header = () => {
             <Nav.Link href="#why-us">Why us</Nav.Link>
           </Nav>
           <Nav>
-          <Link to="/login" className="nav-link">
+            <Link to="/login" className="nav-link">
               <Button variant="outline-light" className="me-2">
                 Login
               </Button>
             </Link>
-
           </Nav>
         </Navbar.Collapse>
       </Container>

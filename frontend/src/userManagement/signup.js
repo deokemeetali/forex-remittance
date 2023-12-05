@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import '../components/styles/signup.css';
 const SignUpForm = () => {
   const [userData, setUserData] = useState({
     username: '',
@@ -93,6 +94,7 @@ const SignUpForm = () => {
           setMessage('Error signing up user');
         }
       } catch (error) {
+            console.log(error.response);
         if (error.response && error.response.status === 400) {
           setErrors({
             username:
@@ -107,7 +109,7 @@ const SignUpForm = () => {
             confirmPassword: '',
           });
         } else {
-          setMessage('Error signing up user');
+          setMessage('Error signing up usnhhhher');
         }
       
     }
@@ -260,6 +262,5 @@ const SignUpForm = () => {
     </div>
   );
 };
-
 
 export default SignUpForm;

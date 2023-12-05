@@ -1,5 +1,6 @@
-const { pool } = require('../database/db')
+// models/User.js
 
+const { pool } = require('../database/db');
 
 class User {
   async createUser(username, email, password) {
@@ -19,20 +20,18 @@ pool.query(createUserTableQuery)
   .catch(err => console.error('Error creating users table:', err));
   
     try {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      
-
+    
       const createUserQuery = `
         INSERT INTO users (username, email, password)
         VALUES ($1, $2, $3)
-      `
+      `;
 
-      const newUserValues = [username, email, password]
-      await pool.query(createUserQuery, newUserValues)
-      return { success: true }
+      const newUserValues = [username, email, password];
+      await pool.query(createUserQuery, newUserValues);
+      return { success: true };
     } catch (error) {
-      console.error('Error creating user:', error)
-      return { success: false, error: 'Error creating user' }
+      console.error('Error creating user:', error);
+      return { success: false, error: 'Error creating user' };
     }
   }
 

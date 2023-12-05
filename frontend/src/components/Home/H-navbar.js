@@ -3,7 +3,7 @@ import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Currency from "../RateConverter/currency";
-// Import your custom CSS for styling
+import { Link } from 'react-router-dom';
 
 function Homenav() {
   return (
@@ -26,10 +26,13 @@ function Homenav() {
         <Navbar.Collapse id="navbarNav" className="justify-content-end">
           <Nav>
             <Currency />
-            <Button variant="outline-light" className="mx-2">
-              Login
-            </Button>
-            <Button variant="outline-light">Signup</Button>
+            <Nav>
+            <Link to="/phonelogin" className="nav-link">
+              <Button variant="outline-light" className="me-2">
+                PhoneLogin
+              </Button>
+            </Link>
+          </Nav>
           </Nav>
         </Navbar.Collapse>
       </Container>

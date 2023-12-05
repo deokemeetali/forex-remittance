@@ -1,0 +1,5 @@
+{"level":"error","message":"Error connecting to PostgreSQL database:"}
+{"level":"error","message":"Error connecting to PostgreSQL database:"}
+{"level":"error","message":"Error connecting to PostgreSQL database:"}
+{"level":"error","message":"Error signing up user: Username already exists","stack":"Error: Username already exists\n    at User.checkUserExistence (D:\\forex-remittance\\forex-remittance\\backend\\models\\User.js:50:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async UserController.signUp (D:\\forex-remittance\\forex-remittance\\backend\\controllers\\UserController.js:13:7)"}
+{"level":"error","message":"Error signing up user: Username already exists","stack":"Error: Username already exists\n    at User.checkUserExistence (D:\\forex-remittance\\forex-remittance\\backend\\models\\User.js:50:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async UserController.signUp (D:\\forex-remittance\\forex-remittance\\backend\\controllers\\UserController.js:13:7)"}

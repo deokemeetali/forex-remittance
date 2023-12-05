@@ -5,6 +5,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
+// import logger from './logger';
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
     identifier: "",
@@ -43,6 +45,7 @@ const LoginForm = () => {
 
         if (response.status === 200) {
           setMessage("Login successful");
+          navigate('/home');
           // Handle successful login (redirect, state change, etc.)
         } else {
           setMessage("Invalid credentials");
