@@ -14,12 +14,12 @@ class UserController {
       const result = await this.userModel.createUser(username, email, password)
       console.log(result)
 
-      const { username, email, password } = req.body;
+      //const { username, email, password } = req.body;
 
       await this.userModel.checkUserExistence(username, email);
 
 
-      const result = await this.userModel.createUser(username, email, password);
+     // const result = await this.userModel.createUser(username, email, password);
 
 
      

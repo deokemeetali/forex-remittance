@@ -7,7 +7,7 @@ import '../styles/footer.css';
 
 function Footer() {
   return (
-    <footer className="mt-5 bg-dark text-white">
+    <footer className="mt-5 text-white">
       <Container fluid className="p-5">
         <Row>
           <Col md={4}>
@@ -22,8 +22,8 @@ function Footer() {
           <Col md={4}>
             <h5>Quick Links</h5>
             <ul className="list-unstyled">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Services</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#services">Services</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
           </Col>

@@ -1,171 +1,169 @@
-import React from 'react';
-import { Carousel,Container,Row,Col, Card, Button} from 'react-bootstrap';
-import '../styles/main.css';
- // Make sure to import your stylesheet
+import React from "react";
+import { Row, Col, Card } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/main.css";
+// Make sure to import your stylesheet
 function Main() {
   return (
-    <div>
-      {/* Carousel Section */}
-      <Carousel>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 carousel-image "
-            src="https://images.squarespace-cdn.com/content/v1/5ad771bd266c0782e84d3c39/1674315088549-AVMR2XP8H66XJ2S4WB3D/Help+Consumers+Understand+How+Bank+Mergers+Affect+Them+And+Their+Money.jpg?format=1000w" // Replace with your image URL
-            alt="Bank 1"
-          />
-          <Carousel.Caption className="carousel-caption">
-            <p className="caption-text">Your Trusted Banking Partner</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+    <>
+      {/* Main Page Content */}
+      <div className="main-page-content padding-horizontal flex mainPageBackground">
+        <div className="main-content-text">
+          <h1>
+            Crypto <br /> Currency{" "}
+          </h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea quam
+            ullam distinctio quis veritatis rem illum dolorum inventore minima
+            omnis maxime nisi ab expedita consequuntur, eius ducimus magnam,
+            quidem ad. Tenetur quis repellendus velit dicta, quae provident
+            facere fugiat, neque voluptas inventore earum voluptatem mollitia!
+          </p>
+        </div>
+        <div className="main-image">
+          <img src="images/slider-img.png" alt="" />
+        </div>
+      </div>
 
-        <Carousel.Item>
-          <img
-            className="d-block w-100 carousel-image"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe41tTKOqfPWXilb5UvISmIeUFGhUVx4Y8MQ&usqp=CAU" // Replace with your image URL
-            alt="Bank 3"
-          />
-          <Carousel.Caption className="carousel-caption">
-            <p className="caption-text">Empowering Your Financial Journey</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+      {/* Service Cards Section */}
+      <div
+        id="services"
+        className="our-services max margin-top flex text-center"
+      >
+        <div className="header-text">
+          <h2>
+            Our <span className="blue-color">Services</span>
+          </h2>
+          <p>
+            There are many variations of passages of Lorem Ipsum available, but
+            the majority have suffered alteration...
+          </p>
+        </div>
 
-        <Carousel.Item>
-          <img
-            className="d-block w-100 carousel-image"
-            src="https://www.shutterstock.com/image-vector/money-transfer-online-global-mobile-260nw-2170434649.jpg" // Replace with your image URL
-            alt="Forex-Remit"
-          />
-          <Carousel.Caption  className="carousel-caption">
-            <h3 className="caption-text">Forex-Remit</h3>
-            <p className="caption-text">Offers 24/7 services for outward remittance at the most attractive rates.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-      <div id="services" className="our-services max-margin-top d-flex">
-        <Container>
-          <Row className="justify-content-center">
-            <Col md={8} className="header-text text-center">
-              <h2>Our <span className="blue-color">Services</span></h2>
-              <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-            </Col>
-          </Row>
-        </Container>
-     </div>
-     <div className="service-cards-section flex padding-horizontal">
-        <Row>
-          <Col md={4}>
+        <Row className="service-cards-section flex padding-horizontal">
+          {/* Service Card 1 */}
+          <Col lg={4} md={6} sm={12}>
             <Card className="service-card">
-              <Card.Img variant="top" src="http://surl.li/ntumh" alt=""className="service-card-image"
-              />
-              <Card.Body>
+              <Card.Img variant="top" src="images/s1.png" alt="" />
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                 <Card.Title>CURRENCY WALLET</Card.Title>
                 <Card.Text>
-                  fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                  The point of using
+                  Fact that a reader will be distracted by the readable content
+                  of a page...
                 </Card.Text>
-                <div className="read-more">Read More</div>
               </Card.Body>
             </Card>
           </Col>
 
-          <Col md={4}>
+          {/* Service Card 2 */}
+          <Col lg={4} md={6} sm={12}>
             <Card className="service-card">
-              <Card.Img variant="top" src="http://surl.li/ntumh" alt=""className="service-card-image"
- />
-              <Card.Body>
+              <Card.Img variant="top" src="images/s2.png" alt="" />
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                 <Card.Title>CURRENCY WALLET</Card.Title>
                 <Card.Text>
-                  fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                  The point of using
+                  Fact that a reader will be distracted by the readable content
+                  of a page...
                 </Card.Text>
-                <div className="read-more">Read More</div>
               </Card.Body>
             </Card>
           </Col>
 
-          <Col md={4}>
+          {/* Service Card 3 */}
+          <Col lg={4} md={6} sm={12}>
             <Card className="service-card">
-              <Card.Img variant="top" src="http://surl.li/ntumh" alt="" 
-              className="service-card-image"
-              />
-              <Card.Body>
+              <Card.Img variant="top" src="images/s3.png" alt="" />
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
                 <Card.Title>CURRENCY WALLET</Card.Title>
                 <Card.Text>
-                  fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                  The point of using
+                  Fact that a reader will be distracted by the readable content
+                  of a page...
                 </Card.Text>
-                <div className="read-more">Read More</div>
               </Card.Body>
             </Card>
           </Col>
         </Row>
       </div>
-    <div id="about" className="about-us">
-        <Container>
-          <Row className="header-text">
-            <Col>
-              <h2>About <span className="blue-color">Us</span></h2>
-              <p>Magni quod blanditiis non minus sed aut voluptatum illum quisquam aspernatur ullam vel beatae rerum ipsum
-                voluptatibus</p>
-            </Col>
-          </Row>
-          <Row className="about-content">
-            <Col md={6}>
-              <img src="images/about-img.png" alt="" />
-            </Col>
-            <Col md={6}>
+
+      {/* About Us Section */}
+      <div id="about" className="about-us text-center">
+        <div className="header-text">
+          <h2>
+            About <span className="blue-color">Us</span>
+          </h2>
+          <p>
+            Magni quod blanditiis non minus sed aut voluptatum illum quisquam...
+          </p>
+        </div>
+        <div className="about-content container">
+          <div className="row align-items-center">
+            <div className="col-md-6 order-md-1">
+              <img src="images/about-img.png" alt="" className="img-fluid" />
+            </div>
+            <div className="col-md-6 order-md-2">
               <div className="about-content-right">
                 <h2>We Are Finexo</h2>
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                  alteration in some form, by injected humour, or randomised words which don&apos;t look even slightly
-                  believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&apos;t
-                  anything embarrassing hidden in the middle of text. All</p>
-                <p>Molestiae odio earum non qui cumque provident voluptates, repellendus exercitationem, possimus at
-                  iste corrupti officiis unde alias eius ducimus reiciendis soluta eveniet. Nobis ullam ab omnis quasi
-                  expedita.</p>
-                <Button className="primary-btn">Read More</Button>
+                <p>
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered alteration in some
+                  form, by injected humour, or randomised words which don&apos;t
+                  look even slightly believable. If you are going to use a
+                  passage of Lorem Ipsum, you need to be sure there isn&apos;t
+                  anything embarrassing hidden in the middle of text. All the
+                  Lorem Ipsum generators on the Internet tend to repeat
+                  predefined chunks as necessary, making this the first true
+                  generator on the Internet.
+                </p>
               </div>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div id="why-us" className="choose-us">
-        <Container>
-          <Row className="header-text">
-            <Col>
-              <h2> Why Choose <span className="blue-color">Us</span></h2>
-            </Col>
-          </Row>
-          <Row className="choose-box">
-            <Col md={4}>
-              <img src="images/w1.png" alt="" />
-              <h3>Expert Management</h3>
-              <p>Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi
-                corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia
-                id, aspernatur nihil. Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat
-                veritatis unde reiciendis possimus animi autem natus</p>
-            </Col>
-            <Col md={4}>
-              <img src="images/w2.png" alt="" />
-              <h3>Secure Investment</h3>
-              <p>Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi
-                corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia
-                id, aspernatur nihil. Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat
-                veritatis unde reiciendis possimus animi autem natus</p>
-            </Col>
-            <Col md={4}>
-              <img src="images/w3.png" alt="" />
-              <h3>Instant Trading</h3>
-              <p>Incidunt odit rerum tenetur alias architecto asperiores omnis cumque doloribus aperiam numquam! Eligendi
-                corrupti, molestias laborum dolores quod nisi vitae voluptate ipsa? In tempore voluptate ducimus officia
-                id, aspernatur nihil. Tempore laborum nesciunt ut veniam, nemo officia ullam repudiandae repellat
-                veritatis unde reiciendis possimus animi autem natus</p>
-            </Col>
-          </Row>
-        </Container>
+      {/* Why Choose Us Section */}
+      <div id="why-us" className="choose-us text-center">
+      <div className="header-text">
+        <h2>
+          Why Choose <span className="blue-color">Us</span>
+        </h2>
       </div>
-    </div>   
+      <Row className="choose-box">
+        {/* Choose Box 1 */}
+        <Col md={4} className="choose-box-item text-center">
+          <img src="images/w1.png" alt="" />
+          <h3>Expert Management</h3>
+          <p>
+            Expert Management for banks involves a strategic approach tofinancial leadership, combining extensive industry knowledge with
+            cutting-edge insights. Our team of seasoned professionals excels incrafting tailored solutions, navigating regulatory landscapes, and
+            optimizing financial performance.
+          </p>
+        </Col>
+
+        {/* Choose Box 2 */}
+        <Col md={4} className="choose-box-item">
+          <img src="images/w2.png" alt="" />
+          <h3>Secure Investment</h3>
+          <p>
+            Secure Investment is the cornerstone of financial peace of mind,providing individuals with a reliable avenue to grow and protect
+            their wealth. With a focus on risk mitigation and robust investment strategies, we prioritize the security and stability of your assets.
+            Our expert team navigates the complex financial landscape to identify opportunities that align with your financial goals.
+          </p>
+        </Col>
+
+        {/* Choose Box 3 */}
+        <Col md={4} className="choose-box-item">
+          <img src="images/w3.png" alt="" />
+          <h3>Instant Trading</h3>
+          <p>
+            Instant Trading in the Forex (foreign exchange) market offers a dynamic and efficient platform for swift and seamless execution of
+            trades. With real-time data feeds and lightning-fast order processing, our Instant Trading service empowers traders to
+            capitalize on market fluctuations instantly. Whether you are a seasoned investor or a newcomer to the Forex market, our platform
+            provides the tools and speed needed to make split-second decisions.
+          </p>
+        </Col>
+      </Row>
+    </div>
+    </>
   );
 }
 
