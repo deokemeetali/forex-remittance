@@ -23,7 +23,7 @@ function PhoneLogin() {
 
   const navigate = useNavigate();
 
- 
+
   const sendOtp = async () => {
     try {
       const recaptcha = new RecaptchaVerifier(auth, 'recaptcha', {});
@@ -34,7 +34,7 @@ function PhoneLogin() {
       );
       setConfirmation(confirmationResult);
       setSuccessMessage('OTP sent successfully!');
-      
+
     } catch (error) {
       setError(error);
       console.log(error);
@@ -60,7 +60,7 @@ function PhoneLogin() {
     if (data) {
       const phoneNumber = { phone };
       console.log("user's id token", data);
-     
+
       axios
         .post(`${apiurl}/v1/auth/firebase`, phoneNumber)
         .then((res) => {
