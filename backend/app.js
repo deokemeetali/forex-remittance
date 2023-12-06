@@ -27,6 +27,7 @@ const userController = new UserController()
 app.post('/v1/auth/firebase',phoneController.managePhoneNumber);
 app.post('/signup', (req, res) => userController.signUp(req, res))
 app.post('/login', LoginController.login)
+app.post('/api/benificiar',FormData)
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

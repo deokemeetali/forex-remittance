@@ -4,8 +4,8 @@ const logger = require('../logger')
 const pool = new Pool({
     host: 'localhost',
     user: 'postgres',
-    port: 5432,
-    password: 'dimple@1234',
+    port: 5000,
+    password: '@Prerna08',
     database: 'postgres'
 });
 
