@@ -1,23 +1,201 @@
-.carousel-image {
-    width: 1400px;
-    height: 800px;
+
+/* styles.css */
+.mainPageBackground {
+  color: white;
+  display: flex;
+  flex-direction: column; /* Change to column for small screens */
+  gap: 20px; /* Adjust the gap as needed */
+  align-items: center;
+  background-color: #06014b;
+  padding: 50px; /* Adjust padding as needed */
+}
+
+.main-content-text {
+  max-width: 60%; /* Adjust the width as needed */
+  text-align: left; /* Center text for small screens */
+}
+.main-content-text h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+
+.main-content-text p {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.main-image {
+  max-width: 100%; /* Make it full-width for small screens */
+  animation: bounceUpDown 2s infinite alternate; /* Add animation */
+}
+
+.main-image img {
+  max-width: 100%; /* Make the image responsive */
+  height: auto;
+}
+
+@keyframes bounceUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  /* landingpage.css */
-.carousel-caption {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+  50% {
+    transform: translateY(-20px);
   }
-  
-  .caption-text {
-    font-size: 24px;
-    font-weight: bold;
-    color:black; /* Set your desired text color */
+}
+
+/* Media query for responsiveness */
+@media (min-width: 768px) {
+  .mainPageBackground {
+    flex-direction: row; /* Change back to row for larger screens */
+    justify-content: space-between;
+    align-items: center;
   }
-  /* Add this to your CSS file or style block */
-.service-card-image {
-  max-height: 150px; /* Adjust the value as needed */
-  object-fit: cover; /* Preserve aspect ratio and cover the entire container */
+
+  .main-content-text,
+  .main-image {
+    max-width: 40%;
+  }
+}
+
+
+
+/* ---------service-section---- */
+
+.our-services {
+   display: flex;
+  flex-direction: column; 
+  align-items: center;
+  gap: 40px;
+  margin: 100px 0px;
+  flex-wrap: wrap;
+}
+
+.service-cards-section {
+  margin: 30px 0px;
+  gap: 40px;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%; /* Set width to 100% to make it responsive */
+  max-width: 400px; /* Optionally set a max-width to prevent cards from stretching too wide on large screens */
+  height: auto;
+  background-color: #f2f4f3;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.header-text{
+  font-size: 1.2rem;
+}
+.service-card p {
+  margin: 0;
+}
+.blue-color{
+  color:#00bbf0
+}
+.service-card img {
+  height: 100px;
+  width: 100px;
+}
+
+.read-more {
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.read-more:hover {
+  color: #00bbf0;
+}
+
+/* Media query for smaller screens (adjust as needed) */
+@media (max-width: 768px) {
+  .service-card {
+    max-width: 50%;
+  }
+}
+
+/* --------About-us--------- */
+
+.about-us {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  /* background-color:  #3f38be; */
+  background-color: #06014b;
+  padding: 100px 100px;
+}
+
+.about-content {
+  display: flex;
+  gap: 40px;
+}
+
+.about-content p {
+  font-size: 1.2rem;
+}
+
+
+.about-content img {
+  width: 50%;
+  height: auto;
+
+}
+
+.about-content-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: start;
+}
+
+/* --------choose us------------- */
+
+.choose-us {
+  margin: 100px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+
+}
+
+.choose-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+}
+
+.choose-box p {
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 30px;
+}
+
+.choose-box img {
+  height: 120px;
+  width: 120px;
+  padding: 25px;
+  border: 5px solid #06014b;
+  border-radius: 50%;
+}
+
+.padding-horizontal {
+  padding: 0px 100px;
+}
+.image-fluid{
+ max-width: '100%';
+ height: 'auto'; 
 }
