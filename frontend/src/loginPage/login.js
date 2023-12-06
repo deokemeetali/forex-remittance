@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { Form, Button, Card, InputGroup, Modal } from "react-bootstrap";
+import { Form, Button, Card, InputGroup } from "react-bootstrap";
 import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
     identifier: "",
     password: "",
   });
+  const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate();
-
+  const navigate = useNavigate(); // Initialize useNavigate
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
@@ -26,28 +26,16 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const validateForm = () => {
-    let formIsValid = true;
-    const newErrors = {};
-
-    if (!loginData.identifier) {
-      formIsValid = false;
-      newErrors.identifier = "Please enter your username or email";
-    }
-
-    if (!loginData.password) {
-      formIsValid = false;
-      newErrors.password = "Please enter your password";
-    }
-
-    setErrors(newErrors);
-    return formIsValid;
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
+    const validationErrors = {};
+    // Validation rules for identifier (username/email) and password...
+    // (Similar to signup form validation)
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
       try {
         const response = await axios.post(
           "http://localhost:5001/login",
@@ -55,22 +43,17 @@ const LoginForm = () => {
         );
 
         if (response.status === 200) {
-          setShowModal(true);
+          setMessage("Login successful");
+          navigate('/home');
           // Handle successful login (redirect, state change, etc.)
         } else {
-          // Handle unsuccessful login
+          setMessage("Invalid credentials");
         }
       } catch (error) {
-        // Handle error logging in
+        setMessage("Error logging in");
       }
     }
   };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setLoginData({ identifier: "", password: "" }); // Clear entered credentials
-  };
-
 
   return (
     <div className="container mt-5">
@@ -88,9 +71,7 @@ const LoginForm = () => {
               <Card.Body>
                 <h2 className="text-center mb-4">Login</h2>
                 <Form onSubmit={handleLogin}>
-                  <Form.Group
-                    className={`mb-3 ${errors.identifier ? "has-error" : ""}`}
-                  >
+                  <Form.Group className={`mb-3 ${errors.identifier ? "has-error" : ""}`}>
                     <Form.Label>Username or Email</Form.Label>
                     <InputGroup>
                       <Form.Control
@@ -116,9 +97,7 @@ const LoginForm = () => {
                     )}
                   </Form.Group>
 
-                  <Form.Group
-                    className={`mb-3 ${errors.password ? "has-error" : ""}`}
-                  >
+                  <Form.Group className={`mb-3 ${errors.password ? "has-error" : ""}`}>
                     <Form.Label>Password</Form.Label>
                     <InputGroup>
                       <Form.Control
@@ -156,7 +135,7 @@ const LoginForm = () => {
                     Login
                   </Button>
                   <div className="login-p">
-                    Don&apos;t have an account?{" "}
+                    Don&apos;t have an account?{' '}
                     <span
                       className="login-span"
                       onClick={() => {
@@ -175,20 +154,7 @@ const LoginForm = () => {
                     </span>
                   </div>
                 </Form>
-                <Modal show={showModal} onHide={closeModal} centered>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Login Successful</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>You have successfully logged in!</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={closeModal}>
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-
+                {message && <div className="mt-3 text-center">{message}</div>}
               </Card.Body>
             </Card>
           </div>

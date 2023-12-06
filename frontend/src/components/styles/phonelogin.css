@@ -1,0 +1,45 @@
+/* Custom CSS for the specific component */
+.custom-container {
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .custom-phone-input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  
+  .custom-button {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .custom-button:hover {
+    background-color: #0b7dda;
+  }
+  
+  .custom-input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+  

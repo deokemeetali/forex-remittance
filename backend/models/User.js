@@ -1,5 +1,3 @@
-// models/User.js
-
 const { pool } = require('../database/db')
 
 class User {
@@ -61,4 +59,5 @@ class User {
 
   // You can add more methods for user-related operations here if needed
 }
+
 module.exports = User
