@@ -32,6 +32,11 @@ function Homenav() {
                 PhoneLogin
               </Button>
             </Link>
+            <Link to="/benificiaryform" className="nav-link">
+              <Button variant="outline-light" className="me-2">
+                Beneficiary form
+              </Button>
+            </Link>
           </Nav>
           </Nav>
         </Navbar.Collapse>
