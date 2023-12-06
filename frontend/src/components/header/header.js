@@ -1,62 +1,33 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll'; // Import ScrollLink from react-scroll
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import '../styles/header.css';
-
-function Header() {
+const Header = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
-      <div className="container-fluid">
-        <Navbar.Brand href="#">FINTECH</Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarNav" />
-        <Navbar.Collapse id="navbarNav">
-          <Nav className="ml-auto">
-          <ScrollLink
-              activeClass="active"
-              to="services"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-            >
-              <Nav.Link href="#">Our Sevices</Nav.Link>
-            </ScrollLink>
-            
-            <ScrollLink
-              activeClass="active"
-              to="about"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-            >
-              <Nav.Link href="#">About us</Nav.Link>
-            </ScrollLink>
-           
+    <Navbar bg="primary" expand="lg" variant="dark">
+      <Container>
+        <Navbar.Brand className='logo'>Finexo</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#">Home</Nav.Link>
+            <Nav.Link href="#about">About</Nav.Link>
+            <Nav.Link href="#services">Service</Nav.Link>
+            <Nav.Link href="#why-us">Why us</Nav.Link>
+          </Nav>
+          <Nav>
             <Link to="/login" className="nav-link">
               <Button variant="outline-light" className="me-2">
                 Login
               </Button>
             </Link>
-            <Link to="/signup" className="nav-link">
-              <Button variant="outline-light" className="me-2">
-                Sign Up
-              </Button>
-            </Link>
-            <Link to="/phonelogin" className="nav-link">
-              <Button variant="outline-light" className="me-2">
-                PhoneLogin
-              </Button>
-            </Link>
           </Nav>
         </Navbar.Collapse>
-      </div>
+      </Container>
     </Navbar>
   );
-}
+};
 
 export default Header;
