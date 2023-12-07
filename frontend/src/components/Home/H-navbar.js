@@ -37,6 +37,11 @@ function Homenav() {
                 Beneficiary form
               </Button>
             </Link>
+            <Link to="/ForexRemittance" className="nav-link">
+              <Button variant="outline-light" className="me-2">
+               Forex Remittance Form
+              </Button>
+            </Link>
           </Nav>
           </Nav>
         </Navbar.Collapse>

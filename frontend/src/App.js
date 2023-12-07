@@ -6,7 +6,7 @@ import SignUpForm from "./userManagement/signup";
 import PhoneLogin from "./phonelogin/phonelogin";
 import LoginForm from "./loginPage/login"; 
 import BeneficiaryForm from './benificiaryform/benificiaryform';
-
+import ForexRemittanceForm from './forex-remittance/ForexRemittance';
 function App() {
   return (
      <> 
@@ -18,6 +18,7 @@ function App() {
       <Route path="/signup" element={<SignUpForm/>}/>
       <Route path="/login" element={<LoginForm />}/>
       <Route path="/phonelogin" element={<PhoneLogin />} />
+      <Route path='/ForexRemittance' element={<ForexRemittanceForm/>}/>
     </Routes>
   </Router>
     </>
