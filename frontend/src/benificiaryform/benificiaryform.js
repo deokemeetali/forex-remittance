@@ -7,8 +7,6 @@ import './benificiaryform.css';
 const BeneficiaryForm = () => {
     const [formData, setFormData] = useState({
         name: '',
-        relationship: '',
-        percentage: '',
         address: '',
         email: '',
         phoneNumber: '',
@@ -36,8 +34,6 @@ const BeneficiaryForm = () => {
             console.log('Backend Response:', response.data);
             setFormData({
                 name: '',
-                relationship: '',
-                percentage: '',
                 address: '',
                 email: '',
                 phoneNumber: '',
@@ -46,89 +42,88 @@ const BeneficiaryForm = () => {
                 branch: '',
                 ifscCode: '',
             });
-        }catch (error) {
-            // Handle errors from the backend call
+        } catch (error) {
             console.error('Error making backend call:', error);
-          }
+        }
     };
-        return (
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                />
-                <label htmlFor="address">Address:</label>
-                <input
-                    type="text"
-                    id="address"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                />
+    return (
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="name">Name:</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+            />
+            <label htmlFor="address">Address:</label>
+            <input
+                type="text"
+                id="address"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+            />
 
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                />
+            <label htmlFor="email">Email:</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+            />
 
-                <label htmlFor="phoneNumber">Phone Number:</label>
-                <input
-                    type="tel"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                />
+            <label htmlFor="phoneNumber">Phone Number:</label>
+            <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+            />
 
-                <label htmlFor="bankName">Bank Name:</label>
-                <input
-                    type="text"
-                    id="bankName"
-                    name="bankName"
-                    value={formData.bankName}
-                    onChange={handleChange}
-                />
+            <label htmlFor="bankName">Bank Name:</label>
+            <input
+                type="text"
+                id="bankName"
+                name="bankName"
+                value={formData.bankName}
+                onChange={handleChange}
+            />
 
-                <label htmlFor="accountNumber">Account Number:</label>
-                <input
-                    type="text"
-                    id="accountNumber"
-                    name="accountNumber"
-                    value={formData.accountNumber}
-                    onChange={handleChange}
-                />
+            <label htmlFor="accountNumber">Account Number:</label>
+            <input
+                type="text"
+                id="accountNumber"
+                name="accountNumber"
+                value={formData.accountNumber}
+                onChange={handleChange}
+            />
 
-                <label htmlFor="branch">Branch:</label>
-                <input
-                    type="text"
-                    id="branch"
-                    name="branch"
-                    value={formData.branch}
-                    onChange={handleChange}
-                />
+            <label htmlFor="branch">Branch:</label>
+            <input
+                type="text"
+                id="branch"
+                name="branch"
+                value={formData.branch}
+                onChange={handleChange}
+            />
 
-                <label htmlFor="ifscCode">IFSC Code:</label>
-                <input
-                    type="text"
-                    id="ifscCode"
-                    name="ifscCode"
-                    value={formData.ifscCode}
-                    onChange={handleChange}
-                />
+            <label htmlFor="ifscCode">IFSC Code:</label>
+            <input
+                type="text"
+                id="ifscCode"
+                name="ifscCode"
+                value={formData.ifscCode}
+                onChange={handleChange}
+            />
 
-                <button onClick={handleSubmit} type="submit">Add Beneficiary</button>
-            </form>
-        );
-    };
+            <button onClick={handleSubmit} type="submit">Add Beneficiary</button>
+        </form>
+    );
+};
 
-    export default BeneficiaryForm;
+export default BeneficiaryForm;

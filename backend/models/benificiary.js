@@ -7,11 +7,9 @@ class BeneficiaryModel {
         CREATE TABLE IF NOT EXISTS beneficiary (
           user_id SERIAL PRIMARY KEY,
           name VARCHAR(255) NOT NULL,
-          relationship VARCHAR(255) NOT NULL,
-          percentage DECIMAL NOT NULL,
           address VARCHAR(255),
           email VARCHAR(255) NOT NULL,
-          phone_number VARCHAR(20) UNIQUE NOT NULL,  -- Corrected field name here
+          phone_number VARCHAR(20) UNIQUE NOT NULL, 
           bank_name VARCHAR(255),
           account_number VARCHAR(255),
           branch VARCHAR(255),
@@ -27,16 +25,15 @@ class BeneficiaryModel {
   
         // Now, insert data into the table with handling duplicates
         const insertQuery = `
-          INSERT INTO beneficiary (name, relationship, percentage, address, email, phone_number, bank_name, account_number, branch, ifsc_code)
-          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+          INSERT INTO beneficiary (name, address, email, phone_number, bank_name, account_number, branch, ifsc_code)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
           ON CONFLICT (phone_number) DO NOTHING
           RETURNING *
         `;
+
         
         const {
           name,
-          relationship,
-          percentage,
           address,
           email,
           phoneNumber,  // Corrected field name here
@@ -48,8 +45,6 @@ class BeneficiaryModel {
 
         const result = await pool.query(insertQuery, [
           name,
-          relationship,
-          percentage,
           address,
           email,
           phoneNumber,
