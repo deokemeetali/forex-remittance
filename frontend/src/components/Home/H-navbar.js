@@ -1,8 +1,9 @@
 // Navbar.js
-import React from 'react';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-// Import your custom CSS for styling
+import React from "react";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Currency from "../RateConverter/currency";
+import { Link } from 'react-router-dom';
 
 function Homenav() {
   return (
@@ -16,7 +17,7 @@ function Homenav() {
             width="30"
             height="30"
             className="d-inline-block align-top"
-          />{' '}
+          />{" "}
           Your Logo
         </Navbar.Brand>
 
@@ -24,11 +25,19 @@ function Homenav() {
         <Navbar.Toggle aria-controls="navbarNav" />
         <Navbar.Collapse id="navbarNav" className="justify-content-end">
           <Nav>
-            <Nav.Link href="#">Quick Rate</Nav.Link>
-            <Button variant="outline-light" className="mx-2">
-              Login
-            </Button>
-            <Button variant="outline-light">Signup</Button>
+            <Currency />
+            <Nav>
+            <Link to="/phonelogin" className="nav-link">
+              <Button variant="outline-light" className="me-2">
+                PhoneLogin
+              </Button>
+            </Link>
+            <Link to="/benificiaryform" className="nav-link">
+              <Button variant="outline-light" className="me-2">
+                Beneficiary form
+              </Button>
+            </Link>
+          </Nav>
           </Nav>
         </Navbar.Collapse>
       </Container>

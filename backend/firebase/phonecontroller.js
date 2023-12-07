@@ -1,11 +1,9 @@
-
-
 const AuthModel = require('../models/phonelogin');
 
 exports.managePhoneNumber = async (req, res) => {
   try {
     const { phone } = req.body;
-    console.log('phoneNumber',phone);
+    console.log('phoneNumber', phone);
 
     if (!phone) {
       return res.status(400).json({ message: 'Phone number is required in the request body.' });

@@ -2,12 +2,12 @@ const { Pool } = require('pg')
 const logger = require('../logger')
 
 const pool = new Pool({
-  host: 'localhost',
-  user: 'postgres',
-  port: 5000,
-  password: 'kshitij',
-  database: 'postgres'
-})
+    host: 'localhost',
+    user: 'postgres',
+    port: 5000,
+    password: '@Prerna08',
+    database: 'postgres'
+});
 
 async function connectToDatabase () {
   try {
