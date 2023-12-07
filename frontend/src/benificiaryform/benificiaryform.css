@@ -1,25 +1,23 @@
-/* Add this CSS in a separate stylesheet or use a CSS-in-JS solution */
-
 form {
     max-width: 400px;
     margin: auto;
-  }
-  
-  label {
+}
+
+label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
-  }
-  
-  input {
+}
+
+input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
     margin-bottom: 15px;
     box-sizing: border-box;
-  }
-  
-  button {
+}
+
+button {
     background-color: #4caf50;
     color: white;
     padding: 10px 15px;
@@ -27,11 +25,8 @@ form {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #45a049;
-  }
-  
-  /* Optional: Add more styles for a cleaner layout, spacing, and responsiveness */
-  
+}

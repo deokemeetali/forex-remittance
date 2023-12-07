@@ -29,7 +29,6 @@ const BeneficiaryForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post(`${apiurl}/api/beneficiaries`, formData);
-
             // Handle the response from the backend as needed
             console.log('Backend Response:', response.data);
             setFormData({
