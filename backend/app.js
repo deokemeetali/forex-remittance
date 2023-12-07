@@ -9,7 +9,8 @@ const app = express()
 const UserController = require('./controllers/UserController')
 const LoginController = require('./controllers/LoginController')
 const BeneficiaryForm = require('./benificiaryform/benificiaryform')
-const Displaybeneficiary= require('./controllers/displaybeneficiary')
+const Displaybeneficiary = require('./controllers/displaybeneficiary')
+const sendDataController = require('./controllers/sendDataController')
 const PORT = process.env.PORT || 5001
 
 connectToDatabase()
@@ -28,35 +29,36 @@ app.post('/signup', (req, res) => userController.signUp(req, res))
 app.post('/login', LoginController.login)
 
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
-app.post('/api/sendData', (req, res) => {
-  const {
-    senderName,
-    recipientName,
-    amount,
-    baseCurrency,
-    targetCurrency,
-    purpose,
-    bankAccount,
-    convertedAmount
-  } = req.body
+app.post('/api/sendData', sendDataController.sendData)
+// app.post('/api/sendData', (req, res) => {
+//   const {
+//     senderName,
+//     recipientName,
+//     amount,
+//     baseCurrency,
+//     targetCurrency,
+//     purpose,
+//     bankAccount,
+//     convertedAmount
+//   } = req.body
 
-  // Process the received form data here (you can perform database operations, send emails, etc.)
-  console.log('Received form data:')
-  console.log('Sender Name:', senderName)
-  console.log('Recipient Name:', recipientName)
-  console.log('Amount:', amount)
-  console.log('Base Currency:', baseCurrency)
-  console.log('Target Currency:', targetCurrency)
-  console.log('Purpose:', purpose)
-  console.log('Bank Account:', bankAccount)
-  console.log('Converted Amount:', convertedAmount)
+//   // Process the received form data here (you can perform database operations, send emails, etc.)
+//   console.log('Received form data:')
+//   console.log('Sender Name:', senderName)
+//   console.log('Recipient Name:', recipientName)
+//   console.log('Amount:', amount)
+//   console.log('Base Currency:', baseCurrency)
+//   console.log('Target Currency:', targetCurrency)
+//   console.log('Purpose:', purpose)
+//   console.log('Bank Account:', bankAccount)
+//   console.log('Converted Amount:', convertedAmount)
 
-  // Respond with a success message
-  res.status(200).json({ message: 'Form data received successfully!' })
-})
+//   // Respond with a success message
+//   res.status(200).json({ message: 'Form data received successfully!' })
+// })
 
-app.post('/api/beneficiaries',BeneficiaryForm.benificiaryasync)
-app.get('/api/displaybeneficiaries',Displaybeneficiary.beneficiary)
+app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
+app.get('/api/displaybeneficiaries', Displaybeneficiary.beneficiary)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
