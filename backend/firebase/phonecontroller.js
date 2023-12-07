@@ -1,5 +1,3 @@
-
-
 const AuthModel = require('../models/phonelogin');
 
 exports.managePhoneNumber = async (req, res) => {
