@@ -10,7 +10,7 @@ function Homenav() {
     <Container fluid>
       <div className="row">
         {/* Sidebar on the left */}
-        <nav className="col-md-2 d-md-block bg-light sidebar">
+        <nav className="col-md-2 d-none d-md-block bg-light sidebar">
           {/* Your Logo */}
           <div className="sidebar-sticky">
             <Navbar.Brand href="#">
@@ -29,7 +29,7 @@ function Homenav() {
         </nav>
 
         {/* Main content area */}
-        <main role="main" className="col-md-10 ml-sm-auto col-lg-10 px-md-4">
+        <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
           {/* Your existing top navbar */}
           <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
             <Navbar.Toggle aria-controls="navbarNav" />
@@ -40,6 +40,11 @@ function Homenav() {
                   <Link to="/phonelogin" className="nav-link">
                     <Button variant="outline-light" className="me-2">
                       PhoneLogin
+                    </Button>
+                  </Link>
+                  <Link to="/benificiaryform" className="nav-link">
+                    <Button variant="outline-light" className="me-2">
+                    benificiary
                     </Button>
                   </Link>
                 </Nav>

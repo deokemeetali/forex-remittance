@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Card,Button} from 'react-bootstrap';
 import '../styles/Home.css'; // Import your external CSS file for styling
 import Homenav from './H-navbar';
-import BeneficiaryForm from '../../beneficiaryFrom';
+
 
 function Home() {
   return (
@@ -16,7 +16,7 @@ function Home() {
           <Col>
             <h2>Forex Remittance</h2>
             <p>Offers 24/7 services for outward remittance at the most attractive rates.</p>
-          <BeneficiaryForm/>
+
           </Col>
         </Row>
       </Container>

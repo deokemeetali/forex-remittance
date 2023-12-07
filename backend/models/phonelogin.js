@@ -12,7 +12,6 @@ class AuthModel {
     `;
 
     try {
-      // First, create the table
       await pool.query(createPhoneTableQuery);
       console.log('Phone table created successfully');
 

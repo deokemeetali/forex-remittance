@@ -4,7 +4,8 @@ import LandingPage from './components/Landingpage/landingpage';
 import Home from "./components/Home/home";
 import SignUpForm from "./userManagement/signup";
 import PhoneLogin from "./phonelogin/phonelogin";
-import LoginForm from "./loginPage/login"; // Correct casing for login.js
+import LoginForm from "./loginPage/login"; 
+import BeneficiaryForm from './benificiaryform/benificiaryform';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
   <Router>
     <Routes>
       <Route path="/" element={<LandingPage/>}/>
+      <Route path="/benificiaryform" element={<BeneficiaryForm/>}/>
       <Route path="/home" element={<Home/>}/>
       <Route path="/signup" element={<SignUpForm/>}/>
       <Route path="/login" element={<LoginForm />}/>
