@@ -6,7 +6,12 @@ import SignUpForm from "./userManagement/signup";
 import PhoneLogin from "./phonelogin/phonelogin";
 import LoginForm from "./loginPage/login"; 
 import BeneficiaryForm from './benificiaryform/benificiaryform';
+
 import ForexRemittanceForm from './forex-remittance/ForexRemittance';
+
+import DisplayBeneficiary from './benificiaryform/displayform';
+
+
 function App() {
   return (
      <> 
@@ -14,6 +19,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage/>}/>
       <Route path="/benificiaryform" element={<BeneficiaryForm/>}/>
+      <Route path="/displayform" element={<DisplayBeneficiary/>}/>
       <Route path="/home" element={<Home/>}/>
       <Route path="/signup" element={<SignUpForm/>}/>
       <Route path="/login" element={<LoginForm />}/>

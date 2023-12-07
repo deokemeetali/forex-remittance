@@ -9,6 +9,7 @@ const app = express()
 const UserController = require('./controllers/UserController')
 const LoginController = require('./controllers/LoginController')
 const BeneficiaryForm = require('./benificiaryform/benificiaryform')
+const Displaybeneficiary= require('./controllers/displaybeneficiary')
 const PORT = process.env.PORT || 5001
 
 connectToDatabase()
@@ -25,6 +26,7 @@ const userController = new UserController()
 app.post('/v1/auth/firebase', phoneController.managePhoneNumber)
 app.post('/signup', (req, res) => userController.signUp(req, res))
 app.post('/login', LoginController.login)
+
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
 app.post('/api/sendData', (req, res) => {
   const {
@@ -52,6 +54,10 @@ app.post('/api/sendData', (req, res) => {
   // Respond with a success message
   res.status(200).json({ message: 'Form data received successfully!' })
 })
+
+app.post('/api/beneficiaries',BeneficiaryForm.benificiaryasync)
+app.get('/api/displaybeneficiaries',Displaybeneficiary.beneficiary)
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
