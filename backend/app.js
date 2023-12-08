@@ -1,16 +1,18 @@
-const admin = require('firebase-admin');
-const AuthController = require('./firebase/phonecontroller');
-const { connectToDatabase } = require('./database/db');
-const phoneController = require('./firebase/phonecontroller');
+// const admin = require('firebase-admin')
+
+const { connectToDatabase } = require('./database/db')
+const phoneController = require('./firebase/phonecontroller')
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const port = process.env.PORT || 5001
-const logger = require('./logger')
+// const logger = require('./logger')
 const UserController = require('./controllers/UserController')
 const LoginController = require('./controllers/LoginController')
-const BeneficiaryForm = require('./benificiaryform/benificiaryform');
-const bankDetails =require('./controllers/ifscControllers')
+const BeneficiaryForm = require('./benificiaryform/benificiaryform')
+const Displaybeneficiary = require('./controllers/displaybeneficiary')
+const sendDataController = require('./controllers/sendDataController')
+const bankDetails = require('./controllers/ifscControllers')
+const PORT = process.env.PORT || 5001
 
 connectToDatabase()
 
@@ -29,6 +31,6 @@ app.post('/login', LoginController.login)
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync);
 app.get('/api/bankDetails/:ifscCode',bankDetails.getBankDetailsByIFSC);
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

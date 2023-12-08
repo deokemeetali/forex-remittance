@@ -2,8 +2,7 @@
 import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Homenav() {
   return (
@@ -35,7 +34,6 @@ function Homenav() {
             <Navbar.Toggle aria-controls="navbarNav" />
             <Navbar.Collapse id="navbarNav" className="justify-content-end">
               <Nav>
-
                 <Nav>
                   <Link to="/phonelogin" className="nav-link">
                     <Button variant="outline-light" className="me-2">
@@ -44,7 +42,12 @@ function Homenav() {
                   </Link>
                   <Link to="/benificiaryform" className="nav-link">
                     <Button variant="outline-light" className="me-2">
-                    benificiary
+                      benificiary
+                    </Button>
+                  </Link>
+                  <Link to="/ForexRemittance" className="nav-link">
+                    <Button variant="outline-light" className="me-2">
+                      ForexRemittance form
                     </Button>
                   </Link>
                 </Nav>
