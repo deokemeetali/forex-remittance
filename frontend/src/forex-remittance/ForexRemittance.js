@@ -66,94 +66,143 @@ const ForexRemittanceForm = () => {
     }
   };
 
+  const reasons = [
+    'Family support',
+    'Education',
+    'Medical expenses',
+    'Business',
+    'Personal expenses',
+    // Add other reason options
+  ];
+
+  const isFormFilled =
+    senderName &&
+    recipientName &&
+    amount &&
+    baseCurrency &&
+    targetCurrency &&
+    purpose &&
+    bankAccount &&
+    convertedAmount;
+
   return (
-    <div>
+    <div className="container mt-4">
+       <div className="border p-4">
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="senderName">Senders Account Name:</label>
-          <select
-            id="senderName"
-            value={senderName}
-            onChange={(e) => setSenderName(e.target.value)}
-          >
-            <option value="">Select Sender Account</option>
-            <option value="dummySender1">987654321</option>
-            <option value="dummySender2">1234567890</option>
-            {/* Add other sender account options */}
-          </select>
+      <div className="row mb-3 border p-2">
+          <div className="col-md-6">
+            <label htmlFor="senderName">Source Account:</label>
+            <select
+              id="senderName"
+              value={senderName}
+              onChange={(e) => setSenderName(e.target.value)}
+              className="form-control"
+            >
+              <option value="">Select Sender Account</option>
+              <option value="dummySender1">Dummy Sender 1</option>
+              <option value="dummySender2">Dummy Sender 2</option>
+              {/* Add other sender account options */}
+            </select>
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="recipientName">Destination Account:</label>
+            <select
+              id="recipientName"
+              value={recipientName}
+              onChange={(e) => setRecipientName(e.target.value)}
+              className="form-control"
+            >
+              <option value="">Select Recipient Account</option>
+              <option value="dummyRecipient1">Dummy Recipient 1</option>
+              <option value="dummyRecipient2">Dummy Recipient 2</option>
+              {/* Add other recipient account options */}
+            </select>
+          </div>
         </div>
-        <div>
-          <label htmlFor="recipientName">Recipients Account Name:</label>
-          <select
-            id="recipientName"
-            value={recipientName}
-            onChange={(e) => setRecipientName(e.target.value)}
-          >
-            <option value="">Select Recipient Account</option>
-            <option value="dummyRecipient1">9087654213</option>
-            <option value="dummyRecipient2">2109876543</option>
-            {/* Add other recipient account options */}
-          </select>
+        <div className="row mb-3">
+          <div className="col-md-6">
+            <label htmlFor="amount">Amount:</label>
+            <input
+              type="number"
+              id="amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="form-control"
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="baseCurrency">Base Currency:</label>
+            <select
+              id="baseCurrency"
+              value={baseCurrency}
+              onChange={(e) => setBaseCurrency(e.target.value)}
+              className="form-control"
+            >
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="INR">INR</option>
+              {/* Add other currency options */}
+            </select>
+          </div>
         </div>
-        <div>
-          <label htmlFor="amount">Amount:</label>
-          <input
-            type="number"
-            id="amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
+        <div className="row mb-3">
+          <div className="col-md-6">
+            <label htmlFor="targetCurrency">Target Currency:</label>
+            <select
+              id="targetCurrency"
+              value={targetCurrency}
+              onChange={(e) => setTargetCurrency(e.target.value)}
+              className="form-control"
+            >
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+              <option value="GBP">GBP</option>
+              <option value="INR">INR</option>
+              {/* Add other currency options */}
+            </select>
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="purpose">Purpose:</label>
+            <select
+              id="purpose"
+              value={purpose}
+              onChange={(e) => setPurpose(e.target.value)}
+              className="form-control"
+            >
+              <option value="">Select Reason</option>
+              {reasons.map((reason, index) => (
+                <option key={index} value={reason}>
+                  {reason}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <div>
-          <label htmlFor="baseCurrency">Base Currency:</label>
-          <select
-            id="baseCurrency"
-            value={baseCurrency}
-            onChange={(e) => setBaseCurrency(e.target.value)}
-          >
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="INR">INR</option>
-            {/* Add other currency options */}
-          </select>
+        <div className="row mb-3">
+          <div className="col-md-6">
+            <label htmlFor="bankAccount">Bank Account:</label>
+            <input
+              type="text"
+              id="bankAccount"
+              value={bankAccount}
+              onChange={(e) => setBankAccount(e.target.value)}
+              className="form-control"
+            />
+          </div>
+          <div className="col-md-6">
+            <p>Converted Amount: {convertedAmount} {targetCurrency}</p>
+          </div>
         </div>
-        <div>
-          <label htmlFor="targetCurrency">Target Currency:</label>
-          <select
-            id="targetCurrency"
-            value={targetCurrency}
-            onChange={(e) => setTargetCurrency(e.target.value)}
-          >
-            <option value="EUR">EUR</option>
-            <option value="USD">USD</option>
-            <option value="GBP">GBP</option>
-            <option value="INR">INR</option>
-            {/* Add other currency options */}
-          </select>
+        <div className="row">
+          <div className="col-md-12">
+            <button type="submit" className="btn btn-primary" disabled={!isFormFilled}>
+              Submit
+            </button>
+          </div>
         </div>
-        <div>
-          <label htmlFor="purpose">Purpose:</label>
-          <textarea
-            id="purpose"
-            value={purpose}
-            onChange={(e) => setPurpose(e.target.value)}
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="bankAccount">Bank Account:</label>
-          <input
-            type="text"
-            id="bankAccount"
-            value={bankAccount}
-            onChange={(e) => setBankAccount(e.target.value)}
-          />
-        </div>
-        <div>
-          <p>Converted Amount: {convertedAmount} {targetCurrency}</p>
-        </div>
-        <button type="submit">Submit</button>
       </form>
+    </div>
     </div>
   );
 };
