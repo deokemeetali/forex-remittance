@@ -3,36 +3,23 @@ import axios from "axios";
 import './displayform.css';
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import './displayform.css';
 
 function DisplayBeneficiary() {
     const [beneficiaries, setBeneficiaries] = useState([]);
-    const [authenticatedUserId, setAuthenticatedUserId] = useState(null);
 
     useEffect(() => {
-        const fetchAuthenticatedUserId = async () => {
-            try {
-                const response = await axios.get("http://localhost:5001/api/getAuthenticatedUserId");
-                setAuthenticatedUserId(response.data.userId);
-            } catch (error) {
-                console.error("Error fetching authenticated user ID:", error);
-            }
-        };
-
-        fetchAuthenticatedUserId();
-
         const fetchData = async () => {
             try {
-                if (authenticatedUserId !== null) {
-                    const response = await axios.get(`http://localhost:5001/api/displaybeneficiaries?userId=${authenticatedUserId}`);
-                    setBeneficiaries(response.data);
-                }
+                const response = await axios.get(`http://localhost:5001/api/displaybeneficiaries`);
+                setBeneficiaries(response.data);
             } catch (error) {
                 console.error("Error fetching beneficiary data:", error);
             }
         };
 
         fetchData();
-    }, [authenticatedUserId]);
+    }, []);
 
     return (
         <div className="display-container">

@@ -2,22 +2,23 @@ const { Pool } = require('pg')
 const logger = require('../logger')
 
 const pool = new Pool({
-    host: 'localhost',
-    user: 'postgres',
-    port: 5000,
-    password: '@Prerna08',
-    database: 'postgres'
-});
-
+  host: 'localhost',
+  user: 'postgres',
+  port: 5000,
+  password: '@Prerna08',
+  database: 'postgres'
+})
 async function connectToDatabase () {
   try {
-    await pool.connect()
+    const client = await pool.connect()
     logger.info('Connected to PostgreSQL database')
+    client.release() // Release the client after successful connection
   } catch (error) {
-    logger.error('Error connecting to PostgreSQL database:', error.message)
+    logger.error('Error connecting to PostgreSQL database:', error)
   }
 }
 
 module.exports = {
-  pool, connectToDatabase
+  pool,
+  connectToDatabase
 }
