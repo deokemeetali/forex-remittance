@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { Form, Button, Card, InputGroup } from "react-bootstrap";
 import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-// import logger from './logger';
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
     identifier: "",
@@ -16,6 +15,7 @@ const LoginForm = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
@@ -30,7 +30,6 @@ const LoginForm = () => {
     e.preventDefault();
 
     const validationErrors = {};
-
     // Validation rules for identifier (username/email) and password...
     // (Similar to signup form validation)
 
@@ -72,9 +71,7 @@ const LoginForm = () => {
               <Card.Body>
                 <h2 className="text-center mb-4">Login</h2>
                 <Form onSubmit={handleLogin}>
-                  <Form.Group
-                    className={`mb-3 ${errors.identifier ? "has-error" : ""}`}
-                  >
+                  <Form.Group className={`mb-3 ${errors.identifier ? "has-error" : ""}`}>
                     <Form.Label>Username or Email</Form.Label>
                     <InputGroup>
                       <Form.Control
@@ -100,9 +97,7 @@ const LoginForm = () => {
                     )}
                   </Form.Group>
 
-                  <Form.Group
-                    className={`mb-3 ${errors.password ? "has-error" : ""}`}
-                  >
+                  <Form.Group className={`mb-3 ${errors.password ? "has-error" : ""}`}>
                     <Form.Label>Password</Form.Label>
                     <InputGroup>
                       <Form.Control
@@ -140,25 +135,24 @@ const LoginForm = () => {
                     Login
                   </Button>
                   <div className="login-p">
-            Don&apos;t have an account?
-            {' '}
-            <span
-              className="login-span"
-              onClick={() => {
-                navigate('/signup');
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  navigate('/signup');
-                }
-              }}
-              tabIndex={0}
-              role="button"
-              style={{ cursor: 'pointer' }}
-            >
-              Sign Up
-            </span>
-          </div>
+                    Don&apos;t have an account?{' '}
+                    <span
+                      className="login-span"
+                      onClick={() => {
+                        navigate('/signup');
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          navigate('/signup');
+                        }
+                      }}
+                      tabIndex={0}
+                      role="button"
+                      style={{ cursor: 'pointer' }}
+                    >
+                      Sign Up
+                    </span>
+                  </div>
                 </Form>
                 {message && <div className="mt-3 text-center">{message}</div>}
               </Card.Body>
