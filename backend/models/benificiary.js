@@ -3,7 +3,7 @@ const { pool } = require('../database/db');
 
 class BeneficiaryModel {
     static async addBeneficiary(formData) {
-      const createBeneficiaryTableQuery = `
+        const createBeneficiaryTableQuery = `
         CREATE TABLE IF NOT EXISTS beneficiary (
           user_id SERIAL PRIMARY KEY,
           name VARCHAR(255) NOT NULL,
@@ -17,48 +17,50 @@ class BeneficiaryModel {
           created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
       `;
-  
-      try {
-        // First, create the table
-        await pool.query(createBeneficiaryTableQuery);
-        console.log('Beneficiary table created successfully');
-  
-        // Now, insert data into the table with handling duplicates
-        const insertQuery = `
-          INSERT INTO beneficiary (name, address, email, phone_number, bank_name, account_number, branch, ifsc_code)
-          VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+
+        try {
+            // First, create the table
+            await pool.query(createBeneficiaryTableQuery);
+            console.log('Beneficiary table created successfully');
+
+            // Now, insert data into the table with handling duplicates
+            const insertQuery = `
+          INSERT INTO beneficiary (user_id, name, address, email, phone_number, bank_name, account_number, branch, ifsc_code)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
           ON CONFLICT (phone_number) DO NOTHING
           RETURNING *
         `;
 
-        
-        const {
-          name,
-          address,
-          email,
-          phoneNumber,  // Corrected field name here
-          bankName,
-          accountNumber,
-          branch,
-          ifscCode,
-        } = formData;
 
-        const result = await pool.query(insertQuery, [
-          name,
-          address,
-          email,
-          phoneNumber,
-          bankName,
-          accountNumber,
-          branch,
-          ifscCode,
-        ]);
+            const {
+                userId,
+                name,
+                address,
+                email,
+                phoneNumber,  // Corrected field name here
+                bankName,
+                accountNumber,
+                branch,
+                ifscCode,
+            } = formData;
 
-        return { success: true, beneficiary: result.rows[0] };
-      } catch (error) {
-        console.error('Error:', error);
-        return { success: false, error: 'Error adding beneficiary' };
-      }
+            const result = await pool.query(insertQuery, [
+                userId,
+                name,
+                address,
+                email,
+                phoneNumber,
+                bankName,
+                accountNumber,
+                branch,
+                ifscCode,
+            ]);
+
+            return { success: true, beneficiary: result.rows[0] };
+        } catch (error) {
+            console.error('Error:', error);
+            return { success: false, error: 'Error adding beneficiary' };
+        }
     }
 }
 
