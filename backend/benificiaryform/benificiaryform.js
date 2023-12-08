@@ -1,6 +1,6 @@
-const BeneficiaryModel =require('../models/benificiary')
-exports.beneficiaryasync=async(req,res)=>{
+const BeneficiaryModel = require('../models/benificiary');
 
+exports.benificiaryasync = async(req, res) => {
   const formData = req.body;
 
   try {
@@ -16,4 +16,3 @@ exports.beneficiaryasync=async(req,res)=>{
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-

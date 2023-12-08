@@ -9,15 +9,13 @@ const port = process.env.PORT || 5001
 const logger = require('./logger')
 const UserController = require('./controllers/UserController')
 const LoginController = require('./controllers/LoginController')
-const PORT = process.env.PORT || 5001
-const BeneficiaryForm = require('./benificiaryform/benificiaryform')
+const BeneficiaryForm = require('./benificiaryform/benificiaryform');
+const bankDetails =require('./controllers/ifscControllers')
 
 connectToDatabase()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.json());
-
 
 app.get('/message', (req, res) => {
   res.json({ message: 'Hello from server!' })
@@ -25,10 +23,12 @@ app.get('/message', (req, res) => {
 
 const userController = new UserController()
 
-app.post('/v1/auth/firebase',phoneController.managePhoneNumber);
+app.post('/v1/auth/firebase', phoneController.managePhoneNumber);
 app.post('/signup', (req, res) => userController.signUp(req, res))
 app.post('/login', LoginController.login)
-app.post('/api/beneficiaries',BeneficiaryForm.beneficiaryasync)
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync);
+app.get('/api/bankDetails/:ifscCode',bankDetails.getBankDetailsByIFSC);
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

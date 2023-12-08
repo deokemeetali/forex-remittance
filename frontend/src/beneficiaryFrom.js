@@ -5,8 +5,6 @@ import './beneficiary.css';
 const BeneficiaryForm = () => {
     const [formData, setFormData] = useState({
         name: '',
-        relationship: '',
-        percentage: '',
         address: '',
         email: '',
         phoneNumber: '',
@@ -16,7 +14,6 @@ const BeneficiaryForm = () => {
         ifscCode: '',
     });
     const apiurl = 'http://localhost:5001';
-
 
     const handleChange = (e) => {
         setFormData({
@@ -40,8 +37,6 @@ const BeneficiaryForm = () => {
         // Optionally, you can reset the form after submission
         setFormData({
             name: '',
-            relationship: '',
-            percentage: '',
             address: '',
             email: '',
             phoneNumber: '',
@@ -51,6 +46,7 @@ const BeneficiaryForm = () => {
             ifscCode: '',
         });
     };
+
     useEffect(() => {
         if (formData) {
             console.log("user's id token");
@@ -65,8 +61,9 @@ const BeneficiaryForm = () => {
                 });
         }
     }, [formData]);
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="beneficiary-form">
             <label htmlFor="name">Name:</label>
             <input
                 type="text"
@@ -140,7 +137,7 @@ const BeneficiaryForm = () => {
                 onChange={handleChange}
             />
 
-            <button onClick={handleSubmit} type="submit">Add Beneficiary</button>
+            <button type="submit">Add Beneficiary</button>
         </form>
     );
 };
