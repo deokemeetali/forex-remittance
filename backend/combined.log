@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {"level":"info","message":"Server is running on 5001"}
 {"level":"info","message":"Server is running on 5001"}
 {"level":"info","message":"Server is running on 5001"}
@@ -280,6 +281,15 @@
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+=======
+>>>>>>> 4ccf5a094f3ccefd7614bbd62b760497a8503bc3
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}

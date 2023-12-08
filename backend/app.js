@@ -11,6 +11,7 @@ const LoginController = require('./controllers/LoginController')
 const BeneficiaryForm = require('./benificiaryform/benificiaryform')
 const Displaybeneficiary = require('./controllers/displaybeneficiary')
 const sendDataController = require('./controllers/sendDataController')
+
 const PORT = process.env.PORT || 5001
 
 connectToDatabase()
@@ -31,7 +32,6 @@ app.post('/login', LoginController.login)
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
 app.post('/api/sendData', sendDataController.sendData)
 
-app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
 app.get('/api/displaybeneficiaries', Displaybeneficiary.beneficiary)
 
 app.listen(PORT, () => {
