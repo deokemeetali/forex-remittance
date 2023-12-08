@@ -31,7 +31,6 @@ app.post('/login', LoginController.login)
 
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
 app.post('/api/sendData', sendDataController.sendData)
-
 app.get('/api/displaybeneficiaries', Displaybeneficiary.beneficiary)
 
 app.listen(PORT, () => {

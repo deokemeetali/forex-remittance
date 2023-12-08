@@ -109,7 +109,7 @@ const SignUpForm = () => {
             confirmPassword: '',
           });
         } else {
-          setMessage('Error signing up usnhhhher');
+          setMessage('Error signing up user');
         }
       
     }

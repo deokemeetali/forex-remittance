@@ -75,6 +75,11 @@
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 3dcc6dc3c2cf8f957bd3ba16691fd77766070ea7
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
@@ -181,6 +186,13 @@
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> dc8c14da59d5d20cfee6c14759c516e58353e4d9
+{"level":"error","message":"Error connecting to PostgreSQL database:"}
+=======
+>>>>>>> 3dcc6dc3c2cf8f957bd3ba16691fd77766070ea7
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
@@ -282,6 +294,23 @@
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+<<<<<<< HEAD
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+=======
+>>>>>>> 6de4798e7570b655ae873db4d96a7a20accef894
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":{"success":true}}
+{"level":"info","message":{"error":"Error creating user","success":false}}
+>>>>>>> 3dcc6dc3c2cf8f957bd3ba16691fd77766070ea7
+{"level":"info","message":"Connected to PostgreSQL database"}
+=======
+>>>>>>> 4ccf5a094f3ccefd7614bbd62b760497a8503bc3
+{"level":"info","message":"Connected to PostgreSQL database"}
+<<<<<<< HEAD
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
@@ -289,11 +318,5 @@
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 =======
->>>>>>> 4ccf5a094f3ccefd7614bbd62b760497a8503bc3
-{"level":"info","message":"Connected to PostgreSQL database"}
-{"level":"info","message":"Connected to PostgreSQL database"}
-{"level":"info","message":"Connected to PostgreSQL database"}
-{"level":"info","message":"Connected to PostgreSQL database"}
-{"level":"info","message":"Connected to PostgreSQL database"}
-{"level":"info","message":"Connected to PostgreSQL database"}
+>>>>>>> 3dcc6dc3c2cf8f957bd3ba16691fd77766070ea7
 {"level":"info","message":"Connected to PostgreSQL database"}

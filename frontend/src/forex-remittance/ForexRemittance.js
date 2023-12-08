@@ -11,12 +11,13 @@ const ForexRemittanceForm = () => {
   const [bankAccount, setBankAccount] = useState('');
   const [conversionRate, setConversionRate] = useState(1);
   const [convertedAmount, setConvertedAmount] = useState(0);
+  const [currencyList, setCurrencyList] = useState([]);
 
   useEffect(() => {
     const fetchConversionRate = async () => {
       try {
         const response = await axios.get(
-          `https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${baseCurrency}`
+         `https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${baseCurrency}`
         );
         const rate = response.data.conversion_rates[targetCurrency];
         setConversionRate(rate || 1); // Default to 1 if the rate is not available
@@ -27,6 +28,22 @@ const ForexRemittanceForm = () => {
 
     fetchConversionRate();
   }, [baseCurrency, targetCurrency]);
+
+  useEffect(() => {
+    const fetchCurrencyList = async () => {
+      try {
+        const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
+        const { rates } = response.data;
+
+        const currencies = Object.keys(rates);
+        setCurrencyList(currencies);
+      } catch (error) {
+        console.error('Error fetching currency list:', error);
+      }
+    };
+
+    fetchCurrencyList();
+  }, []);
 
   useEffect(() => {
     const calculateConvertedAmount = () => {
@@ -72,6 +89,7 @@ const ForexRemittanceForm = () => {
     'Medical expenses',
     'Business',
     'Personal expenses',
+    'other',
     // Add other reason options
   ];
 
@@ -83,15 +101,14 @@ const ForexRemittanceForm = () => {
     targetCurrency &&
     purpose &&
     bankAccount &&
-    convertedAmount;
+    convertedAmount !== 0; // Ensure converted amount is not zero
 
   return (
     <div className="container mt-4">
-       <div className="border p-4">
       <form onSubmit={handleSubmit}>
-      <div className="row mb-3 border p-2">
+        <div className="row">
           <div className="col-md-6">
-            <label htmlFor="senderName">Source Account:</label>
+            <label htmlFor="senderName">Senders Account Name:</label>
             <select
               id="senderName"
               value={senderName}
@@ -105,7 +122,7 @@ const ForexRemittanceForm = () => {
             </select>
           </div>
           <div className="col-md-6">
-            <label htmlFor="recipientName">Destination Account:</label>
+            <label htmlFor="recipientName">Recipients Account Name:</label>
             <select
               id="recipientName"
               value={recipientName}
@@ -119,7 +136,7 @@ const ForexRemittanceForm = () => {
             </select>
           </div>
         </div>
-        <div className="row mb-3">
+        <div className="row">
           <div className="col-md-6">
             <label htmlFor="amount">Amount:</label>
             <input
@@ -130,40 +147,42 @@ const ForexRemittanceForm = () => {
               className="form-control"
             />
           </div>
+          <div className="row">
           <div className="col-md-6">
-            <label htmlFor="baseCurrency">Base Currency:</label>
-            <select
-              id="baseCurrency"
-              value={baseCurrency}
-              onChange={(e) => setBaseCurrency(e.target.value)}
-              className="form-control"
-            >
-              <option value="USD">USD</option>
-              <option value="EUR">EUR</option>
-              <option value="GBP">GBP</option>
-              <option value="INR">INR</option>
-              {/* Add other currency options */}
-            </select>
-          </div>
+  <label htmlFor="baseCurrency">Base Currency:</label>
+  <select
+    id="baseCurrency"
+    value={baseCurrency}
+    onChange={(e) => setBaseCurrency(e.target.value)}
+    className="form-control"
+  >
+    <option value="">Select Base Currency</option>
+    {currencyList.map((currency) => (
+      <option key={currency} value={currency}>
+        {currency}
+      </option>
+    ))}
+  </select>
+</div>
+<div className="col-md-6">
+  <label htmlFor="targetCurrency">Target Currency:</label>
+  <select
+    id="targetCurrency"
+    value={targetCurrency}
+    onChange={(e) => setTargetCurrency(e.target.value)}
+    className="form-control"
+  >
+    <option value="">Select Target Currency</option>
+    {currencyList.map((currency) => (
+      <option key={currency} value={currency}>
+        {currency}
+      </option>
+    ))}
+  </select>
+</div>
         </div>
-        <div className="row mb-3">
           <div className="col-md-6">
-            <label htmlFor="targetCurrency">Target Currency:</label>
-            <select
-              id="targetCurrency"
-              value={targetCurrency}
-              onChange={(e) => setTargetCurrency(e.target.value)}
-              className="form-control"
-            >
-              <option value="EUR">EUR</option>
-              <option value="USD">USD</option>
-              <option value="GBP">GBP</option>
-              <option value="INR">INR</option>
-              {/* Add other currency options */}
-            </select>
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="purpose">Purpose:</label>
+          <label htmlFor="purpose">Purpose:</label>
             <select
               id="purpose"
               value={purpose}
@@ -177,9 +196,10 @@ const ForexRemittanceForm = () => {
                 </option>
               ))}
             </select>
+
           </div>
         </div>
-        <div className="row mb-3">
+        <div className="row">
           <div className="col-md-6">
             <label htmlFor="bankAccount">Bank Account:</label>
             <input
@@ -203,7 +223,7 @@ const ForexRemittanceForm = () => {
         </div>
       </form>
     </div>
-    </div>
+    
   );
 };
 
