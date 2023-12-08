@@ -223,6 +223,7 @@ const ForexRemittanceForm = () => {
         </div>
       </form>
     </div>
+    
   );
 };
 
