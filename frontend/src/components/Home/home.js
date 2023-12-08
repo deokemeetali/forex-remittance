@@ -3,11 +3,12 @@ import { Container, Row, Col, Card,Button} from 'react-bootstrap';
 import '../styles/Home.css'; // Import your external CSS file for styling
 import Homenav from './H-navbar';
 
+
 function Home() {
   return (
     <div>
       <Homenav /> {/* Include the Header component at the top of the Home component */}
-      
+
       {/* Forex Remittance Section with Background Image */}
       <div className="forex-remittance-section">
       <Container>
@@ -15,6 +16,7 @@ function Home() {
           <Col>
             <h2>Forex Remittance</h2>
             <p>Offers 24/7 services for outward remittance at the most attractive rates.</p>
+
           </Col>
         </Row>
       </Container>
