@@ -11,6 +11,7 @@ const LoginController = require('./controllers/LoginController')
 const BeneficiaryForm = require('./benificiaryform/benificiaryform')
 const Displaybeneficiary = require('./controllers/displaybeneficiary')
 const sendDataController = require('./controllers/sendDataController')
+const bankDetails = require('./controllers/ifscControllers')
 const PORT = process.env.PORT || 5001
 
 connectToDatabase()
@@ -24,17 +25,14 @@ app.get('/message', (req, res) => {
 
 const userController = new UserController()
 
-app.post('/v1/auth/firebase', phoneController.managePhoneNumber)
+app.post('/v1/auth/firebase', phoneController.managePhoneNumber);
 app.post('/signup', (req, res) => userController.signUp(req, res))
 app.post('/login', LoginController.login)
 
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
 app.post('/api/sendData', sendDataController.sendData)
-
-
-app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
 app.get('/api/displaybeneficiaries', Displaybeneficiary.beneficiary)
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
+  console.log(`Server is running on port ${PORT}`);
+});

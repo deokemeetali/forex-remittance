@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {"level":"error","message":"Error connecting to PostgreSQL database:"}
 {"level":"error","message":"Error connecting to PostgreSQL database:"}
 {"level":"error","message":"Error connecting to PostgreSQL database:"}
@@ -39,3 +40,5 @@
 =======
 >>>>>>> 470d98badd1cdc4ac36733cb7cb345ee06ce10e1
 >>>>>>> 6de4798e7570b655ae873db4d96a7a20accef894
+=======
+>>>>>>> 4ccf5a094f3ccefd7614bbd62b760497a8503bc3
