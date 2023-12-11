@@ -2,7 +2,6 @@
 import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Currency from "../RateConverter/currency";
 import { Link } from 'react-router-dom';
 
 function Homenav() {
@@ -25,7 +24,7 @@ function Homenav() {
         <Navbar.Toggle aria-controls="navbarNav" />
         <Navbar.Collapse id="navbarNav" className="justify-content-end">
           <Nav>
-            <Currency />
+            <Combinechart />
             <Nav>
             <Link to="/phonelogin" className="nav-link">
               <Button variant="outline-light" className="me-2">

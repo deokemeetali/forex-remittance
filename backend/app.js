@@ -10,6 +10,7 @@ const logger = require('./logger')
 const UserController = require('./controllers/UserController')
 const LoginController = require('./controllers/LoginController')
 const PORT = process.env.PORT || 5001
+const Transaction = require('./controllers/trnsactionController')
 
 connectToDatabase()
 
@@ -27,6 +28,7 @@ const userController = new UserController()
 app.post('/v1/auth/firebase',phoneController.managePhoneNumber);
 app.post('/signup', (req, res) => userController.signUp(req, res))
 app.post('/login', LoginController.login)
+app.get('/remittance-data',Transaction.TransactionList);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

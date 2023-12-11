@@ -1,0 +1,7 @@
+/* chart.css */
+.chart-container {
+    border: 1px solid #ddd; /* Add a border for visual separation */
+    padding: 15px 20px; /* Adjust the horizontal and vertical padding */
+    margin-bottom: 20px; /* Adjust the margin between charts */
+  }
+  
