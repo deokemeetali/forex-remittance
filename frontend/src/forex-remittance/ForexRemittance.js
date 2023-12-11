@@ -12,6 +12,15 @@ const ForexRemittanceForm = () => {
   const [conversionRate, setConversionRate] = useState(1);
   const [convertedAmount, setConvertedAmount] = useState(0);
   const [currencyList, setCurrencyList] = useState([]);
+  const [bankAccountBalance, setBankAccountBalance] = useState(10000); // Dummy balance
+
+  const accountBalances = {
+    dummySender1: 5000,
+    dummySender2: 8000,
+    dummyRecipient1: 3000,
+    dummyRecipient2: 6000,
+    // Add other dummy accounts and their balances
+  };
 
   useEffect(() => {
     const fetchConversionRate = async () => {
@@ -58,6 +67,13 @@ const ForexRemittanceForm = () => {
     e.preventDefault();
 
     try {
+      const updatedBalance = bankAccountBalance - parseFloat(amount);
+      setBankAccountBalance(updatedBalance);
+
+      // Simulated backend response logs to console
+      console.log('Simulated remittance successful.');
+      console.log('Updated Bank Account Balance:', updatedBalance);
+
       const sendDataResponse = await axios.post('http://localhost:5001/api/sendData', {
         senderName,
         recipientName,
@@ -106,13 +122,16 @@ const ForexRemittanceForm = () => {
   return (
     <div className="container mt-4">
       <form onSubmit={handleSubmit}>
-        <div className="row">
+      <div className="row">
           <div className="col-md-6">
             <label htmlFor="senderName">Senders Account Name:</label>
             <select
               id="senderName"
               value={senderName}
-              onChange={(e) => setSenderName(e.target.value)}
+              onChange={(e) => {
+                setSenderName(e.target.value);
+                setBankAccountBalance(accountBalances[e.target.value]); // Update balance here
+              }}
               className="form-control"
             >
               <option value="">Select Sender Account</option>
@@ -129,7 +148,7 @@ const ForexRemittanceForm = () => {
               onChange={(e) => setRecipientName(e.target.value)}
               className="form-control"
             >
-              <option value="">Select Recipient Account</option>
+                <option value="">Select Recipient Account</option>
               <option value="dummyRecipient1">Dummy Recipient 1</option>
               <option value="dummyRecipient2">Dummy Recipient 2</option>
               {/* Add other recipient account options */}
@@ -211,9 +230,13 @@ const ForexRemittanceForm = () => {
             />
           </div>
           <div className="col-md-6">
+            <p>Bank Account Balance: ${bankAccountBalance}</p>
+          </div>
+          <div className="col-md-6">
             <p>Converted Amount: {convertedAmount} {targetCurrency}</p>
           </div>
         </div>
+      
         <div className="row">
           <div className="col-md-12">
             <button type="submit" className="btn btn-primary" disabled={!isFormFilled}>
