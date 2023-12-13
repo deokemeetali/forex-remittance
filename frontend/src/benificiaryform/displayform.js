@@ -32,7 +32,7 @@ function DisplayBeneficiary() {
             <ul className="beneficiary-list">
                 {beneficiaries.map((beneficiary) => (
                     <li key={beneficiary.id} className="beneficiary-item">
-                        <p className="beneficiary-info">Name: {beneficiary.name}</p>
+                        <p className="beneficiary-info">Bank name : {beneficiary.bank_name}</p>
                         <p className="beneficiary-info">Email: {beneficiary.email}</p>
                     </li>
                 ))}
