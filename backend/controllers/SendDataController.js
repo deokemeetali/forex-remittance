@@ -7,7 +7,7 @@ const sendData = (req, res) => {
     targetCurrency,
     purpose,
     bankAccount,
-    convertedAmount
+    convertedAmount,
   } = req.body
   // Process the received form data here (you can perform database operations, send emails, etc.)
   console.log('Received form data:')
