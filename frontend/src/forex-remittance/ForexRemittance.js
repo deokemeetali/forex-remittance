@@ -63,17 +63,30 @@ const ForexRemittanceForm = () => {
     calculateConvertedAmount();
   }, [amount, conversionRate, baseCurrency, targetCurrency]);
 
+  const handleInsufficientBalance = () => {
+    if (parseFloat(amount) > bankAccountBalance) {
+      return true; // Insufficient balance
+    }
+    return false; // Sufficient balance
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      if (handleInsufficientBalance()) {
+        alert('Insufficient balance.'); // Display an alert for insufficient balance
+        return;
+      }
+  
+      // Rest of your code for handling the form submission
       const updatedBalance = bankAccountBalance - parseFloat(amount);
       setBankAccountBalance(updatedBalance);
-
+  
       // Simulated backend response logs to console
       console.log('Simulated remittance successful.');
       console.log('Updated Bank Account Balance:', updatedBalance);
-
+  
       const sendDataResponse = await axios.post('http://localhost:5001/api/sendData', {
         senderName,
         recipientName,
@@ -82,6 +95,7 @@ const ForexRemittanceForm = () => {
         targetCurrency,
         purpose,
         bankAccount,
+        convertedAmount,
       });
 
       console.log('Response from sendData:', sendDataResponse.data);
