@@ -9,7 +9,7 @@ class BeneficiaryModel {
           name VARCHAR(255) NOT NULL,
           address VARCHAR(255),
           email VARCHAR(255) NOT NULL,
-          phone_number VARCHAR(20) UNIQUE NOT NULL, 
+          phone_number VARCHAR(20) UNIQUE NOT NULL,
           bank_name VARCHAR(255),
           account_number VARCHAR(255),
           branch VARCHAR(255),

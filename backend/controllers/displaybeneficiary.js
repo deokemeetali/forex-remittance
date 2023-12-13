@@ -1,5 +1,3 @@
-
-
 const { pool } = require('../database/db');
 
 exports.beneficiary = async (req, res) => {
