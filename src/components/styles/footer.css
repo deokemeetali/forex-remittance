@@ -1,0 +1,38 @@
+/* footer.css */
+
+footer {
+    padding: 20px 0;
+    background-color:  #06014b;
+    color: #ffffff;
+  }
+  
+  h5 {
+    color: #d4c1c1;
+  }
+  
+  ul.list-unstyled {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul.list-unstyled li {
+    margin-bottom: 8px;
+  }
+  
+  ul.list-unstyled li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  ul.list-unstyled li a:hover {
+    text-decoration: underline;
+  }
+  
+  hr {
+    background-color: #868e96;
+  }
+  
+  .text-center p {
+    margin: 0;
+  }
+  
