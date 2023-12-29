@@ -365,22 +365,22 @@ const BeneficiaryForm = () => {
             <span style={{ color: "red" }}>{formErrors.email}</span>
           )}
 
-<label htmlFor="phoneNumber" style={{ display: "block" }}>
+          <label htmlFor="phoneNumber" style={{ display: "block" }}>
           Phone Number: <span style={{ color: "red" }}>*</span>
         </label>
         <PhoneInput
-  id="phoneNumber"
-  name="phoneNumber"
-  value={formData.phoneNumber}
-  onChange={(value, country) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      phoneNumber: value,
-      countryCode: country ? country.dialCode : "", // Check if country is defined
-    }));
-    setCountryCode(country ? country.country : ""); // Check if country is defined
-    handlePhoneValidation(value);
-  }}
+        id="phoneNumber"
+        name="phoneNumber"
+        value={formData.phoneNumber}
+        onChange={(value, country) => {
+        setFormData((prevData) => ({
+        ...prevData,
+        phoneNumber: value,
+        countryCode: country ? country.dialCode : "", // Check if country is defined
+        }));
+        setCountryCode(country ? country.country : ""); // Check if country is defined
+        handlePhoneValidation(value);
+         }}
           country={countryCode} // Set the default country code
           inputStyle={{ width: "100%" }} // Adjust the input width
         />
