@@ -94,6 +94,7 @@ const BeneficiaryForm = () => {
         `https://restcountries.com/v3/alpha/${selectedOption.value}`
       );
       const data = response.data[0];
+      if (data.name) {
 
       if (data.currencies && typeof data.currencies === "object") {
         const currencyCodes = Object.keys(data.currencies);
@@ -110,7 +111,7 @@ const BeneficiaryForm = () => {
           currency: currencyCodes[0],
           selectedCountry: selectedOption,
         }));
-      } else {
+      } }else {
         console.error(
           "Currency data is not in the expected format for the selected country"
         );

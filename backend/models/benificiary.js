@@ -6,7 +6,7 @@ class BeneficiaryModel {
     const createBeneficiaryTableQuery = `
         CREATE TABLE IF NOT EXISTS beneficiary (
           user_id SERIAL PRIMARY KEY,
-          name VARCHAR(255) NOT NULL,
+          country_name VARCHAR(80),
           address VARCHAR(255),
           email VARCHAR(255) NOT NULL,
           phone_number VARCHAR(20) UNIQUE NOT NULL,
@@ -21,16 +21,16 @@ class BeneficiaryModel {
       await pool.query(createBeneficiaryTableQuery)
       console.log('Beneficiary table created successfully')
       const insertQuery = `
-          INSERT INTO beneficiary (name, address, email, phone_number, bank_name, account_number, branch, ifsc_code)
+          INSERT INTO beneficiary (country_name, address, email, phone_number, bank_name, account_number, branch, ifsc_code)
           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
           ON CONFLICT (phone_number) DO NOTHING
           RETURNING *
        `
       const {
-        name,
+        country_name,
         address,
         email,
-        phoneNumber, // Corrected field name here
+        phoneNumber,
         bankName,
         accountNumber,
         branch,
@@ -38,7 +38,7 @@ class BeneficiaryModel {
       } = formData
 
       const result = await pool.query(insertQuery, [
-        name,
+        country_name,
         address,
         email,
         phoneNumber,
