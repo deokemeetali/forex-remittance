@@ -9,7 +9,7 @@ const UserController = require('./controllers/UserController')
 const LoginController = require('./controllers/LoginController')
 const BeneficiaryForm = require('./benificiaryform/benificiaryform')
 const Displaybeneficiary = require('./controllers/displaybeneficiary')
-const sendDataController = require('./controllers/sendDataController')
+const sendDataController = require('./controllers/SendDataController')
 const bankDetails = require('./controllers/ifscControllers')
 const PORT = process.env.PORT || 5001
 
