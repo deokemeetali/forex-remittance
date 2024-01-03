@@ -50,6 +50,11 @@ function Homenav() {
                       ForexRemittance form
                     </Button>
                   </Link>
+                  <Link to="/displayform" className="nav-link">
+                    <Button variant="outline-light" className="me-2">
+                      dashboard
+                    </Button>
+                  </Link>
                 </Nav>
               </Nav>
             </Navbar.Collapse>
