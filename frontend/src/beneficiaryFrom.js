@@ -13,7 +13,7 @@ const BeneficiaryForm = () => {
         branch: '',
         ifscCode: '',
     });
-    const apiurl = 'http://localhost:5001';
+    const apiurl = 'https://forex-remittance-backend.onrender.com';
 
     const handleChange = (e) => {
         setFormData({

@@ -87,7 +87,7 @@ const ForexRemittanceForm = () => {
       console.log('Simulated remittance successful.');
       console.log('Updated Bank Account Balance:', updatedBalance);
   
-      const sendDataResponse = await axios.post('http://localhost:5001/api/sendData', {
+      const sendDataResponse = await axios.post('https://forex-remittance-backend.onrender.com/api/sendData', {
         senderName,
         recipientName,
         amount,

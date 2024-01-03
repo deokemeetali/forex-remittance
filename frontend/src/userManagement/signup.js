@@ -85,7 +85,7 @@ const SignUpForm = () => {
       setErrors(validationErrors);
     } else {
       try {
-        const response = await axios.post('http://localhost:5001/signup', userData);
+        const response = await axios.post('https://forex-remittance-backend.onrender.com/signup', userData);
 
         if (response.status === 201) {
          // setMessage('User signed up successfully');

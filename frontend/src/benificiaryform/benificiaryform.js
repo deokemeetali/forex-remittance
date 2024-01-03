@@ -21,7 +21,7 @@ const BeneficiaryForm = () => {
   const [countries, setCountries] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const apiurl = "http://localhost:5001";
+  const apiurl = "https://forex-remittance-backend.onrender.com";
 
   // Move the useEffect outside the handleChange function
   useEffect(() => {

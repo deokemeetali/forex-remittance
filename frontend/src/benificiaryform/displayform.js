@@ -11,7 +11,7 @@ function DisplayBeneficiary() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/api/displaybeneficiaries`);
+                const response = await axios.get(`https://forex-remittance-backend.onrender.com/api/displaybeneficiaries`);
                 setBeneficiaries(response.data);
             } catch (error) {
                 console.error("Error fetching beneficiary data:", error);
