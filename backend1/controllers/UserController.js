@@ -10,6 +10,7 @@ class UserController {
   async signUp (req, res) {
     try {
       const { username, email, password } = req.body
+      console.log (username, email, password);
       await this.userModel.checkUserExistence(username, email)
       const result = await this.userModel.createUser(username, email, password)
       logger.info(result)
@@ -24,6 +25,7 @@ class UserController {
       } else {
         console.error('Error signing up user:', error)
         res.status(500).json({ message: 'Error signing up user' })
+        console.log (error);
       }
     }
   }
