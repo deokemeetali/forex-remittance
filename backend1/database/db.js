@@ -4,8 +4,8 @@ const logger = require('../logger')
 const pool = new Pool({
   host: 'localhost',
   user: 'postgres',
-  port: 5432,
-  password: 'Shruti88@',
+  port: 5000,
+  password: 'Meetali123',
   database: 'postgres'
 })
 async function connectToDatabase () {
