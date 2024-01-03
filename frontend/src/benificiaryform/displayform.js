@@ -7,11 +7,12 @@ import './displayform.css';
 
 function DisplayBeneficiary() {
     const [beneficiaries, setBeneficiaries] = useState([]);
+    const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://forex-remittance-backend.onrender.com/api/displaybeneficiaries`);
+                const response = await axios.get(`${apiurl}/api/displaybeneficiaries`);
                 setBeneficiaries(response.data);
             } catch (error) {
                 console.error("Error fetching beneficiary data:", error);

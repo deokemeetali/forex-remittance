@@ -19,7 +19,7 @@ function PhoneLogin() {
   const [data, setData] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
-  const apiurl ='https://forex-remittance-backend.onrender.com';
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
   const navigate = useNavigate();
 

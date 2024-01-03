@@ -25,7 +25,7 @@ const SignUpForm = () => {
     setUserData({ ...userData, [name]: value });
     setErrors({ ...errors, [name]: '' });
   };
-
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
   const togglePasswordVisibility = (field) => {
     if (field === 'password') {
       setShowPassword(!showPassword);
@@ -85,7 +85,7 @@ const SignUpForm = () => {
       setErrors(validationErrors);
     } else {
       try {
-        const response = await axios.post('https://forex-remittance-backend.onrender.com/signup', userData);
+        const response = await axios.post(`${apiurl}/signup`, userData);
 
         if (response.status === 201) {
          // setMessage('User signed up successfully');
