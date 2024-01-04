@@ -22,11 +22,6 @@ const Header = () => {
                 Login
               </Button>
             </Link>
-            <Link to="/fblogin" className="nav-link">
-              <Button variant="outline-light" className="me-2">
-                FACEBOOK
-              </Button>
-            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
