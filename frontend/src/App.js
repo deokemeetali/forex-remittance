@@ -6,10 +6,9 @@ import SignUpForm from "./userManagement/signup";
 import PhoneLogin from "./phonelogin/phonelogin";
 import LoginForm from "./loginPage/login"; 
 import BeneficiaryForm from './benificiaryform/benificiaryform';
-
 import ForexRemittanceForm from './forex-remittance/ForexRemittance';
-
 import DisplayBeneficiary from './benificiaryform/displayform';
+import FbLogin from './facebooklogin/fblogin';
 
 
 function App() {
@@ -23,6 +22,7 @@ function App() {
       <Route path="/home" element={<Home/>}/>
       <Route path="/signup" element={<SignUpForm/>}/>
       <Route path="/login" element={<LoginForm />}/>
+      <Route path="/fblogin" element={<FbLogin />}/>
       <Route path="/phonelogin" element={<PhoneLogin />} />
       <Route path='/ForexRemittance' element={<ForexRemittanceForm/>}/>
     </Routes>
