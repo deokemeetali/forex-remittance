@@ -62,3 +62,4 @@
 =======
 >>>>>>> 4ccf5a094f3ccefd7614bbd62b760497a8503bc3
 >>>>>>> 3dcc6dc3c2cf8f957bd3ba16691fd77766070ea7
+{"address":"::1","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"Error connecting to PostgreSQL database: connect ECONNREFUSED ::1:5000","port":5000,"stack":"Error: connect ECONNREFUSED ::1:5000\n    at D:\\FOREXRemmitance\\forex-remittance\\backend\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async connectToDatabase (D:\\FOREXRemmitance\\forex-remittance\\backend\\database\\db.js:13:20)","syscall":"connect"}
