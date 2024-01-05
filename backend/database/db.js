@@ -12,7 +12,7 @@ async function connectToDatabase () {
   try {
     const client = await pool.connect()
     logger.info('Connected to PostgreSQL database')
-    client.release() // Release the client after successful connection
+    client.release()
   } catch (error) {
     logger.error('Error connecting to PostgreSQL database:', error)
   }
