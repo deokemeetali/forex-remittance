@@ -11,9 +11,23 @@
     }
   }
   /* Sidebar.css */
+/* sidebar.css */
 .sidebar-container {
-    display: flex;
-    height: 100vh;
-    overflow: scroll initial;
+    position: fixed;
+    height: 100%;
+    z-index: 1000; /* Adjust the z-index based on your layout */
   }
+  
+  .sidebar-content {
+    overflow-y: auto;
+    height: 100%;
+  }
+  
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Add any other styles as needed */
   
