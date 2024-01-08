@@ -1,4 +1,3 @@
-// TransactionList.js
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import axios from 'axios';
@@ -8,12 +7,18 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 const TransactionList = () => {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL;
 
   useEffect(() => {
     // Make API call using Axios to fetch form data
-    axios.get('http://localhost:5001/getFormData') // Update the URL based on your backend configuration
+    axios.get(`${apiurl}/getFormData`)
       .then(response => {
-        setRowData(response.data);
+        // Ensure that the response data is an array
+        if (Array.isArray(response.data)) {
+          setRowData(response.data);
+        } else {
+          console.error('Invalid data format. Expected an array:', response.data);
+        }
         setLoading(false);
       })
       .catch(error => {

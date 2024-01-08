@@ -13,7 +13,8 @@ const BeneficiaryForm = () => {
         branch: '',
         ifscCode: '',
     });
-    const apiurl = 'http://localhost:5001';
+    const apiurl = process.env.REACT_APP_API_BACKEND_URL
+
 
     const handleChange = (e) => {
         setFormData({

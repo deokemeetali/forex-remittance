@@ -6,10 +6,10 @@ const LineChart = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
-
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
   useEffect(() => {
     // Fetch data from the backend using Axios
-    axios.get('/api/lineChartData') // Assuming your backend is running on the same host
+      axios.get(`${apiurl}/api/getLineChartData`) // Assuming your backend is running on the same host
       .then(response => setChartData(response.data))
       .catch(error => console.error('Error fetching data:', error));
   }, []);

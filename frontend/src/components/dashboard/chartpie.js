@@ -1,30 +1,36 @@
+// Import necessary dependencies
 import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
+import axios from 'axios';
 
 const PieChart = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [chartData, setChartData] = useState(null);
-
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data from your backend API
-        const response = await fetch('/api/chartData'); // Update the endpoint
-        const data = await response.json();
+        // Fetch aggregated data from your backend API using Axios
+        const response = await axios.get(`${apiurl}/api/getChartData`) 
+        const data = response.data;
 
-        // Update chart data state
-        setChartData(data);
+        // Update chart data state only if the response has valid structure
+        if (data && data.labels && data.data && data.backgroundColor && data.borderColor) {
+          setChartData(data);
+        } else {
+          console.error('Invalid chart data structure:', data);
+        }
       } catch (error) {
         console.error('Error fetching chart data:', error);
       }
     };
 
     fetchData();
-  }, []); // Fetch data only on component mount
+  }, []);
 
   useEffect(() => {
-    const ctx = chartRef.current.getContext('2d');
+    const ctx = chartRef.current?.getContext('2d'); // Use optional chaining to avoid potential null/undefined
 
     // Destroy the existing chart if it exists
     if (chartInstance.current) {
@@ -79,7 +85,7 @@ const PieChart = () => {
         chartInstance.current.destroy();
       }
     };
-  }, [chartData]); // Update chart when chartData changes
+  }, [chartData]);
 
   return <canvas ref={chartRef} width="400" height="300" />;
 };
