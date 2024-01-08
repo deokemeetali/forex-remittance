@@ -26,7 +26,7 @@ const Sidebar = () => {
             <NavLink exact to="/dashboard" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/beneficiaryform" activeClassName="activeClicked">
+            <NavLink exact to="/displayform" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">
                 Add Overseas Recipient
               </CDBSidebarMenuItem>
