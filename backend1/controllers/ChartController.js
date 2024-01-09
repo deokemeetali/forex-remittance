@@ -5,7 +5,7 @@ const getChartData = async (req, res) => {
     // Fetch aggregated data from the PostgreSQL table
     const query = `
       SELECT purpose, COUNT(*) AS count
-      FROM form_data
+      FROM Transaction_history
       GROUP BY purpose
     `;
 
@@ -52,7 +52,7 @@ const getLineChartData = async (req, res) => {
     // Fetch data from the PostgreSQL table
     const query = `
       SELECT amount, converted_amount
-      FROM form_data
+      FROM Transaction_history
     `;
 
     const result = await pool.query(query);
@@ -95,7 +95,7 @@ const getBarChartData = async (req, res) => {
     // Fetch data from the PostgreSQL table
     const query = `
       SELECT base_currency, target_currency, COUNT(*) AS count
-      FROM form_data
+      FROM Transaction_history
       GROUP BY base_currency, target_currency
     `;
 
