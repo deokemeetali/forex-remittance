@@ -13,6 +13,7 @@ const ForexRemittanceForm = () => {
   const [convertedAmount, setConvertedAmount] = useState(0);
   const [currencyList, setCurrencyList] = useState([]);
   const [bankAccountBalance, setBankAccountBalance] = useState(10000); // Dummy balance
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
   const accountBalances = {
     dummySender1: 5000,
@@ -87,7 +88,7 @@ const ForexRemittanceForm = () => {
       console.log('Simulated remittance successful.');
       console.log('Updated Bank Account Balance:', updatedBalance);
   
-      const sendDataResponse = await axios.post('http://localhost:5001/api/sendData', {
+      const sendDataResponse = await axios.post(`${apiurl}/sendData`, {
         senderName,
         recipientName,
         amount,

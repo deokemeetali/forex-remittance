@@ -19,7 +19,7 @@ function PhoneLogin() {
   const [data, setData] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
-  const apiurl ='http://localhost:5001';
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
   const navigate = useNavigate();
 
