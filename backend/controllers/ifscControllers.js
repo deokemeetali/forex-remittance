@@ -3,10 +3,12 @@ const fetch = require('node-fetch');
 
 // Define your controller function
 exports.getBankDetailsByIFSC = async (req, res) => {
-  const { ifscCode } = req.params; // Assuming you are passing IFSC code as a route parameter
+  const { ifscCode } = req.params;
+  console.log(ifscCode); // Assuming you are passing IFSC code as a route parameter
 
   try {
     const response = await fetch(`https://ifsc.razorpay.com/${ifscCode}`);
+    console.log(response);
     const data = await response.json();
 
     if (response.ok) {
