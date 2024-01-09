@@ -2,7 +2,7 @@ const { pool } = require('../database/db');
 
 exports.beneficiary = async (req, res) => {
     try {
-        const { rows } = await pool.query('SELECT * FROM beneficiary');
+        const { rows } = await pool.query('SELECT * FROM beneficiary_table');
         console.log(rows);
         res.json(rows);
     } catch (error) {

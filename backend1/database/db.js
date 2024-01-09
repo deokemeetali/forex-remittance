@@ -7,8 +7,7 @@ const pool = new Pool({
   database: 'fintech_database',
   host: 'dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com',
   port: 5432,
-  ssl: true
-
+  ssl: true
 })
 async function connectToDatabase () {
   try {
