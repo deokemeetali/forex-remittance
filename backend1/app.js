@@ -12,6 +12,8 @@ const Displaybeneficiary = require('./controllers/displaybeneficiary')
 const sendDataController = require('./controllers/SendDataController')
 const ChartControllerD   = require('./controllers/ChartController')
 const bankDetails = require('./controllers/ifscControllers')
+const transactionController = require('./controllers/transactionController');
+
 const PORT = process.env.PORT || 5001
 
 connectToDatabase()
@@ -32,6 +34,8 @@ app.get('/apo/bankDetails/:ifscode', bankDetails.getBankDetailsByIFSC)
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
 app.get('/sendData', sendDataController.sendData)
 app.get('/getFormData', sendDataController.getFormData)
+app.get('/api/transaction_history', transactionController.getTransactionHistory);
+
 app.get('/api/displaybeneficiaries', Displaybeneficiary.beneficiary)
 app.get('/api/barChartData', ChartControllerD.getBarChartData )
 app.get('/api/getLineChartData', ChartControllerD.getLineChartData)
