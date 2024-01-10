@@ -1,3 +1,4 @@
+const { pool } = require('../database/db')
 const sendData = (req, res) => {
   const {
     senderName,
@@ -23,4 +24,25 @@ const sendData = (req, res) => {
   res.status(200).json({ message: 'Form data received successfully!' })
 }
 
-module.exports = { sendData }
+//TRANSACTION LIST 
+
+const getFormData = async (req, res) => {
+  try {
+    // Fetch form data from the PostgreSQL table
+    const query = `
+      SELECT *
+      FROM  overseas_transfer;
+    `;
+
+    const result = await pool.query(query);
+
+    // Send the data to the frontend
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error fetching form data:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+module.exports = { sendData, getFormData };
+

@@ -68,7 +68,8 @@ const BeneficiaryForm = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-  };
+    const apiurl = process.env.REACT_APP_API_BACKEND_URL
+
 
   const handlePhoneValidation = (value) => {
     console.log("Phone Validation:", value);
