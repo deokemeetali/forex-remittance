@@ -30,9 +30,9 @@ const userController = new UserController()
 app.post('/v1/auth/firebase', phoneController.managePhoneNumber);
 app.post('/signup', (req, res) => userController.signUp(req, res))
 app.post('/login', LoginController.login)
-app.get('/apo/bankDetails/:ifscode', bankDetails.getBankDetailsByIFSC)
+app.get('/api/bankDetails/:ifscCode', bankDetails.getBankDetailsByIFSC)
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
-app.get('/sendData', sendDataController.sendData)
+app.post('/sendData', sendDataController.sendData)
 app.get('/getFormData', sendDataController.getFormData)
 app.get('/api/transaction_history', transactionController.getTransactionHistory);
 
