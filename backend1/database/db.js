@@ -10,6 +10,16 @@ const pool = new Pool({
   ssl: true
 
 })
+
+// const pool = new Pool({
+//   user: 'postgres',
+//   password: 'kshitij',
+//   database: 'postgres',
+//   host: 'localhost',
+//   port: 5000,
+//   //ssl: true
+
+// })
 async function connectToDatabase () {
   try {
     const client = await pool.connect()

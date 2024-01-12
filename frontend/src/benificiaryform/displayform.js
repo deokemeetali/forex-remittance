@@ -14,6 +14,7 @@ function DisplayBeneficiary() {
             try {
                 const response = await axios.get(`${apiurl}/api/displaybeneficiaries`);
                 setBeneficiaries(response.data);
+            
             } catch (error) {
                 console.error("Error fetching beneficiary data:", error);
             }

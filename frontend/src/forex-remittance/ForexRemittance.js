@@ -13,6 +13,7 @@ const ForexRemittanceForm = () => {
   const [convertedAmount, setConvertedAmount] = useState(0);
   const [currencyList, setCurrencyList] = useState([]);
   const [bankAccountBalance, setBankAccountBalance] = useState(10000); // Dummy balance
+  const [beneficiaryList, setBeneficiaryList] = useState([]);
   const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
   const accountBalances = {
@@ -54,6 +55,28 @@ const ForexRemittanceForm = () => {
 
     fetchCurrencyList();
   }, []);
+
+  useEffect(() => {
+    const fetchBeneficiaryList = async () => {
+      try {
+        const response = await axios.get(`${apiurl}/beneficiaries`); // Assuming /beneficiaries returns a beneficiary object
+
+        // Transform the received object into an array of objects
+        const beneficiariesArray = Object.keys(response.data).map((key) => ({
+          id: key,
+          name: response.data[key].account_number, // Assuming account_number is used as the name
+          // Add other properties as needed for name or any other details
+        }));
+
+        setBeneficiaryList(beneficiariesArray);
+      } catch (error) {
+        console.error('Error fetching beneficiary list:', error);
+      }
+    };
+
+    fetchBeneficiaryList();
+  }, [apiurl]);
+
 
   useEffect(() => {
     const calculateConvertedAmount = () => {
@@ -163,10 +186,12 @@ const ForexRemittanceForm = () => {
               onChange={(e) => setRecipientName(e.target.value)}
               className="form-control"
             >
-                <option value="">Select Recipient Account</option>
-              <option value="dummyRecipient1">Dummy Recipient 1</option>
-              <option value="dummyRecipient2">Dummy Recipient 2</option>
-              {/* Add other recipient account options */}
+              <option value="">Select Recipient Account</option>
+              {beneficiaryList.map((beneficiary) => (
+                <option key={beneficiary.id} value={beneficiary.name}>
+                  {beneficiary.name}
+                </option>
+              ))}
             </select>
           </div>
         </div>
