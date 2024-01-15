@@ -6,12 +6,20 @@ const BarChart = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
-  const apiurl = process.env.REACT_APP_API_BACKEND_URL
+  const [loading, setLoading] = useState(true);
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL;
+
   useEffect(() => {
     // Fetch data from the backend using Axios
-    axios.get(`${apiurl}/api/barChartData`) // Update the URL based on your backend configuration
-      .then(response => setChartData(response.data))
-      .catch(error => console.error('Error fetching data:', error));
+    axios.get(`${apiurl}/api/barChartData`)
+      .then(response => {
+        setChartData(response.data);
+        setLoading(false); // Set loading to false when data is received
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false); // Set loading to false on error as well
+      });
   }, []);
 
   useEffect(() => {
@@ -43,7 +51,12 @@ const BarChart = () => {
     };
   }, [chartData]);
 
-  return <canvas ref={chartRef} width="500" height="500" />; // Adjust width and height as needed
+  return (
+    <>
+      {loading && <p>Loading...</p>}
+      <canvas ref={chartRef} width="500" height="500" /> {/* Adjust width and height as needed */}
+    </>
+  );
 };
 
 export default BarChart;
