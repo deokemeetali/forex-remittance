@@ -21,7 +21,7 @@ const BeneficiaryForm = () => {
   const [countries, setCountries] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const apiurl = "http://localhost:5001";
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
   // Move the useEffect outside the handleChange function
   useEffect(() => {
@@ -114,7 +114,7 @@ const BeneficiaryForm = () => {
   const fetchBankDetails = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5001/api/bankDetails/${ifscCode}`
+        `${apiurl}/api/bankDetails/${ifscCode}`
       );
       const data = response.data;
 
