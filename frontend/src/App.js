@@ -20,7 +20,6 @@ function App() {
       <Route path="/" element={<LandingPage/>}/>
       <Route path="/benificiaryform" element={<BeneficiaryForm/>}/>
       <Route path="/displayform" element={<DisplayBeneficiary/>}/>
-      
       <Route path="/signup" element={<SignUpForm/>}/>
       <Route path="/login" element={<LoginForm />}/>
       <Route path="/mainpage" element={<MainPages/>}/>

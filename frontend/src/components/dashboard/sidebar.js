@@ -17,7 +17,7 @@ const Sidebar = () => {
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <NavLink to="/" className="text-decoration-none sidebar-header-link">
-            Forex Remittance
+          Forex Remittance
           </NavLink>
         </CDBSidebarHeader>
 
