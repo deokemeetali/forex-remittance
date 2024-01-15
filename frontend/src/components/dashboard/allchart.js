@@ -6,7 +6,7 @@ import TransactionList from "./transactionlist";
 import '../styles/chart.css';
 function AllChart() {
   return (
-    <div className="container">
+    <div className="mainbox">
       <div className="barchart bg-white">
         <BarChart/>
       </div>

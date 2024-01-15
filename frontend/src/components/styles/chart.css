@@ -1,4 +1,4 @@
-.container {
+.mainbox {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px; /* Decreased gap between the charts */
@@ -22,7 +22,7 @@
 
 @media (max-width: 768px) {
   /* Adjust the layout for screens with a maximum width of 768px */
-  .container {
+  .mainbox {
     grid-template-columns: 1fr;
   }
 
