@@ -24,6 +24,7 @@
   /* Adjust the layout for screens with a maximum width of 768px */
   .mainbox {
     grid-template-columns: 1fr;
+    
   }
 
   .barchart,
@@ -32,4 +33,14 @@
   .transaction {
     height: auto; /* Let the height adjust dynamically based on content */
   }
+}
+.loading-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.chart-container {
+  position: relative;
 }
