@@ -84,12 +84,12 @@ const PieChart = () => {
       }
     };
   }, [chartData]);
-  
+
   return (
-    <div className="chart-container">
-    {loading && <p className="loading-message">Loading...</p>}
-    <canvas ref={chartRef} width="300" height="300" />
-  </div>
+    <div>
+      {loading && <p>Loading...</p>}
+      <canvas ref={chartRef} width="400" height="300" />
+    </div>
   );
 };
 

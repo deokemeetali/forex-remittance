@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import './displayform.css';
 
+
 function DisplayBeneficiary() {
     const [beneficiaries, setBeneficiaries] = useState([]);
     const apiurl = process.env.REACT_APP_API_BACKEND_URL
@@ -23,6 +24,9 @@ function DisplayBeneficiary() {
     }, []);
 
     return (
+        
+
+            
         <div className="display-container">
             <h2 className="beneficiary-heading">Beneficiary List</h2>
             <Link to="/benificiaryform" className="nav-link">

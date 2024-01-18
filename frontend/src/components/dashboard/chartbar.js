@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import axios from 'axios';
-import '../styles/chart.css'
+
 const BarChart = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
@@ -51,13 +51,11 @@ const BarChart = () => {
     };
   }, [chartData]);
 
- 
-
   return (
-    <div className="chart-container">
-      {loading && <p className="loading-message">Loading...</p>}
-      <canvas ref={chartRef} width="350" height="350" />
-    </div>
+    <>
+      {loading && <p>Loading...</p>}
+      <canvas ref={chartRef} width="500" height="500" /> {/* Adjust width and height as needed */}
+    </>
   );
 };
 
