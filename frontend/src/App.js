@@ -1,7 +1,7 @@
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import React from "react";
 import LandingPage from './components/Landingpage/landingpage'; 
-
+import { Navigate } from 'react-router-dom';
 import SignUpForm from "./userManagement/signup";
 import PhoneLogin from "./phonelogin/phonelogin";
 import LoginForm from "./loginPage/login"; 
