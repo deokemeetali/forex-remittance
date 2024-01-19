@@ -113,6 +113,7 @@ const BeneficiaryForm = () => {
 
   const fetchBankDetails = async () => {
     try {
+    
       const response = await axios.get(
         `${apiurl}/api/bankDetails/${ifscCode}`
       );

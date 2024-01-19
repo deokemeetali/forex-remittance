@@ -11,7 +11,7 @@ const TransactionList = () => {
 
   useEffect(() => {
     // Make API call using Axios to fetch form data
-    axios.get(`${apiurl}/getFormData`)
+    axios.get(`${apiurl}/api/transaction_history`)
       .then(response => {
         // Ensure that the response data is an array
         if (Array.isArray(response.data)) {

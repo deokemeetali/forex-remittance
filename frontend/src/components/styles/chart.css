@@ -1,6 +1,35 @@
-/* chart.css */
-.chart-container {
-    border: 1px solid #ddd; /* Add a border for visual separation */
-    padding: 15px 20px; /* Adjust the horizontal and vertical padding */
-    margin-bottom: 20px; /* Adjust the margin between charts */
+.mainbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; /* Decreased gap between the charts */
+  border: 1px solid #ededed; /* Added a border to the container */
+  padding: 30px; /* Added padding to the container for better visual appearance */
+}
+
+.barchart,
+.piechart,
+.linechart,
+.transaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally within the container */
+  justify-content: center; /* Center vertically within the container */
+  height: 400px;
+  border: 1px solid #ccc; /* Added a border to each chart */
+  border-radius: 5px; /* Added border-radius for rounded corners */
+  overflow: hidden; /* Hide any content that overflows the container */
+}
+
+@media (max-width: 768px) {
+  /* Adjust the layout for screens with a maximum width of 768px */
+  .mainbox {
+    grid-template-columns: 1fr;
   }
+
+  .barchart,
+  .piechart,
+  .linechart,
+  .transaction {
+    height: auto; /* Let the height adjust dynamically based on content */
+  }
+}

@@ -5,7 +5,6 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { loginSuccess } from "../redux/action";
 
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
@@ -15,7 +14,6 @@ const LoginForm = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize useNavigate
   const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
@@ -47,8 +45,6 @@ const LoginForm = () => {
 
         if (response.status === 200) {
           setMessage("Login successful");
-          dispatch(loginSuccess(response.data));
-          localStorage.setItem('user', JSON.stringify(response.data));
           navigate('/mainpage');
           // Handle successful login (redirect, state change, etc.)
         } else {

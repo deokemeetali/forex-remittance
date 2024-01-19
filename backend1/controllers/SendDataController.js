@@ -31,7 +31,7 @@ const getFormData = async (req, res) => {
     // Fetch form data from the PostgreSQL table
     const query = `
       SELECT *
-      FROM form_data
+      FROM  overseas_transfer;
     `;
 
     const result = await pool.query(query);
