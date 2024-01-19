@@ -25,7 +25,7 @@ function DisplayBeneficiary() {
     return (
         <div className="display-container">
             <h2 className="beneficiary-heading">Beneficiary List</h2>
-            <Link to="/benificiaryform" className="nav-link">
+          <Link to="/mainpage/benificiaryform" className="nav-link">
                 <Button className="dash">
                     Add beneficiary
                 </Button>
