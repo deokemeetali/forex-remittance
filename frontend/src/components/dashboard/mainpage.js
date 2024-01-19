@@ -4,9 +4,9 @@ import { Outlet } from 'react-router-dom';
 
 const MainPages = () => {
  return (
-    <div className=" bg-white vh-100 sticky">
+    <div className=" bg-grey vh-100 sticky">
       <div className="row">
-        <div >
+        <div className="col-2" >
           <Sidebar />
         </div>
         <div className="col-10 vh-100 m-0 p-0">
