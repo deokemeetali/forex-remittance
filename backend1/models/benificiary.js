@@ -17,7 +17,6 @@ class BeneficiaryModel {
         )`
 
     try {
-      // First, create the table
       await pool.query(createBeneficiaryTableQuery)
       console.log('Beneficiary table created successfully')
 

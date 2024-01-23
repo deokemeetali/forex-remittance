@@ -1,7 +1,7 @@
 // Import necessary dependencies
 import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
-import axios from 'axios';
+import axios from 'axios'; 
 
 const PieChart = () => {
   const chartRef = useRef(null);
