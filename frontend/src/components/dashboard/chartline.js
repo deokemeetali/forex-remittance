@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Chart from 'chart.js/auto';
-import axios from 'axios';
+import { Chart } from 'chart.js/auto'; // Import Chart directly
+import axios from 'axios'; 
 
 const LineChart = () => {
   const chartRef = useRef(null);

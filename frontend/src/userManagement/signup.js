@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, InputGroup, Modal } from 'react-bootstrap';
 import { BsExclamationCircle } from 'react-icons/bs';
+import axios from 'axios'; 
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../components/styles/signup.css';
 const SignUpForm = () => {
