@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import axios from 'axios';
 
-const LineChart = () => {
+const LineChart = ({ userRole }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
@@ -11,7 +11,9 @@ const LineChart = () => {
 
   useEffect(() => {
     // Fetch data from the backend using Axios
-    axios.get(`${apiurl}/api/getLineChartData`)
+    axios.get(`${apiurl}/api/getLineChartData`, {
+      params: { userRole } // Pass userRole as a parameter to the backend
+    })
       .then(response => {
         setChartData(response.data);
         setLoading(false); // Set loading to false when data is received
@@ -20,7 +22,7 @@ const LineChart = () => {
         console.error('Error fetching data:', error);
         setLoading(false); // Set loading to false on error as well
       });
-  }, []);
+  }, [userRole]); // Include userRole as a dependency
 
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');

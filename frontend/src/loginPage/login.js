@@ -29,11 +29,10 @@ const LoginForm = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     const validationErrors = {};
-    // Validation rules for identifier (username/email) and password...
-    // (Similar to signup form validation)
-
+    // Validation rules...
+  
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
@@ -42,8 +41,10 @@ const LoginForm = () => {
           `${apiurl}/login`,
           loginData
         );
-
+  
         if (response.status === 200) {
+          const { token } = response.data;
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
           setMessage("Login successful");
           navigate('/mainpage');
           // Handle successful login (redirect, state change, etc.)
@@ -55,6 +56,7 @@ const LoginForm = () => {
       }
     }
   };
+  
 
   return (
     <div className="container mt-5">

@@ -5,6 +5,7 @@ const phoneController = require('./firebase/phonecontroller')
 const express = require('express')
 const cors = require('cors')
 const app = express()
+const jwt = require('jsonwebtoken');
 const UserController = require('./controllers/UserController')
 const LoginController = require('./controllers/LoginController')
 const BeneficiaryForm = require('./benificiaryform/benificiaryform')

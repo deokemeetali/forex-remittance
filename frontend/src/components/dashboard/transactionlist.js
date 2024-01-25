@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import axios from 'axios';
+import PropTypes from 'prop-types'; // Import PropTypes
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
-const TransactionList = () => {
+const TransactionList = ({ userRole }) => {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
   const apiurl = process.env.REACT_APP_API_BACKEND_URL;
 
   useEffect(() => {
     // Make API call using Axios to fetch form data
-    axios.get(`${apiurl}/api/transaction_history`)
+    axios.get(`${apiurl}/api/transaction_history`, {
+      params: { userRole } // Pass userRole as a parameter to the backend
+    })
       .then(response => {
         // Ensure that the response data is an array
         if (Array.isArray(response.data)) {
@@ -25,7 +28,7 @@ const TransactionList = () => {
         console.error('Error fetching form data:', error);
         setLoading(false);
       });
-  }, []); // Empty dependency array to run the effect only once
+  }, [userRole]); // Include userRole as a dependency
 
   // Column definitions
   const columnDefs = [
@@ -62,6 +65,9 @@ const TransactionList = () => {
       />
     </div>
   );
+};
+TransactionList.propTypes = {
+  userRole: PropTypes.string.isRequired, // Validate userRole as a required string
 };
 
 export default TransactionList;

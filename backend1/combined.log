@@ -148,3 +148,25 @@
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"error","message":"Error during login: Error finding user: getaddrinfo ENOTFOUND dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com","stack":"Error: Error finding user: getaddrinfo ENOTFOUND dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com\n    at findUser (D:\\FOREXRemmitance\\forex-remittance\\backend1\\models\\userModel.js:8:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async login (D:\\FOREXRemmitance\\forex-remittance\\backend1\\controllers\\LoginController.js:7:18)"}
+{"level":"error","message":"Error during login: Error finding user: getaddrinfo ENOTFOUND dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com","stack":"Error: Error finding user: getaddrinfo ENOTFOUND dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com\n    at findUser (D:\\FOREXRemmitance\\forex-remittance\\backend1\\models\\userModel.js:8:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async login (D:\\FOREXRemmitance\\forex-remittance\\backend1\\controllers\\LoginController.js:7:18)"}
+{"level":"error","message":"Error during login: Error finding user: getaddrinfo ENOTFOUND dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com","stack":"Error: Error finding user: getaddrinfo ENOTFOUND dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com\n    at findUser (D:\\FOREXRemmitance\\forex-remittance\\backend1\\models\\userModel.js:8:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async login (D:\\FOREXRemmitance\\forex-remittance\\backend1\\controllers\\LoginController.js:7:18)"}
+{"level":"error","message":"Error during login: Error finding user: getaddrinfo ENOTFOUND dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com","stack":"Error: Error finding user: getaddrinfo ENOTFOUND dpg-clkrmpsjtl8s73f17fq0-a.oregon-postgres.render.com\n    at findUser (D:\\FOREXRemmitance\\forex-remittance\\backend1\\models\\userModel.js:8:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async login (D:\\FOREXRemmitance\\forex-remittance\\backend1\\controllers\\LoginController.js:7:18)"}
+{"level":"info","message":{"success":true}}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}

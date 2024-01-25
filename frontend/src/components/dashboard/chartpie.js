@@ -1,83 +1,48 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import axios from 'axios';
+import '../styles/chart.css';
 
-const PieChart = () => {
+const PieChart = ({ userRole }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   const [loading, setLoading] = useState(true);
   const apiurl = process.env.REACT_APP_API_BACKEND_URL;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${apiurl}/api/getChartData`);
-        const data = response.data;
-
-        if (data && data.labels && data.data && data.backgroundColor && data.borderColor) {
-          setChartData(data);
-        } else {
-          console.error('Invalid chart data structure:', data);
-        }
-      } catch (error) {
-        console.error('Error fetching chart data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+    // Fetch data from the backend using Axios
+    axios.get(`${apiurl}/api/getChartData`, {
+      params: { userRole } // Pass userRole as a parameter to the backend
+    })
+      .then(response => {
+        setChartData(response.data);
+        setLoading(false); // Set loading to false when data is received
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false); // Set loading to false on error as well
+      });
+  }, [userRole]); // Include userRole as a dependency
 
   useEffect(() => {
-    const ctx = chartRef.current?.getContext('2d');
+    const ctx = chartRef.current.getContext('2d');
 
+    // Destroy the existing chart if it exists
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
 
-    if (chartData) {
-      chartInstance.current = new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: chartData.labels,
-          datasets: [
-            {
-              label: 'Purpose of Remittance',
-              data: chartData.data,
-              backgroundColor: chartData.backgroundColor,
-              borderColor: chartData.borderColor,
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          title: {
-            display: true,
-            text: 'Pie Chart',
-            fontSize: 16,
-          },
-          legend: {
-            display: true,
-            position: 'top',
-          },
-          tooltips: {
-            enabled: true,
-            callbacks: {
-              label: (tooltipItem, data) => {
-                const dataset = data.datasets[tooltipItem.datasetIndex];
-                const value = dataset.data[tooltipItem.index];
-                return `${data.labels[tooltipItem.index]}: ${value}`;
-              },
-            },
-          },
-        },
-      });
-    }
+    // Create a new pie chart with dynamic data
+    chartInstance.current = new Chart(ctx, {
+      type: 'pie',
+      data: chartData,
+      options: {
+        // Add any additional options here
+      },
+    });
 
+    // Cleanup on component unmount
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
@@ -86,10 +51,10 @@ const PieChart = () => {
   }, [chartData]);
 
   return (
-    <div>
-      {loading && <p>Loading...</p>}
-      <canvas ref={chartRef} width="400" height="300" />
-    </div>
+    <>
+      {loading && <p className="loading-message">Loading...</p>}
+      <canvas ref={chartRef} width="500" height="500" /> {/* Adjust width and height as needed */}
+    </>
   );
 };
 

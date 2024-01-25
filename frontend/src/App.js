@@ -1,7 +1,7 @@
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import React from "react";
 import LandingPage from './components/Landingpage/landingpage'; 
-
+import { Navigate } from 'react-router-dom';
 import SignUpForm from "./userManagement/signup";
 import PhoneLogin from "./phonelogin/phonelogin";
 import LoginForm from "./loginPage/login"; 
@@ -22,7 +22,13 @@ function App() {
       <Route path="/displayform" element={<DisplayBeneficiary/>}/>
       <Route path="/signup" element={<SignUpForm/>}/>
       <Route path="/login" element={<LoginForm />}/>
-      <Route path="/mainpage" element={<MainPages/>}/>
+      <Route path="/mainpage" element={<Navigate to="/mainpage/dashboard" />} /> 
+          <Route path="/mainpage" element={<MainPages />} >
+             <Route path="benificiaryform" element={<BeneficiaryForm />} /> 
+            <Route path="dashboard" element={<Dashboard/>} />
+            <Route path="displayform" element={<DisplayBeneficiary />} />
+            <Route path='ForexRemittance' element={<ForexRemittanceForm />} />
+          </Route>
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/phonelogin" element={<PhoneLogin />} />
       <Route path='/ForexRemittance' element={<ForexRemittanceForm/>}/>
