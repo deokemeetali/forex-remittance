@@ -45,8 +45,12 @@ const LoginForm = () => {
 
         if (response.status === 200) {
           setMessage("Login successful");
-          navigate("/mainpage", { state: { username: loginData.identifier, password: loginData.password } });
-
+          navigate('/mainpage', {
+            state: {
+              username: loginData.identifier,
+              password: loginData.password,
+            },
+          });
         } else {
           setMessage("Invalid credentials");
         }
