@@ -1,5 +1,6 @@
 // MainForm.js
 import React, { useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 import Step1 from './step1';
 import Step2 from './step2';
 import Step3 from './step3';
@@ -7,6 +8,7 @@ import Step4 from './step4';
 import MuiProgressBar from './progressbar';
 import './forexremittance.css';
 import axios from 'axios';
+import ConfirmationWindow from './ConfirmationWindow';
 
 function MainForm() {
   const [formData, setFormData] = useState({
@@ -26,9 +28,11 @@ function MainForm() {
     Recipeint_Email: '',
   });
   const [currentStep, setCurrentStep] = useState(1);
+  const navigate = useNavigate();
   const [confirmationMsg, setConfirmationMsg] = useState('');
   const apiurl = process.env.REACT_APP_API_BACKEND_URL;
-
+  const [showConfirmationWindow, setShowConfirmationWindow] = useState(false);
+  const totalSteps = 4; 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
   };
@@ -37,6 +41,9 @@ function MainForm() {
     setCurrentStep(currentStep - 1);
   };
 
+  const handleOKClick = () => {
+   navigate('/mainpage/dashboard');
+  };
   const handleConfirmPay = () => {
     const dataToSend = { 
       Amount_Send: formData.Amount_Send,
@@ -51,6 +58,7 @@ function MainForm() {
       .then(response => {
         console.log(response.data);
         setConfirmationMsg("thanks for choosing forex remittance");
+        setShowConfirmationWindow(true);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -61,7 +69,7 @@ function MainForm() {
     <div className="container mt-5">
       <div className="form-container">
         <div className="progress-bar-container">
-          <MuiProgressBar currentStep={currentStep} />
+          <MuiProgressBar currentStep={currentStep} totalSteps={totalSteps} />
         </div>
         <form className="steps-container mt-3">
           {currentStep === 1 && <Step1 formData={formData} setFormData={setFormData} />}
@@ -100,6 +108,12 @@ function MainForm() {
               </button>
             )}
           </div>
+          {showConfirmationWindow && (
+            <ConfirmationWindow
+              confirmationMsg={confirmationMsg}
+              onOKClick={handleOKClick}
+            />
+          )}
         </form>
       </div>
     </div>

@@ -1,4 +1,3 @@
-// Import necessary dependencies
 import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import axios from 'axios'; 
@@ -7,15 +6,15 @@ const PieChart = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [chartData, setChartData] = useState(null);
-  const apiurl = process.env.REACT_APP_API_BACKEND_URL
+  const [loading, setLoading] = useState(true);
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch aggregated data from your backend API using Axios
-        const response = await axios.get(`${apiurl}/api/getChartData`) 
+        const response = await axios.get(`${apiurl}/api/getChartData`);
         const data = response.data;
 
-        // Update chart data state only if the response has valid structure
         if (data && data.labels && data.data && data.backgroundColor && data.borderColor) {
           setChartData(data);
         } else {
@@ -23,6 +22,8 @@ const PieChart = () => {
         }
       } catch (error) {
         console.error('Error fetching chart data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -30,15 +31,13 @@ const PieChart = () => {
   }, []);
 
   useEffect(() => {
-    const ctx = chartRef.current?.getContext('2d'); // Use optional chaining to avoid potential null/undefined
+    const ctx = chartRef.current?.getContext('2d');
 
-    // Destroy the existing chart if it exists
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
 
     if (chartData) {
-      // Create a new pie chart with dynamic data
       chartInstance.current = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -79,7 +78,6 @@ const PieChart = () => {
       });
     }
 
-    // Cleanup on component unmount
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
@@ -87,7 +85,12 @@ const PieChart = () => {
     };
   }, [chartData]);
 
-  return <canvas ref={chartRef} width="400" height="300" />;
+  return (
+    <div>
+      {loading && <p>Loading...</p>}
+      <canvas ref={chartRef} width="400" height="300" />
+    </div>
+  );
 };
 
 export default PieChart;

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from "react";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+
 import { Navigate } from 'react-router-dom';
 import LandingPage from './components/Landingpage/landingpage';
 import SignUpForm from "./userManagement/signup";
@@ -13,22 +12,11 @@ import DisplayBeneficiary from './benificiaryform/displayform';
 import MainPages from './components/dashboard/mainpage';
 import Dashboard from './components/dashboard/dashboard';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
-    },
-    secondary: {
-      main: '#dc004e',
-    },
-  },
-});
 function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
+    
         <Router>
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -45,7 +33,7 @@ function App() {
             <Route path="/phonelogin" element={<PhoneLogin />} />
           </Routes>
         </Router>
-      </ThemeProvider>
+     
 
     </>
   );

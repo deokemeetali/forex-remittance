@@ -6,12 +6,20 @@ const LineChart = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
-  const apiurl = process.env.REACT_APP_API_BACKEND_URL
+  const [loading, setLoading] = useState(true);
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL;
+
   useEffect(() => {
     // Fetch data from the backend using Axios
-      axios.get(`${apiurl}/api/getLineChartData`) // Assuming your backend is running on the same host
-      .then(response => setChartData(response.data))
-      .catch(error => console.error('Error fetching data:', error));
+    axios.get(`${apiurl}/api/getLineChartData`)
+      .then(response => {
+        setChartData(response.data);
+        setLoading(false); // Set loading to false when data is received
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false); // Set loading to false on error as well
+      });
   }, []);
 
   useEffect(() => {
@@ -43,8 +51,12 @@ const LineChart = () => {
     };
   }, [chartData]);
 
-  // LineChart component snippet
-return <canvas data-testid="canvas" ref={chartRef} width="500" height="500" />;
+  return (
+    <>
+      {loading && <p>Loading...</p>}
+      <canvas ref={chartRef} width="500" height="500" />
+    </>
+  );
 };
 
 export default LineChart;
