@@ -4,7 +4,7 @@ import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
@@ -45,8 +45,8 @@ const LoginForm = () => {
 
         if (response.status === 200) {
           setMessage("Login successful");
-          navigate('/mainpage');
-          // Handle successful login (redirect, state change, etc.)
+          navigate("/mainpage", { state: { username: loginData.identifier, password: loginData.password } });
+
         } else {
           setMessage("Invalid credentials");
         }
