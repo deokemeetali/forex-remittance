@@ -46,7 +46,7 @@ const ConfirmationWindow = ({ onOKClick }) => {
         🎊 Transaction Completed 🎊
       </Typography>
       <CardContent sx={{ maxWidth: '40ch' }}>
-      Thank you for choosing Forex Remittance! Your transaction is complete. 
+      Thank you for choosing Forex Remittance! Your transaction is complete.
       For any assistance, contact customer support.
       </CardContent>
       <CardActions

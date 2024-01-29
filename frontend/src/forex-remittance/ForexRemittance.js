@@ -1,6 +1,6 @@
 // MainForm.js
-import React, { useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Step1 from './step1';
 import Step2 from './step2';
 import Step3 from './step3';
@@ -28,13 +28,18 @@ function MainForm() {
     Recipeint_Email: '',
   });
   const [currentStep, setCurrentStep] = useState(1);
+  const [validationErrors, setValidationErrors] = useState({});
   const navigate = useNavigate();
   const [confirmationMsg, setConfirmationMsg] = useState('');
   const apiurl = process.env.REACT_APP_API_BACKEND_URL;
   const [showConfirmationWindow, setShowConfirmationWindow] = useState(false);
-  const totalSteps = 4; 
+  const totalSteps = 4;
+
   const nextStep = () => {
-    setCurrentStep(currentStep + 1);
+    validateForm();
+    if (Object.keys(validationErrors).length === 0) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   const prevStep = () => {
@@ -42,28 +47,71 @@ function MainForm() {
   };
 
   const handleOKClick = () => {
-   navigate('/mainpage/dashboard');
+    navigate('/mainpage/dashboard');
   };
+
   const handleConfirmPay = () => {
-    const dataToSend = { 
+    const dataToSend = {
       Amount_Send: formData.Amount_Send,
       Recipeint_get: formData.Recipeint_get,
       selectedCountry1: formData.selectedCountry1,
       selectedCountry2: formData.selectedCountry2,
       cardHolderName: formData.cardHolderName,
       Recipeint_BankName: formData.Recipeint_BankName,
-      Recipeint_Email: formData.Recipeint_Email
+      Recipeint_Email: formData.Recipeint_Email,
     };
-    axios.post(`${apiurl}/sendData`, dataToSend)
-      .then(response => {
+    axios
+      .post(`${apiurl}/sendData`, dataToSend)
+      .then((response) => {
         console.log(response.data);
-        setConfirmationMsg("thanks for choosing forex remittance");
+        setConfirmationMsg('Thanks for choosing forex remittance');
         setShowConfirmationWindow(true);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error:', error);
       });
   };
+
+  const validateForm = () => {
+    const errors = {};
+    switch (currentStep) {
+      case 1:
+        if (!formData.Amount_Send || !/^\d+$/.test(formData.Amount_Send)) {
+          errors.Amount_Send = 'Invalid amount. Please enter a positive number.';
+        }
+        if (!formData.selectedCountry1) {
+          errors.selectedCountry1 = 'Please select a country.';
+        }
+        if (!formData.selectedCountry2) {
+          errors.selectedCountry2 = 'Please select a country.';
+        }
+        break;
+      case 4:
+        if (!formData.accountHolderName) {
+          errors.accountHolderName = 'Please enter the account holder name.';
+        }
+        if (!formData.accountNumber) {
+          errors.accountNumber = 'Please enter the account number.';
+        }
+        if (!formData.ifscCode) {
+          errors.ifscCode = 'Please enter the IFSC code.';
+        }
+        if (!formData.Recipeint_BankName) {
+          errors.Recipeint_BankName = 'Please enter the recipient bank name.';
+        }
+        if (!formData.Recipeint_Email) {
+          errors.Recipeint_Email = 'Please enter the recipient email.';
+        }
+        break;
+      default:
+        break;
+    }
+    setValidationErrors(errors);
+  };
+
+  useEffect(() => {
+    validateForm();
+  }, [formData, currentStep]);
 
   return (
     <div className="container mt-5">
@@ -72,9 +120,15 @@ function MainForm() {
           <MuiProgressBar currentStep={currentStep} totalSteps={totalSteps} />
         </div>
         <form className="steps-container mt-3">
-          {currentStep === 1 && <Step1 formData={formData} setFormData={setFormData} />}
-          {currentStep === 2 && <Step2 formData={formData} setFormData={setFormData} />}
-          {currentStep === 3 && <Step3 formData={formData} setFormData={setFormData} />}
+          {currentStep === 1 && (
+            <Step1 formData={formData} setFormData={setFormData} validationErrors={validationErrors} />
+          )}
+        {currentStep === 2 && (
+            <Step2 formData={formData} setFormData={setFormData} validationErrors={validationErrors} />
+          )}
+          {currentStep === 3 && (
+            <Step3 formData={formData} setFormData={setFormData} validationErrors={validationErrors} />
+          )}
           {currentStep === 4 && (
             <div>
               <Step4 formData={formData} setFormData={setFormData} />
@@ -82,6 +136,7 @@ function MainForm() {
                 type="button"
                 className="btn btn-primary"
                 onClick={handleConfirmPay}
+                disabled={Object.keys(validationErrors).length > 0}
               >
                 Confirm Pay
               </button>
@@ -103,6 +158,7 @@ function MainForm() {
                 type="button"
                 className="btn btn-primary"
                 onClick={nextStep}
+                disabled={Object.keys(validationErrors).length > 0}
               >
                 Next
               </button>

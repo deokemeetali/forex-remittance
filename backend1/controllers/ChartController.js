@@ -12,14 +12,12 @@ const getChartData = async (req, res) => {
     const result = await pool.query(query);
 
     const purposeColors = {
-      'family support': '#54bebe',         
-      'medical expenses': '#e4bcad',        
-      'education': '#98d1d1',       
-      'others': '#df979e',     
-                       
+      'family support': '#54bebe',
+      'medical expenses': '#e4bcad',
+      'education': '#98d1d1',
+      'others': '#df979e',
     };
-    
-    
+
 
     // Prepare data for the chart
     const chartData = {
@@ -47,7 +45,7 @@ const getChartData = async (req, res) => {
   }
 };
 
-// LINE CHART DATA 
+// LINE CHART DATA
 const getLineChartData = async (req, res) => {
   try {
     // Fetch data from the PostgreSQL table

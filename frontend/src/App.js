@@ -33,7 +33,6 @@ function App() {
             <Route path="/phonelogin" element={<PhoneLogin />} />
           </Routes>
         </Router>
-     
 
     </>
   );

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CreditCardForm from './creditcardform';
 import BankAccountForm from './bankform';
-import './step3.css'; 
+import './step3.css';
 
 function Step3({ formData, setFormData }) {
   const [selectedOption, setSelectedOption] = useState('account');
@@ -14,7 +14,7 @@ function Step3({ formData, setFormData }) {
   return (
     <div>
       <h2>Step 3: Payment Details</h2>
-      <div className="radioButtonGroup"> 
+      <div className="radioButtonGroup">
         <input
           type="radio"
           value="account"

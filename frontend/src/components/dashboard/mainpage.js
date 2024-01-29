@@ -3,7 +3,7 @@ import Sidebar from "./sidebar";
 import { Outlet } from 'react-router-dom';
 
 const MainPages = () => {
- return (
+return (
     <div className=" bg-grey vh-100 sticky">
       <div className="row">
         <div className="col-2" >
@@ -14,7 +14,7 @@ const MainPages = () => {
         </div>
       </div>
     </div>
- );
+);
 };
 
 export default MainPages;

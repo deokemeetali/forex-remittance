@@ -431,7 +431,7 @@ const BeneficiaryForm = () => {
               : ""
           }`}
         >
-          Add Beneficiary
+          Add Additional Beneficiary
         </button>
 
         {/* Success Message */}
