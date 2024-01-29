@@ -4,6 +4,9 @@ import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios'; 
+import { useDispatch } from 'react-redux';
+import { login } from  '../Redux/action' ;
+
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const LoginForm = () => {
@@ -16,6 +19,7 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
   const apiurl = process.env.REACT_APP_API_BACKEND_URL
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,10 +48,17 @@ const LoginForm = () => {
         );
 
         if (response.status === 200) {
-          setMessage("Login successful");
+          const { message ,user}= response.data;
+          setMessage(message);
+          if(user && user.role == 'admin'){
+            dispatch(login(response.data));
+          navigate('/mainpage');
+  
+          }else{
+            dispatch(login(response.data));
           navigate('/mainpage');
           // Handle successful login (redirect, state change, etc.)
-        } else {
+        }} else {
           setMessage("Invalid credentials");
         }
       } catch (error) {

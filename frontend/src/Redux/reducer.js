@@ -1,0 +1,15 @@
+import {LOGIN_SUCCESS} from './action';
+const initialstate = {
+    user :null,
+}
+export function loginReducer(state = initialstate,action){
+    switch(action.type){
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                user:action.payload,
+            };
+            default:
+                return state;
+    }
+}
