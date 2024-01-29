@@ -16,6 +16,7 @@ const transactionController = require('./controllers/transactionController');
 
 const PORT = process.env.PORT || 5001
 
+
 connectToDatabase()
 
 app.use(cors())
@@ -32,8 +33,8 @@ app.post('/signup', (req, res) => userController.signUp(req, res))
 app.post('/login', LoginController.login)
 app.get('/api/bankDetails/:ifscCode', bankDetails.getBankDetailsByIFSC)
 app.post('/api/beneficiaries', BeneficiaryForm.benificiaryasync)
-app.post('/sendData', sendDataController.sendData)
-app.get('/getFormData', sendDataController.getFormData)
+app.post('/sendData', sendDataController.transactionAsync)
+// app.get('/getFormData', sendDataController.getFormData)
 app.get('/api/transaction_history', transactionController.getTransactionHistory);
 
 app.get('/api/displaybeneficiaries', Displaybeneficiary.beneficiary)

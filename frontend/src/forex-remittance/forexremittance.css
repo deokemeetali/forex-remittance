@@ -1,0 +1,30 @@
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 200px;
+  }
+  
+  .progress-bar-container {
+    width: 90%;
+    margin-left: 270px;
+    margin-right: 450px;
+  }
+  
+  .steps-container {
+    width: 90%;
+    max-width: 600px;
+    margin-top: 20px;
+    margin-left: 150px;
+  }
+
+  @media (max-width: 768px) {
+    .form-container,
+    .progress-bar-container,
+    .steps-container {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+  

@@ -1,22 +1,20 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap-icons/font/bootstrap-icons.css'
-import Dashboard from "./dashboard";
 import Sidebar from "./sidebar";
+import { Outlet } from 'react-router-dom';
 
 const MainPages = () => {
-  return (
-    <div className="bg-grey vh-100 sticky">
+return (
+    <div className=" bg-grey vh-100 sticky">
       <div className="row">
-        <div className="col-2">
+        <div className="col-2" >
           <Sidebar />
         </div>
-        <div className="col mx-0">
-          <Dashboard />
+        <div className="col-10 vh-100 m-0 p-0">
+          <Outlet />
         </div>
       </div>
     </div>
-  );
+);
 };
 
 export default MainPages;

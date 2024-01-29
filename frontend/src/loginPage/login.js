@@ -3,7 +3,7 @@ import { Form, Button, Card, InputGroup } from "react-bootstrap";
 import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const LoginForm = () => {
