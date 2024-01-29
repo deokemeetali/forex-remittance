@@ -1,12 +1,14 @@
 .radioButtonGroup {
-    display: flex; 
-    align-items: center; 
-    margin-right: 15px; 
-    margin-left: 5px;
-  }
-  
-  .radioButtonGroup input[type="radio"] {
-    margin-right: 15px; 
-    margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
 
-  }
+.radioButtonGroup input[type="radio"] {
+  margin-right: 5px;
+}
+
+.radioButtonGrouplabel {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}

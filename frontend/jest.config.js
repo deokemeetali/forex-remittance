@@ -1,7 +1,7 @@
 module.exports = {
     collectCoverage: true,
     transform: {
-      '^.+\\.jsx?$': 'babel-jest',
+        '^.+\\.jsx?$': 'babel-jest',
     },
     collectCoverageFrom: ['src/**/*.{js,jsx}'],
     coverageDirectory: 'coverage',
@@ -10,8 +10,6 @@ module.exports = {
     transformIgnorePatterns: ['D:\\Forex_Remittance\\forex-remittance\\frontend\\node_modules/'],
     moduleNameMapper: {
       '^.+\\.(css|styl|less|sass|scss|png|jpg|jpeg|gif|webp|avif|svg|ttf|woff|woff2|eot|otf)$':
-        'identity-obj-proxy',
+          'identity-obj-proxy',
     },
   };
-  
-  

@@ -10,7 +10,7 @@ function Step1({ formData, setFormData }) {
       .then(response => {
         const countryOptions = Object.keys(response.data.rates).map((currencyCode) => ({
           value: currencyCode,
-          label: currencyCode, // You may want to improve this to display country names if possible
+          label: currencyCode,
         }));
         setCountries(countryOptions);
       })
@@ -18,24 +18,88 @@ function Step1({ formData, setFormData }) {
         console.error("Error fetching exchange rates:", error);
       });
   }, []);
-  
+
+  useEffect(() => {
+    const updateConversion = async () => {
+      const amount = formData.Amount_Send;
+      const baseCurrency = formData.selectedCountry1;
+      const targetCurrency = formData.selectedCountry2;
+
+      if (amount && baseCurrency && targetCurrency) {
+        try {
+          const response = await axios.get(`https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${baseCurrency}`);
+          const conversionRates = response.data.conversion_rates;
+          const exchangeRate = conversionRates[targetCurrency];
+          const recipientGets = (amount * exchangeRate).toFixed(2);
+
+          setFormData((prevData) => ({
+            ...prevData,
+            Recipeint_get: recipientGets,
+          }));
+        } catch (error) {
+          console.error("Error fetching exchange rates:", error);
+        }
+      }
+    };
+
+    updateConversion();
+  }, [formData.Amount_Send, formData.selectedCountry1, formData.selectedCountry2]);
 
   const handleAmountChange = async (e) => {
     const amount = e.target.value;
-    const baseCurrency = formData.selectedCountry1;
 
-    // Check if baseCurrency is defined before making the API call
-    if (baseCurrency) {
-      try {
-        const response = await axios.get(`https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${baseCurrency}`);
-        const conversionRates = response.data.conversion_rates;
-        const exchangeRate = conversionRates[formData.selectedCountry2];
-        setFormData({ ...formData, Amount_Send: amount, Recipeint_get: (amount * exchangeRate).toFixed(2) });
-      } catch (error) {
-        console.error("Error fetching exchange rates:", error);
+    // Validate if amount is a positive number
+    if (/^\d+$/.test(amount)) {
+      const baseCurrency = formData.selectedCountry1;
+
+      // Check if baseCurrency is defined before making the API call
+      if (baseCurrency) {
+        try {
+          const response = await axios.get(`https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${baseCurrency}`);
+          const conversionRates = response.data.conversion_rates;
+          const exchangeRate = conversionRates[formData.selectedCountry2];
+          setFormData({ ...formData, Amount_Send: amount, Recipeint_get: (amount * exchangeRate).toFixed(2) });
+        } catch (error) {
+          console.error("Error fetching exchange rates:", error);
+        }
+      } else {
+        console.warn("Base currency is undefined. Unable to fetch exchange rates.");
       }
     } else {
-      console.warn("Base currency is undefined. Unable to fetch exchange rates.");
+      console.warn("Invalid amount. Please enter a positive number.");
+    }
+  };
+
+  const handleCountryChange = async (selectedCountry, countryType) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [countryType]: selectedCountry,
+    }));
+
+    try {
+      const response = await axios.get(`https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${selectedCountry}`);
+      const conversionRates = response.data.conversion_rates;
+
+      const baseCurrency = formData.selectedCountry1;
+      const targetCurrency = formData.selectedCountry2;
+      const exchangeRateSender = conversionRates[targetCurrency];
+      const exchangeRateRecipient = conversionRates[baseCurrency];
+
+      if (countryType === 'selectedCountry1') {
+        const recipientGets = (formData.Amount_Send * exchangeRateSender).toFixed(2);
+        setFormData((prevData) => ({
+          ...prevData,
+          Recipeint_get: recipientGets,
+        }));
+      } else if (countryType === 'selectedCountry2') {
+        const recipientGets = (formData.Amount_Send / exchangeRateRecipient).toFixed(2);
+        setFormData((prevData) => ({
+          ...prevData,
+          Recipeint_get: recipientGets,
+        }));
+      }
+    } catch (error) {
+      console.error("Error fetching exchange rates:", error);
     }
   };
 
@@ -44,7 +108,7 @@ function Step1({ formData, setFormData }) {
       <h2>International Money Transfer</h2>
       <div className="mb-3">
         <label htmlFor="Amount_Send" className="form-label">
-          You send exactly  
+          You send exactly
         </label>
         <input
           type="number"
@@ -53,20 +117,20 @@ function Step1({ formData, setFormData }) {
           placeholder='Enter amount'
           value={formData.Amount_Send || ''}
           onChange={handleAmountChange}
+          min="1000"
+          max="100000"
         />
         <select
-        className="form-select"
-        value={formData.selectedCountry1}
-        onChange={(e) =>
-          setFormData({ ...formData, selectedCountry1: e.target.value })
-        }
-      >
-        {countries.map((country, index) => (
-          <option key={index} value={country.value}>
-            {country.label}
-          </option>
-        ))}
-      </select>
+          className="form-select"
+          value={formData.selectedCountry1}
+          onChange={(e) => handleCountryChange(e.target.value, 'selectedCountry1')}
+        >
+          {countries.map((country, index) => (
+            <option key={index} value={country.value}>
+              {country.label}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="mb-3">
         <label htmlFor="Recipeint_get" className="form-label">
@@ -82,9 +146,7 @@ function Step1({ formData, setFormData }) {
         <select
           className="form-select"
           value={formData.selectedCountry2}
-          onChange={(e) =>
-            setFormData({ ...formData, selectedCountry2: e.target.value })
-          }
+          onChange={(e) => handleCountryChange(e.target.value, 'selectedCountry2')}
         >
           {countries.map((country, index) => (
             <option key={index} value={country.value}>

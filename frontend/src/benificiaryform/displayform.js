@@ -5,9 +5,8 @@ import { Button, Form } from "react-bootstrap";
 import './displayform.css';
 import PropTypes from 'prop-types';
 
-function DisplayBeneficiary({formData,setFormData}) {
+function DisplayBeneficiary({formData,setFormData,selectedBeneficiary,setSelectedBeneficiary}) {
     const [beneficiaries, setBeneficiaries] = useState([]);
-    const [selectedBeneficiary, setSelectedBeneficiary] = useState(null); // State to store the selected beneficiary
     const [selectedBeneficiaryDetails, setSelectedBeneficiaryDetails] = useState({ bank_name: '', email: '' }); // State to store the selected beneficiary details
     const apiurl = process.env.REACT_APP_API_BACKEND_URL;
 
@@ -83,5 +82,7 @@ DisplayBeneficiary.propTypes = {
         Recipeint_Email: PropTypes.string,
     }).isRequired,
     setFormData: PropTypes.func.isRequired,
+    selectedBeneficiary: PropTypes.string,
+  setSelectedBeneficiary: PropTypes.func,
   };
 export default DisplayBeneficiary;
