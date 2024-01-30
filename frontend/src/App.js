@@ -11,8 +11,12 @@ import ForexRemittanceForm from './forex-remittance/ForexRemittance';
 import DisplayBeneficiary from './benificiaryform/displayform';
 import MainPages from './components/dashboard/mainpage';
 import Dashboard from './components/dashboard/dashboard';
+import ConfirmationWindow from './forex-remittance/ConfirmationWindow';
+// import AdminDashboard from './components/admin-dasboard/admindashboard';
+// import { useSelector } from 'react-redux';
 
 function App() {
+  //const user = useSelector((state) => state.user);
 
   return (
     <>
@@ -27,14 +31,16 @@ function App() {
               <Route path="benificiaryform" element={<BeneficiaryForm />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="displayform" element={<DisplayBeneficiary />} />
+              <Route path="confirmwindow" element={<ConfirmationWindow />} />
               <Route path='ForexRemittance' element={<ForexRemittanceForm />} />
             </Route>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/confirmwindow" element={<ConfirmationWindow />} />
             <Route path="/phonelogin" element={<PhoneLogin />} />
           </Routes>
         </Router>
-
-    </>
+        
+   </>
   );
 }
 

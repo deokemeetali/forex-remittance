@@ -7,21 +7,17 @@ import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
-import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import './confirmationwindow.css';
 
-const ConfirmationWindow = ({ onOKClick }) => {
+const ConfirmationWindow = () => {
+  const navigate = useNavigate();
+  const handleOkClick = () =>{
+    navigate('/mainpage/dashboard')
+  }
   return (
-    <Card
-      data-resizable
-      sx={{
-        textAlign: 'center',
-        alignItems: 'center',
-        width: 343,
-        overflow: 'auto',
-        resize: 'horizontal',
-        '--icon-size': '100px',
-      }}
-    >
+    <div className="confirmation-container">
+    <Card className="confirmation-card">
       <CardOverflow variant="solid" color="warning">
         <AspectRatio
           variant="outlined"
@@ -57,14 +53,13 @@ const ConfirmationWindow = ({ onOKClick }) => {
           width: 'clamp(min(100%, 160px), 50%, min(100%, 200px))',
         }}
       >
-        <Button variant="solid" color="warning" onClick={onOKClick}>
+        <Button variant="solid" color="warning" onClick={handleOkClick}>
           OK
         </Button>
       </CardActions>
     </Card>
+    </div>
   );
 };
-ConfirmationWindow.propTypes = {
-    onOKClick: PropTypes.func.isRequired,
-  };
+
 export default ConfirmationWindow;

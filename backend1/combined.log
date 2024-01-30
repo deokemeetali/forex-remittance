@@ -191,4 +191,12 @@
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
 {"level":"info","message":"Connected to PostgreSQL database"}
+<<<<<<< HEAD
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+=======
 
+>>>>>>> a894b484dbb333f13a09a8ed02be2cc97fdd2ef2
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}
+{"level":"info","message":"Connected to PostgreSQL database"}

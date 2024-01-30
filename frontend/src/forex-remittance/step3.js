@@ -1,34 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CreditCardForm from './creditcardform';
 import BankAccountForm from './bankform';
 import './step3.css';
 
-function Step3({ formData, setFormData }) {
-  const [selectedOption, setSelectedOption] = useState('account');
+function Step3({ formData, setFormData,selectedOption,handleOptionChange }) {
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
 
   return (
     <div>
       <h2>Step 3: Payment Details</h2>
       <div className="radioButtonGroup">
-        <input
-          type="radio"
-          value="account"
-          checked={selectedOption === 'account'}
-          onChange={handleOptionChange}
-        />
-        <label htmlFor="account">Account Details</label>
-        <input
-          type="radio"
-          value="card"
-          checked={selectedOption === 'card'}
-          onChange={handleOptionChange}
-        />
-        <label htmlFor="card">Card Details</label>
+        <label
+          htmlFor="account"
+          className='radioButtonGrouplabel'
+        >
+          <input
+            type="radio"
+            id="account"
+            name="option"
+            value="account"
+            checked={selectedOption === 'account'}
+            onChange={handleOptionChange}
+          />
+          Account Details
+        </label>
+        <label
+          htmlFor="card"
+         className='radioButtonGrouplabel'
+        >
+          <input
+            type="radio"
+            id="card"
+            name="option"
+            value="card"
+            checked={selectedOption === 'card'}
+            onChange={handleOptionChange}
+          />
+          Card Details
+        </label>
       </div>
       {selectedOption === 'account' && (
         <div>
@@ -54,5 +64,8 @@ Step3.propTypes = {
     accountNumber:PropTypes.string,
   }).isRequired,
   setFormData: PropTypes.func.isRequired,
+ // validationErrors: PropTypes.object.isRequired,
+  selectedOption: PropTypes.string.isRequired,
+  handleOptionChange: PropTypes.func.isRequired,
 };
 export default Step3;

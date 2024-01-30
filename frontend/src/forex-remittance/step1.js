@@ -19,6 +19,32 @@ function Step1({ formData, setFormData }) {
       });
   }, []);
 
+  useEffect(() => {
+    const updateConversion = async () => {
+      const amount = formData.Amount_Send;
+      const baseCurrency = formData.selectedCountry1;
+      const targetCurrency = formData.selectedCountry2;
+
+      if (amount && baseCurrency && targetCurrency) {
+        try {
+          const response = await axios.get(`https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${baseCurrency}`);
+          const conversionRates = response.data.conversion_rates;
+          const exchangeRate = conversionRates[targetCurrency];
+          const recipientGets = (amount * exchangeRate).toFixed(2);
+
+          setFormData((prevData) => ({
+            ...prevData,
+            Recipeint_get: recipientGets,
+          }));
+        } catch (error) {
+          console.error("Error fetching exchange rates:", error);
+        }
+      }
+    };
+
+    updateConversion();
+  }, [formData.Amount_Send, formData.selectedCountry1, formData.selectedCountry2]);
+
   const handleAmountChange = async (e) => {
     const amount = e.target.value;
 
@@ -45,27 +71,35 @@ function Step1({ formData, setFormData }) {
   };
 
   const handleCountryChange = async (selectedCountry, countryType) => {
-    // Update the form data
     setFormData((prevData) => ({
       ...prevData,
       [countryType]: selectedCountry,
     }));
 
-    // Fetch exchange rate when changing the country code in "Recipient's gets"
-    if (countryType === 'selectedCountry2' && formData.Amount_Send) {
-      try {
-        const response = await axios.get(`https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${selectedCountry}`);
-        const conversionRates = response.data.conversion_rates;
-        const exchangeRate = conversionRates[formData.selectedCountry1];
-        const recipientGets = (formData.Amount_Send * exchangeRate).toFixed(2);
+    try {
+      const response = await axios.get(`https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${selectedCountry}`);
+      const conversionRates = response.data.conversion_rates;
 
+      const baseCurrency = formData.selectedCountry1;
+      const targetCurrency = formData.selectedCountry2;
+      const exchangeRateSender = conversionRates[targetCurrency];
+      const exchangeRateRecipient = conversionRates[baseCurrency];
+
+      if (countryType === 'selectedCountry1') {
+        const recipientGets = (formData.Amount_Send * exchangeRateSender).toFixed(2);
         setFormData((prevData) => ({
           ...prevData,
           Recipeint_get: recipientGets,
         }));
-      } catch (error) {
-        console.error("Error fetching exchange rates:", error);
+      } else if (countryType === 'selectedCountry2') {
+        const recipientGets = (formData.Amount_Send / exchangeRateRecipient).toFixed(2);
+        setFormData((prevData) => ({
+          ...prevData,
+          Recipeint_get: recipientGets,
+        }));
       }
+    } catch (error) {
+      console.error("Error fetching exchange rates:", error);
     }
   };
 
@@ -89,10 +123,7 @@ function Step1({ formData, setFormData }) {
         <select
           className="form-select"
           value={formData.selectedCountry1}
-          onChange={(e) => setFormData((prevData) => ({
-            ...prevData,
-            selectedCountry1: e.target.value,
-          }))}
+          onChange={(e) => handleCountryChange(e.target.value, 'selectedCountry1')}
         >
           {countries.map((country, index) => (
             <option key={index} value={country.value}>
