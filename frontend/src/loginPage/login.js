@@ -4,8 +4,8 @@ import { BsExclamationCircle } from "react-icons/bs";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios'; 
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-
+import { Spinner } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
   const [loginData, setLoginData] = useState({
     identifier: "",
@@ -14,7 +14,8 @@ const LoginForm = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
+  const [loading, setLoading] = useState(false);
   const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
   const handleChange = (e) => {
@@ -29,11 +30,9 @@ const LoginForm = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const validationErrors = {};
-    // Validation rules for identifier (username/email) and password...
-    // (Similar to signup form validation)
-
+   
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
@@ -52,6 +51,8 @@ const LoginForm = () => {
         }
       } catch (error) {
         setMessage("Error logging in");
+      }finally {
+        setLoading(false);
       }
     }
   };
@@ -132,8 +133,15 @@ const LoginForm = () => {
                     )}
                   </Form.Group>
 
-                  <Button variant="primary" type="submit" block className="mx-auto d-block" bg="primary">
-                    Login
+                  <Button variant="primary" type="submit" block className="mx-auto d-block" bg="primary" disabled={loading}>
+                    {loading ? (
+                      <>
+                        <Spinner animation="border" size="sm" />
+                        {' Loading...'}
+                      </>
+                    ) : (
+                      'Login'
+                    )}
                   </Button>
                   <div className="login-p">
                     Don&apos;t have an account?{' '}
