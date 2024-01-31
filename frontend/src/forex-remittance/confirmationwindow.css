@@ -1,10 +1,10 @@
-/* ConfirmationWindow.css */
+
 
 .confirmation-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Adjust the height as needed */
+    height: 100vh;
   }
   
   .confirmation-card {

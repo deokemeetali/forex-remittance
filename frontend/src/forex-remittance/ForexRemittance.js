@@ -36,6 +36,7 @@ function MainForm() {
   const totalSteps = 4;
   const [selectedBeneficiary, setSelectedBeneficiary] = useState(null);
   const [selectedOption, setSelectedOption] = useState('account');
+  const [loading, setLoading] = useState(false); 
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -55,10 +56,7 @@ function MainForm() {
 
 
   const isValidExpiryDate = (expiryDate) => {
-    // Split the expiry date into month and year
     const [month, year] = expiryDate.split('/').map(part => parseInt(part, 10));
-  
-    // Check if the month and year are valid
     return (
       !isNaN(month) &&
       !isNaN(year) &&
@@ -79,15 +77,20 @@ function MainForm() {
       Recipeint_BankName: formData.Recipeint_BankName,
       Recipeint_Email: formData.Recipeint_Email,
     };
+    setLoading(true);
+
     axios
       .post(`${apiurl}/sendData`, dataToSend)
       .then((response) => {
         console.log(response.data);
         setConfirmationMsg('Thanks for choosing forex remittance');
-        navigate('/mainpage/confirmwindow')
+        navigate('/mainpage/confirmwindow');
       })
       .catch((error) => {
         console.error('Error:', error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -128,6 +131,8 @@ function MainForm() {
               }
               if (!formData.expiryDate || !isValidExpiryDate(formData.expiryDate)) {
                 errors.expiryDate = 'Please enter a valid expiry date.';
+              } else {
+                errors.expiryDate = '';
               }
               if (!formData.cvc || !/^\d{3}$/.test(formData.cvc)) {
                 errors.cvc = 'Please enter a valid 3-digit CVC.';
@@ -137,27 +142,9 @@ function MainForm() {
               }
             }
             break;
-          
-      case 4:
-        if (!formData.accountHolderName) {
-          errors.accountHolderName = 'Please enter the account holder name.';
-        }
-        if (!formData.accountNumber) {
-          errors.accountNumber = 'Please enter the account number.';
-        }
-        if (!formData.ifscCode) {
-          errors.ifscCode = 'Please enter the IFSC code.';
-        }
-        if (!formData.Recipeint_BankName) {
-          errors.Recipeint_BankName = 'Please enter the recipient bank name.';
-        }
-        if (!formData.Recipeint_Email) {
-          errors.Recipeint_Email = 'Please enter the recipient email.';
-        }
-        break;
-      default:
-        break;
-    }
+            default:
+            break;
+          }
     setValidationErrors(errors);
   };
 
@@ -187,13 +174,13 @@ function MainForm() {
           <div className="d-flex flex-column align-items-center"> {/* Add a flex column container */}
           <Step4 formData={formData} setFormData={setFormData} />
           <button
-            type="button"
-            className="btn btn-primary mt-3"
-            onClick={handleConfirmPay}
-            disabled={Object.keys(validationErrors).length > 0}
-          >
-            Confirm Pay
-          </button>
+                type="button"
+                className="btn btn-primary mt-3"
+                onClick={handleConfirmPay}
+                disabled={Object.keys(validationErrors).length > 0 || loading}
+              >
+                {loading ? 'Confirming...' : 'Confirm Pay'}
+              </button>
           <p>{confirmationMsg}</p>
         </div>
           )}
