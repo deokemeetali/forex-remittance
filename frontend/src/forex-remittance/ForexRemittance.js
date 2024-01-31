@@ -131,9 +131,7 @@ function MainForm() {
               }
               if (!formData.expiryDate || !isValidExpiryDate(formData.expiryDate)) {
                 errors.expiryDate = 'Please enter a valid expiry date.';
-              } else {
-                errors.expiryDate = '';
-              }
+              } 
               if (!formData.cvc || !/^\d{3}$/.test(formData.cvc)) {
                 errors.cvc = 'Please enter a valid 3-digit CVC.';
               }
@@ -151,7 +149,7 @@ function MainForm() {
   useEffect(() => {
     validateForm();
   }, [formData, currentStep]);
-
+  
   return (
     <div className="container mt-5">
       <div className="form-container">
