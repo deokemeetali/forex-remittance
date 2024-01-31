@@ -37,7 +37,7 @@ function Step3({ formData, setFormData,selectedOption,handleOptionChange }) {
             checked={selectedOption === 'card'}
             onChange={handleOptionChange}
           />
-          Card Details
+          Credit/Debit Card
         </label>
       </div>
       {selectedOption === 'account' && (

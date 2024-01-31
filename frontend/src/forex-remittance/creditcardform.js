@@ -10,7 +10,6 @@ import Input from '@mui/material/Input';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 
-
 export default function CreditCardForm({ formData, setFormData }) {
   const handleCardNumberChange = (e) => {
     const value = e.target.value;
@@ -26,18 +25,24 @@ export default function CreditCardForm({ formData, setFormData }) {
 
   const handleExpiryDateChange = (e) => {
     const value = e.target.value;
+    const [month, year] = value.split('/').map(Number);
     const currentDate = new Date();
-    const inputDate = new Date(value);
-    const isValid = inputDate > currentDate && inputDate.getFullYear() - currentDate.getFullYear() <= 5;
-
+    const inputDate = new Date(year, month - 1);
+    
+    const isValid =
+      inputDate > currentDate &&
+      inputDate.getFullYear() - currentDate.getFullYear() <= 5;  
     setFormData({
       ...formData,
       expiryDate: value,
-      expiryDateError: isValid ? '' : 'Expiry date should be greater than the current date and valid for 5 years',
+      expiryDateError: isValid
+        ? ''
+        : 'Expiry date should be greater than the current date and valid for 5 years',
       expiryDateMarkColor: isValid ? 'blue' : 'red',
     });
   };
-
+  
+  
   const handleCvcChange = (e) => {
     const value = e.target.value;
     const isValid = /^\d{3}$/.test(value);

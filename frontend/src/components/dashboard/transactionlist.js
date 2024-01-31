@@ -7,13 +7,12 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 const TransactionList = () => {
   const [rowData, setRowData] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const apiurl = process.env.REACT_APP_API_BACKEND_URL;
+   const apiurl = process.env.REACT_APP_API_BACKEND_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Use Axios to fetch data from the local JSON file
-        const response = await axios.get('/data/transaction_data.json');
+        const response = await axios.get(`${apiurl}/api/transaction_history`);
         setRowData(response.data);
         setLoading(false);
       } catch (error) {
