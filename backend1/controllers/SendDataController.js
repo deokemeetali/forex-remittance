@@ -1,4 +1,4 @@
-const TransactionModel = require('../models/TransactionModel.js');
+const TransactionModel = require('../models/transactionmodel.js');
 exports.transactionAsync = async (req, res) => {
   const dataToSend = req.body;
 
