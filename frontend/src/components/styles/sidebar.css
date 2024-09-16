@@ -1,0 +1,33 @@
+/* Sidebar.css */
+@media (max-width: 768px) {
+    .responsive-sidebar {
+      display: none; /* Hide the sidebar by default on small screens */
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .responsive-sidebar {
+      display: block; /* Show the sidebar on larger screens */
+    }
+  }
+  /* Sidebar.css */
+/* sidebar.css */
+.sidebar-container {
+    position: fixed;
+    height: 100%;
+    z-index: 1000; /* Adjust the z-index based on your layout */
+  }
+  
+  .sidebar-content {
+    overflow-y: auto;
+    height: 100%;
+  }
+  
+  .sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Add any other styles as needed */
+  

@@ -1,0 +1,18 @@
+
+
+.confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .confirmation-card {
+    text-align: center;
+    align-items: center;
+    width: 343px;
+    overflow: auto;
+    resize: horizontal;
+    --icon-size: 100px;
+  }
+  

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, InputGroup, Modal } from 'react-bootstrap';
 import { BsExclamationCircle } from 'react-icons/bs';
+import axios from 'axios'; 
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Spinner } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom'; 
 import '../components/styles/signup.css';
 const SignUpForm = () => {
   const [userData, setUserData] = useState({
@@ -16,6 +17,7 @@ const SignUpForm = () => {
   });
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -25,7 +27,7 @@ const SignUpForm = () => {
     setUserData({ ...userData, [name]: value });
     setErrors({ ...errors, [name]: '' });
   };
-
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
   const togglePasswordVisibility = (field) => {
     if (field === 'password') {
       setShowPassword(!showPassword);
@@ -46,7 +48,7 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const validationErrors = {};
 
     if (!userData.username.trim()) {
@@ -85,7 +87,7 @@ const SignUpForm = () => {
       setErrors(validationErrors);
     } else {
       try {
-        const response = await axios.post('http://localhost:5001/signup', userData);
+        const response = await axios.post(`${apiurl}/signup`, userData);
 
         if (response.status === 201) {
          // setMessage('User signed up successfully');
@@ -112,6 +114,9 @@ const SignUpForm = () => {
           setMessage('Error signing up user');
         }
       
+    }
+    finally {
+      setLoading(false); 
     }
     }
   };
@@ -215,9 +220,16 @@ const SignUpForm = () => {
                   )}
                 </Form.Group>
 
-                <Button variant="primary" type="submit" block className="mx-auto d-block">
-                  Sign Up
-                </Button>
+                <Button variant="primary" type="submit" block className="mx-auto d-block" bg="primary" disabled={loading}>
+                    {loading ? (
+                      <>
+                        <Spinner animation="border" size="sm" />
+                        {' Loading...'}
+                      </>
+                    ) : (
+                      'Sign Up'
+                    )}
+                  </Button>
                 <p className="login-p">
                     Don&apos;t have an account?
                     {' '}

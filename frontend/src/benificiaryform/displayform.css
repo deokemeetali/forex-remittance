@@ -1,0 +1,35 @@
+ .display-container {
+     max-width: 800px;
+     margin: 0 auto;
+     padding: 20px;
+ }
+ 
+ .beneficiary-heading {
+     color: #333;
+     font-size: 24px;
+     margin-bottom: 15px;
+ }
+
+ .beneficiary-list {
+     list-style-type: none;
+     padding: 0;
+ }
+
+ .beneficiary-item {
+     margin-bottom: 20px;
+     border: 1px solid #ccc;
+     padding: 15px;
+     border-radius: 5px;
+ }
+
+ .beneficiary-info {
+     margin: 0;
+     padding: 0;
+     font-size: 16px;
+     color: #555;
+ }
+
+ .dash {
+     color: #000000;
+     background-color: rgb(255, 255, 255);
+ }

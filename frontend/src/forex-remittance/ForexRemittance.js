@@ -1,266 +1,213 @@
+// MainForm.js
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Step1 from './step1';
+import Step2 from './step2';
+import Step3 from './step3';
+import Step4 from './step4';
+import MuiProgressBar from './progressbar';
+import './forexremittance.css';
 import axios from 'axios';
+// import { parse, isValid } from 'date-fns';
+// import { enUS } from 'date-fns/locale';
 
-const ForexRemittanceForm = () => {
-  const [senderName, setSenderName] = useState('');
-  const [recipientName, setRecipientName] = useState('');
-  const [amount, setAmount] = useState('');
-  const [baseCurrency, setBaseCurrency] = useState('USD');
-  const [targetCurrency, setTargetCurrency] = useState('EUR');
-  const [purpose, setPurpose] = useState('');
-  const [bankAccount, setBankAccount] = useState('');
-  const [conversionRate, setConversionRate] = useState(1);
-  const [convertedAmount, setConvertedAmount] = useState(0);
-  const [currencyList, setCurrencyList] = useState([]);
-  const [bankAccountBalance, setBankAccountBalance] = useState(10000); // Dummy balance
+function MainForm() {
+  const [formData, setFormData] = useState({
+    Amount_Send: '',
+    Recipeint_get: '',
+    selectedCountry1: 'USD',
+    selectedCountry2: 'EUR',
+    cardNumber: '',
+    expiryDate: '',
+    cvc: '',
+    cardHolderName: '',
+    saveCard: false,
+    accountHolderName: '',
+    accountNumber: '',
+    ifscCode: '',
+    Recipeint_BankName: '',
+    Recipeint_Email: '',
+  });
+  const [currentStep, setCurrentStep] = useState(1);
+  const [validationErrors, setValidationErrors] = useState({});
+  const navigate = useNavigate();
+  const [confirmationMsg, setConfirmationMsg] = useState('');
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL;
+  const totalSteps = 4;
+  const [selectedBeneficiary, setSelectedBeneficiary] = useState(null);
+  const [selectedOption, setSelectedOption] = useState('account');
+  const [loading, setLoading] = useState(false); 
 
-  const accountBalances = {
-    dummySender1: 5000,
-    dummySender2: 8000,
-    dummyRecipient1: 3000,
-    dummyRecipient2: 6000,
-    // Add other dummy accounts and their balances
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
   };
 
-  useEffect(() => {
-    const fetchConversionRate = async () => {
-      try {
-        const response = await axios.get(
-         `https://v6.exchangerate-api.com/v6/a8e4883dcba403b998aa7ea0/latest/${baseCurrency}`
-        );
-        const rate = response.data.conversion_rates[targetCurrency];
-        setConversionRate(rate || 1); // Default to 1 if the rate is not available
-      } catch (error) {
-        console.error('Error fetching conversion rate:', error);
-      }
-    };
 
-    fetchConversionRate();
-  }, [baseCurrency, targetCurrency]);
-
-  useEffect(() => {
-    const fetchCurrencyList = async () => {
-      try {
-        const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
-        const { rates } = response.data;
-
-        const currencies = Object.keys(rates);
-        setCurrencyList(currencies);
-      } catch (error) {
-        console.error('Error fetching currency list:', error);
-      }
-    };
-
-    fetchCurrencyList();
-  }, []);
-
-  useEffect(() => {
-    const calculateConvertedAmount = () => {
-      const converted = amount * conversionRate;
-      setConvertedAmount(converted.toFixed(2));
-    };
-
-    calculateConvertedAmount();
-  }, [amount, conversionRate, baseCurrency, targetCurrency]);
-
-  const handleInsufficientBalance = () => {
-    if (parseFloat(amount) > bankAccountBalance) {
-      return true; // Insufficient balance
+  const nextStep = () => {
+    validateForm();
+    if (Object.keys(validationErrors).length === 0 && currentStep < totalSteps) {
+        setCurrentStep(currentStep + 1);
     }
-    return false; // Sufficient balance
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      if (handleInsufficientBalance()) {
-        alert('Insufficient balance.'); // Display an alert for insufficient balance
-        return;
-      }
-  
-      // Rest of your code for handling the form submission
-      const updatedBalance = bankAccountBalance - parseFloat(amount);
-      setBankAccountBalance(updatedBalance);
-  
-      // Simulated backend response logs to console
-      console.log('Simulated remittance successful.');
-      console.log('Updated Bank Account Balance:', updatedBalance);
-  
-      const sendDataResponse = await axios.post('http://localhost:5001/api/sendData', {
-        senderName,
-        recipientName,
-        amount,
-        baseCurrency,
-        targetCurrency,
-        purpose,
-        bankAccount,
-        convertedAmount,
-      });
-
-      console.log('Response from sendData:', sendDataResponse.data);
-      // Simulated backend response logs to console
-
-      // Reset form fields after successful submission
-      setSenderName('');
-      setRecipientName('');
-      setAmount('');
-      setPurpose('');
-      setBankAccount('');
-    } catch (error) {
-      console.error('Error submitting form data:', error);
-      // Handle errors appropriately
-    }
-  };
-
-  const reasons = [
-    'Family support',
-    'Education',
-    'Medical expenses',
-    'Business',
-    'Personal expenses',
-    'other',
-    // Add other reason options
-  ];
-
-  const isFormFilled =
-    senderName &&
-    recipientName &&
-    amount &&
-    baseCurrency &&
-    targetCurrency &&
-    purpose &&
-    bankAccount &&
-    convertedAmount !== 0; // Ensure converted amount is not zero
-
-  return (
-    <div className="container mt-4">
-      <form onSubmit={handleSubmit}>
-      <div className="row">
-          <div className="col-md-6">
-            <label htmlFor="senderName">Senders Account Name:</label>
-            <select
-              id="senderName"
-              value={senderName}
-              onChange={(e) => {
-                setSenderName(e.target.value);
-                setBankAccountBalance(accountBalances[e.target.value]); // Update balance here
-              }}
-              className="form-control"
-            >
-              <option value="">Select Sender Account</option>
-              <option value="dummySender1">Dummy Sender 1</option>
-              <option value="dummySender2">Dummy Sender 2</option>
-              {/* Add other sender account options */}
-            </select>
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="recipientName">Recipients Account Name:</label>
-            <select
-              id="recipientName"
-              value={recipientName}
-              onChange={(e) => setRecipientName(e.target.value)}
-              className="form-control"
-            >
-                <option value="">Select Recipient Account</option>
-              <option value="dummyRecipient1">Dummy Recipient 1</option>
-              <option value="dummyRecipient2">Dummy Recipient 2</option>
-              {/* Add other recipient account options */}
-            </select>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-6">
-            <label htmlFor="amount">Amount:</label>
-            <input
-              type="number"
-              id="amount"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              className="form-control"
-            />
-          </div>
-          <div className="row">
-          <div className="col-md-6">
-  <label htmlFor="baseCurrency">Base Currency:</label>
-  <select
-    id="baseCurrency"
-    value={baseCurrency}
-    onChange={(e) => setBaseCurrency(e.target.value)}
-    className="form-control"
-  >
-    <option value="">Select Base Currency</option>
-    {currencyList.map((currency) => (
-      <option key={currency} value={currency}>
-        {currency}
-      </option>
-    ))}
-  </select>
-</div>
-<div className="col-md-6">
-  <label htmlFor="targetCurrency">Target Currency:</label>
-  <select
-    id="targetCurrency"
-    value={targetCurrency}
-    onChange={(e) => setTargetCurrency(e.target.value)}
-    className="form-control"
-  >
-    <option value="">Select Target Currency</option>
-    {currencyList.map((currency) => (
-      <option key={currency} value={currency}>
-        {currency}
-      </option>
-    ))}
-  </select>
-</div>
-        </div>
-          <div className="col-md-6">
-          <label htmlFor="purpose">Purpose:</label>
-            <select
-              id="purpose"
-              value={purpose}
-              onChange={(e) => setPurpose(e.target.value)}
-              className="form-control"
-            >
-              <option value="">Select Reason</option>
-              {reasons.map((reason, index) => (
-                <option key={index} value={reason}>
-                  {reason}
-                </option>
-              ))}
-            </select>
-
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-6">
-            <label htmlFor="bankAccount">Bank Account:</label>
-            <input
-              type="text"
-              id="bankAccount"
-              value={bankAccount}
-              onChange={(e) => setBankAccount(e.target.value)}
-              className="form-control"
-            />
-          </div>
-          <div className="col-md-6">
-            <p>Bank Account Balance: ${bankAccountBalance}</p>
-          </div>
-          <div className="col-md-6">
-            <p>Converted Amount: {convertedAmount} {targetCurrency}</p>
-          </div>
-        </div>
-      
-        <div className="row">
-          <div className="col-md-12">
-            <button type="submit" className="btn btn-primary" disabled={!isFormFilled}>
-              Submit
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
 };
 
-export default ForexRemittanceForm;
+  const prevStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
+
+  const isValidExpiryDate = (expiryDate) => {
+    const [month, year] = expiryDate.split('/').map(part => parseInt(part, 10));
+    return (
+      !isNaN(month) &&
+      !isNaN(year) &&
+      month >= 1 &&
+      month <= 12 &&
+      year >= new Date().getFullYear() % 100 &&
+      year <= new Date().getFullYear() % 100 + 5
+    );
+  };
+  
+  const handleConfirmPay = () => {
+    const dataToSend = {
+      Amount_Send: formData.Amount_Send,
+      Recipeint_get: formData.Recipeint_get,
+      selectedCountry1: formData.selectedCountry1,
+      selectedCountry2: formData.selectedCountry2,
+      cardHolderName: formData.cardHolderName,
+      Recipeint_BankName: formData.Recipeint_BankName,
+      Recipeint_Email: formData.Recipeint_Email,
+    };
+    setLoading(true);
+
+    axios
+      .post(`${apiurl}/sendData`, dataToSend)
+      .then((response) => {
+        console.log(response.data);
+        setConfirmationMsg('Thanks for choosing forex remittance');
+        navigate('/mainpage/confirmwindow');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    switch (currentStep) {
+      case 1:
+        if (!formData.Amount_Send || !/^\d+$/.test(formData.Amount_Send)) {
+          errors.Amount_Send = 'Invalid amount. Please enter a positive number.';
+        }
+        if (!formData.selectedCountry1) {
+          errors.selectedCountry1 = 'Please select a country.';
+        }
+        if (!formData.selectedCountry2) {
+          errors.selectedCountry2 = 'Please select a country.';
+        }
+        break;
+        case 2:
+          if (!selectedBeneficiary) {
+            errors.selectedBeneficiary = 'Please select a beneficiary.';
+          }
+          break;
+          case 3:
+            // Validation for Step 3
+            if (selectedOption === 'account') {
+              if (!formData.accountHolderName) {
+                errors.accountHolderName = 'Please enter the account holder name.';
+              }
+              if (!formData.accountNumber) {
+                errors.accountNumber = 'Please enter the account number.';
+              }
+              if (!formData.ifscCode) {
+                errors.ifscCode = 'Please enter the IFSC code.';
+              }
+            } else if (selectedOption === 'card') {
+              if (!formData.cardNumber || !/^\d{16}$/.test(formData.cardNumber)) {
+                errors.cardNumber = 'Please enter a valid 16-digit card number.';
+              }
+              if (!formData.expiryDate || !isValidExpiryDate(formData.expiryDate)) {
+                errors.expiryDate = 'Please enter a valid expiry date.';
+              } 
+              if (!formData.cvc || !/^\d{3}$/.test(formData.cvc)) {
+                errors.cvc = 'Please enter a valid 3-digit CVC.';
+              }
+              if (!formData.cardHolderName || !/^[a-zA-Z ]{1,15}$/.test(formData.cardHolderName)) {
+                errors.cardHolderName = 'Please enter a valid card holder name (up to 15 letters, no numbers).';
+              }
+            }
+            break;
+            default:
+            break;
+          }
+    setValidationErrors(errors);
+  };
+
+  useEffect(() => {
+    validateForm();
+  }, [formData, currentStep]);
+  
+  return (
+    <div className="container mt-5">
+      <div className="form-container">
+        <div className="progress-bar-container">
+          <MuiProgressBar currentStep={currentStep} totalSteps={totalSteps} />
+        </div>
+        <form className="steps-container mt-3">
+          {currentStep === 1 && (
+            <Step1 formData={formData} setFormData={setFormData} validationErrors={validationErrors} />
+          )}
+        {currentStep === 2 && (
+            <Step2 formData={formData} setFormData={setFormData} validationErrors={validationErrors}   selectedBeneficiary={selectedBeneficiary}
+            setSelectedBeneficiary={setSelectedBeneficiary}/>
+          )}
+          {currentStep === 3 && (
+            <Step3 formData={formData} setFormData={setFormData} validationErrors={validationErrors}  selectedOption={selectedOption} 
+            handleOptionChange={handleOptionChange}  />
+          )}
+          {currentStep === 4 && (
+          <div className="d-flex flex-column align-items-center"> {/* Add a flex column container */}
+          <Step4 formData={formData} setFormData={setFormData} />
+          <button
+                type="button"
+                className="btn btn-primary mt-3"
+                onClick={handleConfirmPay}
+                disabled={Object.keys(validationErrors).length > 0 || loading}
+              >
+                {loading ? 'Confirming...' : 'Confirm Pay'}
+              </button>
+          <p>{confirmationMsg}</p>
+        </div>
+          )}
+         {currentStep < 4 && (
+  <div className="d-flex justify-content-between">
+    {currentStep > 1 && currentStep < 5 && (
+      <button
+        type="button"
+        className="btn btn-secondary me-2"
+        onClick={prevStep}
+      >
+        Previous
+      </button>
+    )}
+    <button
+      type="button"
+      className="btn btn-primary"
+      onClick={nextStep}
+      disabled={Object.keys(validationErrors).length > 0 || (currentStep === 2 && !selectedBeneficiary)}
+    >
+      Next
+    </button>
+  </div>
+)}
+        
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default MainForm;

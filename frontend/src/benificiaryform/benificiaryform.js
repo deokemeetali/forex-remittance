@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import Select from "react-select";
 import "./benificiaryform.css";
 
@@ -20,8 +21,8 @@ const BeneficiaryForm = () => {
   const [bankDetails, setBankDetails] = useState("");
   const [countries, setCountries] = useState([]);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  const apiurl = "http://localhost:5001";
+  const navigate = useNavigate();
+  const apiurl = process.env.REACT_APP_API_BACKEND_URL
 
   // Move the useEffect outside the handleChange function
   useEffect(() => {
@@ -55,22 +56,24 @@ const BeneficiaryForm = () => {
         `https://restcountries.com/v3/alpha/${selectedOption.value}`
       );
       const data = response.data[0];
+      if (data.name) {
 
-      if (data.currencies && typeof data.currencies === "object") {
-        const currencyCodes = Object.keys(data.currencies);
-        const currencyOptions = currencyCodes.map((currencyCode) => ({
-          value: currencyCode,
-          label: data.currencies[currencyCode].name,
-        }));
+        if (data.currencies && typeof data.currencies === "object") {
+          const currencyCodes = Object.keys(data.currencies);
+          const currencyOptions = currencyCodes.map((currencyCode) => ({
+            value: currencyCode,
+            label: data.currencies[currencyCode].name,
+          }));
 
-        setCurrencyOptions(currencyOptions);
-        setSelectedCurrency(currencyCodes[0]);
+          setCurrencyOptions(currencyOptions);
+          setSelectedCurrency(currencyCodes[0]);
 
-        setFormData((prevData) => ({
-          ...prevData,
-          currency: currencyCodes[0],
-          selectedCountry: selectedOption,
-        }));
+          setFormData((prevData) => ({
+            ...prevData,
+            currency: currencyCodes[0],
+            selectedCountry: selectedOption,
+          }));
+        }
       } else {
         console.error(
           "Currency data is not in the expected format for the selected country"
@@ -103,8 +106,7 @@ const BeneficiaryForm = () => {
         branch: "",
         ifscCode: "",
       });
-
-      await fetchBankDetails();
+      navigate("/mainpage/displayform");
     } catch (error) {
       console.error("Error making backend call:", error);
     }
@@ -112,8 +114,9 @@ const BeneficiaryForm = () => {
 
   const fetchBankDetails = async () => {
     try {
+
       const response = await axios.get(
-        `http://localhost:5001/api/bankDetails/${ifscCode}`
+        `${apiurl}/api/bankDetails/${ifscCode}`
       );
       const data = response.data;
 
@@ -208,34 +211,31 @@ const BeneficiaryForm = () => {
             readOnly
           />
 
-          <label htmlFor="country">Country:</label>
-          <Select
-            id="country"
-            name="country"
-            value={formData.selectedCountry}
-            onChange={handleCountryChange}
-            options={countries}
-            placeholder="Select a country"
-            isSearchable={true}
-            isClearable={true}
-          />
-          <label htmlFor="currency">Currency:</label>
-          <Select
-            id="currency"
-            name="currency"
-            value={
-              selectedCurrency
-                ? { value: selectedCurrency, label: selectedCurrency }
-                : null
-            }
-            options={currencyOptions}
-            placeholder="Select a currency"
-            isSearchable={true}
-            isClearable={true}
-            onChange={(selectedOption) =>
-              setSelectedCurrency(selectedOption?.value)
-            }
-          />
+<label id="country-label" htmlFor="country">Country:</label>
+        <Select
+          inputId="country"
+          name="country"
+          value={formData.selectedCountry}
+          onChange={handleCountryChange}
+          options={countries}
+          placeholder="Select a country"
+          isSearchable={true}
+          isClearable={true}
+          aria-labelledby="country-label"
+        />
+
+        <label id="currency-label" htmlFor="currency">Currency:</label>
+        <Select
+          inputId="currency"
+          name="currency"
+          value={selectedCurrency ? { value: selectedCurrency, label: selectedCurrency } : null}
+          options={currencyOptions}
+          placeholder="Select a currency"
+          isSearchable={true}
+          isClearable={true}
+          onChange={(selectedOption) => setSelectedCurrency(selectedOption?.value)}
+          aria-labelledby="currency-label"
+        />
 
           <label htmlFor="email">Email:</label>
           <input

@@ -1,0 +1,93 @@
+[
+    {
+      "amount_sent": 100,
+      "recipient_get": "John Doe",
+      "sender_country": "USD",
+      "recipient_country": "EUR",
+      "card_holder_name": "John Doe",
+      "recipient_bank_name": "Bank of Example",
+      "recipient_email": "john.doe@example.com"
+    },
+    {
+      "amount_sent": 150,
+      "recipient_get": "Jane Smith",
+      "sender_country": "EUR",
+      "recipient_country": "USD",
+      "card_holder_name": "Jane Smith",
+      "recipient_bank_name": "Another Bank",
+      "recipient_email": "jane.smith@example.com"
+    },
+    {
+      "amount_sent": 75,
+      "recipient_get": "Bob Johnson",
+      "sender_country": "GBP",
+      "recipient_country": "USD",
+      "card_holder_name": "Bob Johnson",
+      "recipient_bank_name": "International Bank",
+      "recipient_email": "bob.johnson@example.com"
+    },
+    {
+      "amount_sent": 200,
+      "recipient_get": "Alice Williams",
+      "sender_country": "USD",
+      "recipient_country": "JPY",
+      "card_holder_name": "Alice Williams",
+      "recipient_bank_name": "Global Bank",
+      "recipient_email": "alice.williams@example.com"
+    },
+    {
+      "amount_sent": 120,
+      "recipient_get": "Charlie Brown",
+      "sender_country": "EUR",
+      "recipient_country": "GBP",
+      "card_holder_name": "Charlie Brown",
+      "recipient_bank_name": "Regional Bank",
+      "recipient_email": "charlie.brown@example.com"
+    },
+    {
+      "amount_sent": 180,
+      "recipient_get": "Eva Davis",
+      "sender_country": "USD",
+      "recipient_country": "AUD",
+      "card_holder_name": "Eva Davis",
+      "recipient_bank_name": "Local Bank",
+      "recipient_email": "eva.davis@example.com"
+    },
+    {
+      "amount_sent": 250,
+      "recipient_get": "Frank Miller",
+      "sender_country": "AUD",
+      "recipient_country": "CAD",
+      "card_holder_name": "Frank Miller",
+      "recipient_bank_name": "Neighborhood Bank",
+      "recipient_email": "frank.miller@example.com"
+    },
+    {
+      "amount_sent": 130,
+      "recipient_get": "Grace Taylor",
+      "sender_country": "CAD",
+      "recipient_country": "USD",
+      "card_holder_name": "Grace Taylor",
+      "recipient_bank_name": "City Bank",
+      "recipient_email": "grace.taylor@example.com"
+    },
+    {
+      "amount_sent": 300,
+      "recipient_get": "Henry Wilson",
+      "sender_country": "JPY",
+      "recipient_country": "EUR",
+      "card_holder_name": "Henry Wilson",
+      "recipient_bank_name": "Metropolitan Bank",
+      "recipient_email": "henry.wilson@example.com"
+    },
+    {
+      "amount_sent": 160,
+      "recipient_get": "Ivy Robinson",
+      "sender_country": "USD",
+      "recipient_country": "GBP",
+      "card_holder_name": "Ivy Robinson",
+      "recipient_bank_name": "District Bank",
+      "recipient_email": "ivy.robinson@example.com"
+    }
+  ]
+  
